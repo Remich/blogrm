@@ -1,0 +1,507 @@
+$color-main: #6e7682;
+$color-blue: #1982D1;
+
+$font-sans: Helvetica, Verdana, Arial, sans-serif;
+$font-serif: Georgia, Times, serif;
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body#admin_panel {
+	padding-top: 5rem;
+}
+
+.pp-editor-button {
+	line-height: 1rem;
+	letter-spacing: 0px;
+	display: inline-block;
+	font-family: $font-sans;
+	padding: 7px 26px 70px 37px;
+	border: 5px solid rgba(0,0,0,.13);
+	text-align: center;
+	font-size: .9rem;
+	color: rgba(0,0,0,.7);
+	background: url(../editor/edit.png), #ffffff; /* Old browsers */
+	background: url(../editor/edit.png), -moz-linear-gradient(top, #ffffff 0%, #ebebeb 78%); /* FF3.6+ */
+	background: url(../editor/edit.png), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(78%,#ebebeb)); /* Chrome,Safari4+ */
+	background: url(../editor/edit.png), -webkit-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Chrome10+,Safari5.1+ */
+	background: url(../editor/edit.png), -o-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Opera 11.10+ */
+	background: url(../editor/edit.png), -ms-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* IE10+ */
+	background: url(../editor/edit.png),  linear-gradient(to bottom, #ffffff 0%,#ebebeb 78%); /* W3C */
+	background-repeat: no-repeat;
+	background-position: 13px center, left center;
+	box-shadow: inset 0px -1px 1px #fff, inset 1px 0px 1px #fff, inset -1px 0px 1px #fff;
+	border-radius: 5px;
+}
+.pp-editor-button:hover {
+	background: url(../editor/edit.png),  #1982D1;
+	background-repeat: no-repeat;
+	background-position: 13px center, left center;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+#pp_editor {
+	top: 0;
+	z-index: 100;
+	font-family: $font-sans;
+	background-color: #f0f0f0;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	padding: .5rem 0 .5rem 0;
+	line-height: 2.5rem;
+	box-shadow: 0 0 25px rgba(0,0,0,.5);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+	
+	@mixin gradient($background) {
+		
+		background: #ffffff; /* Old browsers */
+		background: url($background), -moz-linear-gradient(top, #ffffff 0%, #ebebeb 78%); /* FF3.6+ */
+		background: url($background), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(78%,#ebebeb)); /* Chrome,Safari4+ */
+		background: url($background), -webkit-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Chrome10+,Safari5.1+ */
+		background: url($background), -o-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Opera 11.10+ */
+		background: url($background), -ms-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* IE10+ */
+		background: url($background), linear-gradient(to bottom, #ffffff 0%,#ebebeb 78%); /* W3C */
+		background-repeat: no-repeat;
+		background-position: center;
+		
+	}
+	
+	@mixin gradient2($background) {
+		
+		background: #ffffff; /* Old browsers */
+		background: url($background), -moz-linear-gradient(top, #ffffff 0%, #555555 78%); /* FF3.6+ */
+		background: url($background), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(78%,#555555)); /* Chrome,Safari4+ */
+		background: url($background), -webkit-linear-gradient(top, #ffffff 0%,#555555 78%); /* Chrome10+,Safari5.1+ */
+		background: url($background), -o-linear-gradient(top, #ffffff 0%,#555555 78%); /* Opera 11.10+ */
+		background: url($background), -ms-linear-gradient(top, #ffffff 0%,#555555 78%); /* IE10+ */
+		background: url($background), linear-gradient(to bottom, #ffffff 0%,#555555s 78%); /* W3C */
+		background-repeat: no-repeat;
+		background-position: center;
+		
+	}
+	
+	
+	div {
+		display: inline;
+	}
+	.pp-editor-toolbar-group {
+		font-size: .9rem;
+		
+		margin-left: .3rem;
+		display: inline-block;
+		select { font-size: 86% !important; padding: 7px 11px 6px 11px !important; } 
+	
+		.button {
+			color: rgba(0,0,0,.7);
+			outline: none;
+			margin: 0;
+			padding: 7px 11px;
+			border: 1px solid rgba(0,0,0,.13);
+			text-align: center;
+			background: #ffffff; /* Old browsers */
+			background: -moz-linear-gradient(top, #ffffff 0%, #ebebeb 78%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(78%,#ebebeb)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* IE10+ */
+			background: linear-gradient(to bottom, #ffffff 0%,#ebebeb 78%); /* W3C */
+			box-shadow: inset 0px -1px 1px #fff, inset 1px 0px 1px #fff, inset -1px 0px 1px #fff;
+			
+		}
+		.button:hover {
+			cursor: pointer;
+			box-shadow: none;
+			background: darken(#fff, 10%);	
+		}
+		
+		 .is-current-state:not(.empty) {
+			cursor: pointer;
+			background: #1982D1 !important;
+			box-shadow: none !important;
+			color: #fff;
+		}
+		.is-current-state.empty {
+			cursor: pointer;
+			box-shadow: none !important;
+			color: #fff;
+		}
+		.is-current-state:hover {
+			background-color: darken($color-blue, 10%) !important;
+		}
+		
+		
+		
+		.button:active:not(select) {
+			position: relative;
+			top: 1px;
+		}
+		.button:first-of-type {
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+		}
+		.button:last-of-type {
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+		.button:not(:first-of-type) {
+			margin-left: -1px;
+		}
+		.sub, .sup {
+			padding: 3px 11px 4px 11px;
+		}
+		/*delete
+			.nonpermanent:active {
+			background: $color-blue !important;
+		}*/
+		.empty {
+			text-indent: -50em;
+			border-left: 1px solid #d1d1d1;
+		}
+		.not-supported {
+			opacity: 0.4;
+		}
+	
+	}
+		
+		
+
+	
+	#bold {
+		font-weight: bold;
+	}
+	#italic {
+		font-style: italic;
+	}
+	#underline {
+		text-decoration: underline;
+	}
+	#strikethrough {
+		text-decoration: line-through;
+	}
+	#justifyleft {
+		padding: 7px 16px;
+		@include gradient( "../editor/text-align-left.png" );
+	}
+	#justifyleft:hover  {
+		cursor: pointer;
+		background: url(../editor/text-align-left.png), darken(#fff, 10%);
+		box-shadow: none;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifyleft.is-current-state {
+		background: url(../editor/text-align-left.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifycenter {
+		padding: 7px 16px;
+		@include gradient( "../editor/text-align-center.png" );
+	}
+	#justifycenter:hover {
+		cursor: pointer;
+		background: url(../editor/text-align-center.png), darken(#fff, 10%);
+		box-shadow: none;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifycenter.is-current-state {
+		background: url(../editor/text-align-center.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifyright {
+		padding: 7px 16px;
+		@include gradient( "../editor/text-align-right.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifyright:hover {
+		cursor: pointer;
+		background: url(../editor/text-align-right.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#justifyright.is-current-state {
+		background: url(../editor/text-align-left.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifyfull {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/text-align-justify.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#justifyfull:hover {
+		cursor: pointer;
+		background: url(../editor/text-align-justify.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#justifyfull.is-current-state {
+		background: url(../editor/text-align-justify.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#cancel {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/cancel.gif" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#cancel:hover {
+		cursor: pointer;
+		background: url(../editor/cancel.gif), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#save {
+		padding: 7px 16px;
+		@include gradient( "../editor/floppy.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#save:hover {
+		cursor: pointer;
+		background: url(../editor/floppy.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#newfile {
+		padding: 7px 16px;
+		@include gradient( "../editor/newfile.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#newfile:hover {
+		cursor: pointer;
+		background: url(../editor/newfile.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#deletefile {
+		padding: 7px 16px;
+		@include gradient( "../editor/trash.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#deletefile:hover {
+		cursor: pointer;
+		background: url(../editor/trash.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#insertorderedlist {
+		padding: 7px 16px;
+		@include gradient( "../editor/list-ordered.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#insertorderedlist:hover {
+		cursor: pointer;
+		background: url(../editor/list-ordered.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#insertorderedlist.is-current-state {
+		background: url(../editor/list-ordered.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#insertunorderedlist {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/list-unordered.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#insertunorderedlist:hover {
+		cursor: pointer;
+		background: url(../editor/list-unordered.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#insertunorderedlist.is-current-state {
+		background: url(../editor/list-unordered.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#inserthorizontalruler {
+		padding: 7px 16px;
+		@include gradient( "../editor/horizontal-ruler.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#inserthorizontalruler:hover {
+		cursor: pointer;
+		background: url(../editor/horizontal-ruler.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#blockquote {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/quote.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#blockquote:hover {
+		cursor: pointer;
+		background: url(../editor/quote.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#removeformat span {
+		font-family: Arial, sans;
+		position: relative;
+		left: -1px;
+		top: 3px;
+		color: red;
+		font-weight: bold;
+	}
+	#indent {
+		padding: 7px 16px;
+		@include gradient( "../editor/indent.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#indent:hover {
+		cursor: pointer;
+		background: url(../editor/indent.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#outdent {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/outdent.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#outdent:hover {
+		cursor: pointer;
+		background: url(../editor/outdent.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	
+	#createlink {
+		padding: 7px 16px;
+		@include gradient( "../editor/link.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#createlink:hover {
+		cursor: pointer;
+		background: url(../editor/link.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#createlink.is-current-state {
+		background: url(../editor/link.png),  #1982D1;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#unlink {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/unlink.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#unlink:hover {
+		cursor: pointer;
+		background: url(../editor/unlink.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#insertimage {
+		padding: 7px 16px;
+		@include gradient( "../editor/image.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#insertimage:hover {
+		cursor: pointer;
+		background: url(../editor/image.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#imageleft {
+		padding: 7px 16px;
+		@include gradient( "../editor/image-align-left.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#imageleft:hover {
+		cursor: pointer;
+		background: url(../editor/image-align-left.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#imagenone {
+		padding: 7px 16px;
+		@include gradient( "../editor/image-align-none.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#imagenone:hover {
+		cursor: pointer;
+		background: url(../editor/image-align-none.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#imageright {
+		padding: 7px 16px;
+		margin-right: .3rem;
+		@include gradient( "../editor/image-align-right.png" );
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#imageright:hover {
+		cursor: pointer;
+		background: url(../editor/image-align-right.png), darken(#fff, 10%);
+		background-repeat: no-repeat;
+		background-position: center;
+		box-shadow: none;
+	}
+	#fontsize {
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 1px;
+	}
+	#forecolor {
+		position: relative;
+		top: 2px;
+		right: 1px;
+		padding: 3px 6px 3px 6px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+}
+

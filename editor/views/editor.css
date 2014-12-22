@@ -1,0 +1,725 @@
+html, body {
+  margin: 0;
+  padding: 0; }
+
+body#admin_panel {
+  padding-top: 5rem; }
+
+.pp-editor-button {
+  line-height: 1rem;
+  letter-spacing: 0px;
+  display: inline-block;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  padding: 7px 26px 70px 37px;
+  border: 5px solid rgba(0, 0, 0, 0.13);
+  text-align: center;
+  font-size: .9rem;
+  color: rgba(0, 0, 0, 0.7);
+  background: url(img/edit.png), white;
+  /* Old browsers */
+  background: url(img/edit.png), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+  /* FF3.6+ */
+  background: url(img/edit.png), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+  /* Chrome,Safari4+ */
+  background: url(img/edit.png), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+  /* Chrome10+,Safari5.1+ */
+  background: url(img/edit.png), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+  /* Opera 11.10+ */
+  background: url(img/edit.png), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+  /* IE10+ */
+  background: url(img/edit.png), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+  /* W3C */
+  background-repeat: no-repeat;
+  background-position: 13px center, left center;
+  box-shadow: inset 0px -1px 1px #fff, inset 1px 0px 1px #fff, inset -1px 0px 1px #fff;
+  border-radius: 5px; }
+
+.pp-editor-button:hover {
+  background: url(img/edit.png), #1982d1;
+  background-repeat: no-repeat;
+  background-position: 13px center, left center;
+  cursor: pointer;
+  box-shadow: none; }
+
+#pp_editor {
+  position: relative;
+  top: -1px;
+  z-index: 100;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+  width: 100%;
+  padding: .5rem 0 .5rem 0;
+  margin: 0px !important;
+  line-height: 2.5rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+  #pp_editor div {
+    display: inline; }
+  #pp_editor .pp-editor-toolbar-group {
+    font-size: .9rem;
+    margin-left: .3rem;
+    display: inline-block;
+    /*delete
+    	.nonpermanent:active {
+    	background: $color-blue !important;
+    }*/ }
+    #pp_editor .pp-editor-toolbar-group select {
+      font-size: 86% !important;
+      padding: 7px 11px 6px 11px !important; }
+    #pp_editor .pp-editor-toolbar-group .button {
+    	height: 36px;
+    	min-width: 36px;
+      color: rgba(0, 0, 0, 0.7);
+      outline: none !important;
+      margin: 0 0 .6em 0;
+      padding: 7px 11px;
+      border: 1px solid rgba(0, 0, 0, 0.13);
+      text-align: center;
+      background: #ffffff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, white 0%, #ebebeb 78%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, white 0%, #ebebeb 78%);
+      /* W3C */
+      box-shadow: inset 0px -1px 1px #fff, inset 1px 0px 1px #fff, inset -1px 0px 1px #fff; }
+    #pp_editor .pp-editor-toolbar-group .button:hover {
+      cursor: pointer;
+      box-shadow: none;
+      background: #e6e6e6; }
+    #pp_editor .pp-editor-toolbar-group .is-current-state:not(.empty) {
+      cursor: pointer;
+      background: #1982D1 !important;
+      box-shadow: none !important;
+      color: #fff; }
+    #pp_editor .pp-editor-toolbar-group .is-current-state.empty {
+      cursor: pointer;
+      box-shadow: none !important;
+      color: #fff; }
+    #pp_editor .pp-editor-toolbar-group .is-current-state:hover {
+      background-color: #1466a3 !important; }
+    #pp_editor .pp-editor-toolbar-group .button:active:not(select) {
+      position: relative;
+      top: 1px; }
+    #pp_editor .pp-editor-toolbar-group .button:first-of-type {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px; }
+    #pp_editor .pp-editor-toolbar-group .button:last-of-type {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px; }
+    #pp_editor .pp-editor-toolbar-group .button:not(:first-of-type) {
+      margin-left: -1px; }
+    #pp_editor .pp-editor-toolbar-group .sub, #pp_editor .pp-editor-toolbar-group .sup {
+      padding: 3px 11px 4px 11px; }
+    #pp_editor .pp-editor-toolbar-group .empty {
+      text-indent: -50em !important;
+      border-left: 1px solid #d1d1d1;
+      color: rgba(255,255,255,0);
+     }
+    #pp_editor .pp-editor-toolbar-group .not-supported {
+      opacity: 0.4; }
+  #pp_editor #bold {
+    font-weight: bold; }
+  #pp_editor #italic {
+    font-style: italic; }
+  #pp_editor #underline {
+    text-decoration: underline; }
+  #pp_editor #strikethrough {
+    text-decoration: line-through; }
+  #pp_editor #justifyleft {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/text-align-left.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/text-align-left.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/text-align-left.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/text-align-left.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/text-align-left.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/text-align-left.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifyleft:hover {
+    cursor: pointer;
+    background: url(img/text-align-left.png), #e6e6e6;
+    box-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifyleft.is-current-state {
+    background: url(img/text-align-left.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifycenter {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/text-align-center.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/text-align-center.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/text-align-center.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/text-align-center.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/text-align-center.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/text-align-center.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifycenter:hover {
+    cursor: pointer;
+    background: url(img/text-align-center.png), #e6e6e6;
+    box-shadow: none;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifycenter.is-current-state {
+    background: url(img/text-align-center.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifyright {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/text-align-right.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/text-align-right.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/text-align-right.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/text-align-right.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/text-align-right.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/text-align-right.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifyright:hover {
+    cursor: pointer;
+    background: url(img/text-align-right.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #justifyright.is-current-state {
+    background: url(img/text-align-left.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifyfull {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/text-align-justify.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/text-align-justify.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/text-align-justify.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/text-align-justify.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/text-align-justify.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/text-align-justify.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #justifyfull:hover {
+    cursor: pointer;
+    background: url(img/text-align-justify.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #justifyfull.is-current-state {
+    background: url(img/text-align-justify.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #cancel {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/cancel.gif"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/cancel.gif"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/cancel.gif"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/cancel.gif"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/cancel.gif"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/cancel.gif"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #cancel:hover {
+    cursor: pointer;
+    background: url(img/cancel.gif), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #save {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/floppy.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/floppy.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/floppy.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/floppy.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/floppy.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/floppy.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #save:hover {
+    cursor: pointer;
+    background: url(img/floppy.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #newfile {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/newfile.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/newfile.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/newfile.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/newfile.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/newfile.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/newfile.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #newfile:hover {
+    cursor: pointer;
+    background: url(img/newfile.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #deletefile {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/trash.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/trash.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/trash.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/trash.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/trash.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/trash.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #deletefile:hover {
+    cursor: pointer;
+    background: url(img/trash.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #insertorderedlist {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/list-ordered.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/list-ordered.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/list-ordered.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/list-ordered.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/list-ordered.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/list-ordered.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #insertorderedlist:hover {
+    cursor: pointer;
+    background: url(img/list-ordered.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #insertorderedlist.is-current-state {
+    background: url(img/list-ordered.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #insertunorderedlist {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/list-unordered.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/list-unordered.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/list-unordered.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/list-unordered.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/list-unordered.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/list-unordered.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #insertunorderedlist:hover {
+    cursor: pointer;
+    background: url(img/list-unordered.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #insertunorderedlist.is-current-state {
+    background: url(img/list-unordered.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #inserthorizontalruler {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/horizontal-ruler.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/horizontal-ruler.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/horizontal-ruler.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/horizontal-ruler.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/horizontal-ruler.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/horizontal-ruler.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #inserthorizontalruler:hover {
+    cursor: pointer;
+    background: url(img/horizontal-ruler.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #blockquote {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/quote.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/quote.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/quote.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/quote.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/quote.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/quote.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #blockquote:hover {
+    cursor: pointer;
+    background: url(img/quote.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #removeformat span {
+    font-family: Arial, sans;
+    position: relative;
+    left: -1px;
+    top: 3px;
+    color: red;
+    font-weight: bold; }
+  #pp_editor #indent {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/indent.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/indent.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/indent.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/indent.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/indent.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/indent.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #indent:hover {
+    cursor: pointer;
+    background: url(img/indent.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #outdent {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/outdent.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/outdent.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/outdent.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/outdent.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/outdent.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/outdent.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #outdent:hover {
+    cursor: pointer;
+    background: url(img/outdent.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #createlink {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/link.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/link.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/link.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/link.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/link.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/link.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #createlink:hover {
+    cursor: pointer;
+    background: url(img/link.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #createlink.is-current-state {
+    background: url(img/link.png), #1982d1;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #unlink {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/unlink.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/unlink.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/unlink.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/unlink.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/unlink.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/unlink.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #unlink:hover {
+    cursor: pointer;
+    background: url(img/unlink.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #insertimage {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/image.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/image.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/image.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/image.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/image.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/image.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #insertimage:hover {
+    cursor: pointer;
+    background: url(img/image.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #imageleft {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/image-align-left.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/image-align-left.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/image-align-left.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/image-align-left.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/image-align-left.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/image-align-left.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #imageleft:hover {
+    cursor: pointer;
+    background: url(img/image-align-left.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #imagenone {
+    padding: 7px 16px;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/image-align-none.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/image-align-none.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/image-align-none.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/image-align-none.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/image-align-none.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/image-align-none.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #imagenone:hover {
+    cursor: pointer;
+    background: url(img/image-align-none.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #imageright {
+    padding: 7px 16px;
+    margin-right: .3rem;
+    background: #ffffff;
+    /* Old browsers */
+    background: url("img/image-align-right.png"), -moz-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* FF3.6+ */
+    background: url("img/image-align-right.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(78%, #ebebeb));
+    /* Chrome,Safari4+ */
+    background: url("img/image-align-right.png"), -webkit-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Chrome10+,Safari5.1+ */
+    background: url("img/image-align-right.png"), -o-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* Opera 11.10+ */
+    background: url("img/image-align-right.png"), -ms-linear-gradient(top, white 0%, #ebebeb 78%);
+    /* IE10+ */
+    background: url("img/image-align-right.png"), linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    /* W3C */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center; }
+  #pp_editor #imageright:hover {
+    cursor: pointer;
+    background: url(img/image-align-right.png), #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none; }
+  #pp_editor #fontsize {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 1px; }
+  #pp_editor #forecolor, #pp_editor #backcolor {
+
+    position: relative;
+    top: 8px;
+    right: 1px;
+    padding: 3px 6px 3px 6px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px; }
+    
+   #pp_editor #backcolor {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px; }
+    
+   
+.editable:hover:not(:focus) {
+  outline: orange solid 2px;
+  cursor: pointer; }
+
+*[contenteditable="true"]:hover:not(:focus) {
+  outline: orange solid 2px; }
+    
+.p_editor #switch_editor{
+	font-weight: bold; 
+} 

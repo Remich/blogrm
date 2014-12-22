@@ -1,0 +1,86 @@
+
+<body id="admin_panel">
+	<div id="pp_editor">
+
+			<div class="pp-editor-toolbar-group">
+				<button class="button empty nonpermanent" data-title="newfile" id="newfile">a</button><button class="button empty nonpermanent" data-title="save" id="save">a</button><button class="button empty nonpermanent" data-title="deletefile" id="deletefile">a</button><button class="button empty nonpermanent" data-title="cancel" id="cancel">a</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button nonpermanent" data-title="undo" id="undo" onclick="document.execCommand('undo',false,null);" >&#8630;</button><button class="button nonpermanent" data-title="redo" id="redo" onclick="document.execCommand('redo',false,null);" >&#8631;</button>
+			</div>
+			
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button nonpermanent" data-title="removeformat" id="removeformat"  onclick="document.execCommand('removeformat',false,null);">A<span>x</span></button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button nonpermanent" data-title="edithtml" id="edithtml">&lt;edit html&gt;</button>
+			</div>
+	
+			<div class="pp-editor-toolbar-group">
+				<select class="button" id="fontname">
+				  <option value="Arial">Arial</option>
+				  <option value="Courier">Courier</option>
+				  <option value="Georgia" selected="selected">Georgia</option>
+				</select><select class="button" id="fontsize">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3" selected="selected">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				  <option value="6">6</option>
+				  <option value="7">7</option>
+				</select><input class="button" type="color" name="forecolor" id="forecolor">
+			</div>			
+			
+			
+			<div class="pp-editor-toolbar-group">
+				<select class="button" id="formatblock">
+					<option value="na">N/A</option>
+					<option value="h1">Heading 1</option>
+					<option value="h2">Heading 2</option>
+					<option value="h3">Heading 3</option>
+					<option value="h4">Heading 4</option>
+					<option value="h5">Heading 5</option>
+					<option value="h6">Heading 6</option>
+					<option value="p">Paragraph</option>
+					<option value="div">Div</option>
+					<option value="preformatted">Pre-formatted</option>
+					<option value="address">Address</option>
+				</select>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button" data-title="bold" id="bold" onclick="document.execCommand('bold',false,null);" value="B">B</button><button class="button" data-title="italic" id="italic" value="I" onclick="document.execCommand('italic',false,null);">I</button><button class="button" data-title="underline" id="underline" value="U" onclick="document.execCommand('underline',false,null);">U</button><button class="button" data-title="strikethrough" id="strikethrough" value="S" onclick="document.execCommand('strikethrough',false,null);">S</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button sub" data-title="subscript" id="subscript" onclick="document.execCommand('subscript',false,null);">a<sub>2</sub><sup></sup></button><button class="button sup" data-title="superscript" id="superscript" value="sup"  onclick="document.execCommand('superscript',false,null);">a<sup>2</sup><sub></sub></button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group justify">
+				<button class="button empty" data-title="justifyleft" id="justifyleft" onclick="document.execCommand('justifyleft',false,null);">a</button><button class="button empty" data-title="justifycenter" id="justifycenter" onclick="document.execCommand('justifycenter',false,null);">a</button><button class="button empty" data-title="justifyright" id="justifyright" onclick="document.execCommand('justifyright',false,null);">a</button><button class="button empty" data-title="justifyfull" id="justifyfull" onclick="document.execCommand('justifyfull',false,null);">a</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button empty nonpermanent" data-title="indent" id="indent" onclick="document.execCommand('indent',false,null);">a</button><button class="button empty nonpermanent" data-title="outdent" id="outdent" onclick="document.execCommand('outdent',false,null);">s</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button empty" data-title="insertorderedlist" id="insertorderedlist" onclick="document.execCommand('insertorderedlist',false,null);" >a</button><button class="button empty" data-title="insertunorderedlist" id="insertunorderedlist" onclick="document.execCommand('insertunorderedlist',false,null);">a</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button empty nonpermanent" data-title="inserthorizontalruler" id="inserthorizontalruler" onclick="document.execCommand('inserthtml',false,'<hr>');">a</button><button class="button empty" data-title="blockquote" id="blockquote" onclick="document.execCommand('formatblock',false,'blockquote');">a</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button empty nonpermanent" data-title="createlink" id="createlink" onclick="document.execCommand('createlink', false, prompt('Enter a URL:', 'http://'))">a</button><button class="button empty nonpermanent" data-title="unlink" id="unlink" onclick="document.execCommand('unlink',false,null);">a</button>
+			</div>
+			
+			<div class="pp-editor-toolbar-group">
+				<button class="button nonpermanent" data-title="edithtml" id="edithtml">&lt;insert html&gt;</button><button class="button empty" data-title="insertimage" id="insertimage">a</button><button class="button empty" data-title="imageleft" id="imageleft">a</button><button class="button empty" data-title="imagenone" id="imagenone">a</button><button class="button empty" data-title="imageright" id="imageright">a</button>
+			</div>
+	</div>

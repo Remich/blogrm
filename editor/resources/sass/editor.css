@@ -1,0 +1,53 @@
+/*
+Syntax error: Mixins may only be defined at the root of a document.
+        on line 59 of sass/editor.scss
+
+54: 	padding: .5rem 0 .5rem 0;
+55: 	line-height: 2.5rem;
+56: 	box-shadow: 0 0 25px rgba(0,0,0,.5);
+57: 	border-bottom: 1px solid rgba(0,0,0,.2);
+58: 	
+59: 	@mixin gradient($background) {
+60: 		
+61: 		background: #ffffff; /* Old browsers */
+62: 		background: url($background), -moz-linear-gradient(top, #ffffff 0%, #ebebeb 78%); /* FF3.6+ */
+63: 		background: url($background), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(78%,#ebebeb)); /* Chrome,Safari4+ */
+64: 		background: url($background), -webkit-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Chrome10+,Safari5.1+ */
+
+Backtrace:
+sass/editor.scss:59
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/check_nesting.rb:13:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/check_nesting.rb:27:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:39:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/check_nesting.rb:15:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/check_nesting.rb:27:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:37:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/check_nesting.rb:34:in `visit_root'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:37:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/check_nesting.rb:15:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:24:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:19:in `render'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:300:in `_render'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:247:in `render'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:340:in `update_stylesheet'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:202:in `block in update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:200:in `each'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:200:in `update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:234:in `watch'
+/usr/lib/ruby/vendor_ruby/sass/plugin.rb:107:in `method_missing'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:427:in `watch_or_update'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:302:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:41:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:21:in `parse!'
+/usr/bin/sass:8:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Mixins may only be defined at the root of a document.\A         on line 59 of sass/editor.scss\A \A 54: 	padding: .5rem 0 .5rem 0;\A 55: 	line-height: 2.5rem;\A 56: 	box-shadow: 0 0 25px rgba(0,0,0,.5);\A 57: 	border-bottom: 1px solid rgba(0,0,0,.2);\A 58: 	\A 59: 	@mixin gradient($background) {\A 60: 		\A 61: 		background: #ffffff; /* Old browsers */\A 62: 		background: url($background), -moz-linear-gradient(top, #ffffff 0%, #ebebeb 78%); /* FF3.6+ */\A 63: 		background: url($background), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(78%,#ebebeb)); /* Chrome,Safari4+ */\A 64: 		background: url($background), -webkit-linear-gradient(top, #ffffff 0%,#ebebeb 78%); /* Chrome10+,Safari5.1+ */"; }

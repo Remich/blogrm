@@ -1,0 +1,354 @@
+
+$(document).ready(function() {
+	
+	var editing = null;
+	
+	$('body').css('padding-top', '100px' )
+	
+	//library editor
+	function componentToHex(c) {
+		var hex = c.toString(16);
+		return hex.length == 1 ? "0" + hex : hex;
+	}
+
+	function rgbToHex(str) {
+		str = str.replace("rgb(", "").replace(")", "").replace(/ /g, "");
+		str = str.split(",");
+		return "#" + componentToHex(parseInt(str[0])) + componentToHex(parseInt(str[1])) + componentToHex(parseInt(str[2]));
+	}
+
+	
+	
+	$(document).on("click", "#save", function(e) {
+		$('#pp_editor').slideUp();
+		if(editing != null) 
+			editing.addClass('editable').removeAttr("contenteditable");
+	});
+	$(document).on("click", "#cancel", function(e) {
+		$('#pp_editor').slideUp();
+		if(editing != null) {
+			editing.addClass('editable').removeAttr("contenteditable");
+			editing = null;
+		}
+	});
+	
+	/*function getCaretCharacterOffsetWithin(element) {
+		var caretOffset = 0;
+		var doc = element.ownerDocument || element.document;
+		var win = doc.defaultView || doc.parentWindow;
+		var sel;
+		if (typeof win.getSelection != "undefined") {
+			var range = win.getSelection().getRangeAt(0);
+			var preCaretRange = range.cloneRange();
+			preCaretRange.selectNodeContents(element);
+			preCaretRange.setEnd(range.endContainer, range.endOffset);
+			caretOffset = preCaretRange.toString().length;
+		} else if ( (sel = doc.selection) && sel.type != "Control") {
+			var textRange = sel.createRange();
+			var preCaretTextRange = doc.body.createTextRange();
+			preCaretTextRange.moveToElementText(element);
+			preCaretTextRange.setEndPoint("EndToEnd", textRange);
+			caretOffset = preCaretTextRange.text.length;
+		}
+		return caretOffset;
+	}*/
+		
+	/*function showCaretPos() {
+		var el = document.getElementById("d");
+		console.log("Caret position: " + getCaretCharacterOffsetWithin(el));
+	}*/
+	
+	check_enabled = function() {
+		//Todo: stop hüpfen bei select
+		
+		if(editing == null) 
+			return false;
+		
+		is_supported = function(state, id) {
+		
+			if(!document.queryCommandEnabled(state)) {
+				if(!$('#pp_editor #'+ ((typeof id !== 'undefined') ? id : state )).hasClass("not-supported"))
+					$('#pp_editor #'+ ((typeof id !== 'undefined') ? id : state )).addClass("not-supported").attr('disabled', 'true');
+			} else {
+				if($('#pp_editor #'+ ((typeof id !== 'undefined') ? id : state )).hasClass("not-supported"))
+					$('#pp_editor #'+ ((typeof id !== 'undefined') ? id : state )).removeClass("not-supported").removeAttr('disabled');
+			}
+			
+		}
+		
+		is_supported("undo");
+		is_supported("redo");
+		is_supported("indent");
+		is_supported("outdent");
+		is_supported("bold");
+		is_supported("italic");
+		is_supported("underline");
+		is_supported("strikethrough");
+		is_supported("subscript");
+		is_supported("superscript");
+		is_supported("insertorderedlist");
+		is_supported("insertunorderedlist");
+		is_supported("insertlinebreak");
+		is_supported("formatblock", "blockquote");
+		is_supported("createlink");
+		is_supported("unlink");
+		is_supported("justifyleft");
+		is_supported("justifycenter");
+		is_supported("justifyright");
+		is_supported("justifyfull");
+		is_supported("removeformat");
+		is_supported("fontname");
+		is_supported("fontsize");
+		is_supported("forecolor");
+		is_supported("formatblock");
+		is_supported("inserthtml", "inserthorizontalruler");
+		is_supported("inserthtml", "edithtml");
+		is_supported("insertimage");
+
+		is_supported_entry_action = function(action) {
+			
+			console.log('check: ' + action);
+			console.log(editing.attr('data-type'));
+			switch(editing.attr('data-type')) {
+			
+				
+				case 'news':
+					
+					if(action == "new")
+						if($('#pp_editor #newfile').hasClass("not-supported"))
+							$('#pp_editor #newfile').removeClass("not-supported").removeAttr('disabled');
+						if($('#pp_editor #deletefile').hasClass("not-supported"))
+							$('#pp_editor #deletefile').removeClass("not-supported").removeAttr('disabled');
+					
+				break;
+				
+				default:
+					if(action == "new")
+						if(!$('#pp_editor #newfile').hasClass("not-supported"))
+							$('#pp_editor #newfile').addClass("not-supported").attr('disabled', 'true');
+					if(action == "delete")
+						if(!$('#pp_editor #deletefile').hasClass("not-supported"))
+							$('#pp_editor #deletefile').addClass("not-supported").attr('disabled', 'true');
+				break;
+			
+			}
+		}
+
+		is_supported_entry_action("new");
+		is_supported_entry_action("delete");
+		
+		// TODO: detect support for image alignment
+		is_supported("imageleft");
+		is_supported("imagenone");
+		is_supported("imageright");
+	}
+	
+	var aktiv = setInterval(check_enabled, 100);
+	
+
+	
+	
+	$(document).on("click", '*[contenteditable="true"]', function(e) {
+	
+		
+	
+		// Font Name
+		var fontName = document.queryCommandValue("FontName");
+		console.log(fontName);
+	
+		// Font Size
+		var fontSize = document.queryCommandValue("FontSize");
+		$('#pp_editor #fontsize option[value='+fontSize+']').attr("selected", true);
+		
+		// Fore Color
+		var foreColor = document.queryCommandValue("ForeColor");
+		$('#pp_editor #forecolor').val(rgbToHex(foreColor));
+		
+		
+		
+		
+		// FormatBlock
+		formatBlock = function(state) {
+			if(document.queryCommandState(state))
+				$('#pp_editor #'+state).addClass("is-current-state");
+			else
+				$('#pp_editor #'+state).removeClass("is-current-state");
+		}	
+		formatBlock("bold");
+		formatBlock("italic");
+		formatBlock("underline");
+		formatBlock("strikethrough");
+		formatBlock("subscript");
+		formatBlock("superscript");
+		formatBlock("insertorderedlist");
+		formatBlock("insertunorderedlist");
+		formatBlock("insertlinebreak");
+		formatBlock("blockquote");
+		formatBlock("createlink");
+		formatBlock("unlink");
+		
+		
+		//showCaretPos();
+		//console.log(document.queryCommandState("formatBlock", null, "p"));
+		
+		formatBlock("justifyleft");
+		formatBlock("justifycenter");
+		formatBlock("justifyright");
+		formatBlock("justifyfull");
+		
+		$('#pp_editor #formatblock option[value=p]').attr("selected", true);
+		check_enabled();
+		
+
+		//console.log(document.queryCommandState("createLink"));
+			
+		//console.log(document.queryCommandState("Paragraph"));
+		
+		//console.log("format_block" + format_block);
+		
+		//var fontName = document.queryCommandValue("FontName");
+		//var colour = document.queryCommandValue("ForeColor");
+		
+		//var bold = document.queryCommandState("Bold");
+		//console.log( bold: " + bold);
+		//console.log('fontname: ' + fontName);
+	});
+	
+	
+	/*$(document).on("click", 'time[contenteditable="true"]', function(e) {
+	
+		$(this).attr("contenteditable", "false");
+		$(this).html("");
+		$(this).after('<input type="date" name="editable_date" value="2011-09-29" class="editable">');
+	
+		console.log('jizzz');
+
+		//console.log(document.queryCommandState("createLink"));
+			
+		//console.log(document.queryCommandState("Paragraph"));
+		
+		//console.log("format_block" + format_block);
+		
+		//var fontName = document.queryCommandValue("FontName");
+		//var colour = document.queryCommandValue("ForeColor");
+		
+		//var bold = document.queryCommandState("Bold");
+		//console.log( bold: " + bold);
+		//console.log('fontname: ' + fontName);
+	});*/
+	
+	$(document).on('focusout', 'input[type="date"]', function() {
+		var val = $(this).val();
+		var data = $(this).attr("data-type");
+		$(this).after('<time class="editable" data-type="'+data+'">'+val+'</time>');
+		$(this).remove();
+	});
+
+			
+	$(document).on("click", ".editable", function(e) {	
+			
+		if(editing != null) 
+			editing.addClass('editable').removeAttr("contenteditable");
+			
+		$('#pp_editor').slideDown(function() {
+		});
+		
+		
+		$(this).removeClass('editable');
+		editing = $(this);
+		editing.attr("contenteditable", "true").focus();
+		
+		if( editing.prop("tagName") == 'TIME' ) {
+			
+			$(editing).attr("contenteditable", "false");
+			$(editing).html("");
+			$(editing).after('<input type="date" data-type="'+$(editing).attr("data-type")+'" name="editable_date" value="2011-09-29" class="editable">');
+			$(editing).remove();
+		}
+	
+	});
+	
+	
+	/*$('*[contenteditable="true"]').focusout(function(e) {
+		$('#pp_editor').hide();
+	});*/
+
+	/*$('#pp_editor .button').click(function(e) {
+		
+		var cmd = $(this).attr('data-title');
+		//var value = $(this).val() || null;
+		//if (value == 'promptUser')
+		//	value = prompt($(this).attr('promptText'));
+			
+			
+		document.execCommand(cmd,false,null);
+
+
+	  /*switch($(this).attr('id')) {
+		case 'h1':
+		case 'h2':
+		case 'p':
+		  document.execCommand('formatBlock', false, $(this).attr('id'));
+		  break;
+		default:
+		  document.execCommand($(this).attr('id'), false, null);
+		  break;
+		}*//*
+	});*/
+	
+	$(document).on('click', '#pp_editor button:not(.nonpermanent)', function(e) { 
+
+		var state = $(this).attr("id");
+		$('#pp_editor #'+state).toggleClass("is-current-state");
+		
+		formatBlock("justifyleft");
+		formatBlock("justifycenter");
+		formatBlock("justifyright");
+		formatBlock("justifyfull");
+	
+	});
+	
+	$(document).on("change", "#fontname", function(e) {
+		document.execCommand("fontname", false, $(this).val() );
+	});
+	
+	$(document).on('change', '#fontsize', function() { 
+		document.execCommand("fontsize", false, $(this).val() );
+	});
+	
+	$(document).on('change', '#forecolor', function() { 
+		document.execCommand("forecolor", false, $(this).val() );
+	});
+	
+	$('#formatblock').focusout(function(e) {
+		document.execCommand("formatblock", false, $(this).val() );
+	});
+	
+	/*$(document).on("change", '#fontSizeSelector', function(e) {
+		$(this).mouseup(function(e) {
+			document.execCommand("fontsize", false, $(this).val() );
+			editing.focus();
+		});
+		
+		$(document).keyup(function(e) {
+			if(e.keyCode == 13)
+			document.execCommand("fontsize", false, $(this).val() );
+			editing.focus();
+		});
+	});*/
+	
+	
+	
+	$.ajax({
+        url : "editor/view/editor.html",
+        dataType: "text",
+        success : function (data) {
+            $("body").prepend(data);
+            $("#pp_editor").hide();
+        }
+    });
+    
+	
+});
+	
+	
