@@ -6,7 +6,7 @@
 	</header>
 	<section>
 		<div class="editable" model="Article" model_id="<?php echo $item['id']; ?>" model_key="content">
-			<?php  echo ($item['content'] != "") ? $item['content'] : "Lorem Ipsum"; ?><
+			<?php  echo ($item['content'] != "") ? $item['content'] : "Lorem Ipsum"; ?>
 		</div>
 	</section>
 </article>
