@@ -17,7 +17,7 @@
 		
 		public function load() {
 			if($this->_tag_id == null) {
-				$this->_query = 'SELECT * FROM article ORDER BY a_sort DESC';
+				$this->_query = 'SELECT * FROM article ORDER BY a_date DESC';
 				$data = $this->getDataWithPages(Config::getOption('articles_per_page'));
 			} else {			
 				// TODO: Escape
