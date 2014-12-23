@@ -107,6 +107,7 @@ article header .post-subtitle {
 	color: #FFBB00;
 }
 #r {
+	position: absolute;
 	color: #FFBB00;
 	left: 0px;
 	text-shadow: 1px 0px 0px #fff;
@@ -117,6 +118,7 @@ article header .post-subtitle {
 #m2 {
 	left: 0px;
 	opacity: 0;
+	position: absolute;
 }
 article section {
 	line-height: 1.5em;
