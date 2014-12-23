@@ -146,7 +146,7 @@
 					if($color < 100 && $color != 0) $color = 100;
 					$half = dechex(ceil(ceil(  ($item['hits'] / $mosthits ) * 255) / 2.5));
 					if($font < $this->_min)	$font = $this->_min;
-					$tags[] = '<font style="font-size:'.$font.'px; padding-right: 15px;"><a style="color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Einträge">'.$item['name'].'</a></font>';
+					$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px; color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
 				}
 				return "<h1>Tags</h1><p>" . implode("", $tags) . "</p>";
 			}

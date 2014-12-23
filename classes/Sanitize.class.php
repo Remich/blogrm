@@ -71,6 +71,7 @@
 				: trim($item);
 			return $array;
 		}
+
 		
 		public static function make_save_str_in($array) {
 			#$string = self::addslashes(self::stripslashes($array)); // stripslashes to avoid double slashing

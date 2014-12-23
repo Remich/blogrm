@@ -13,7 +13,7 @@
 		<link href="<?php echo get_theme_folder(); ?>extensions/google-code-prettify/desert.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body id="<?php echo $this->_['page']; ?>">
-		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important;"></div>
+		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important; z-index: 1;"></div>
 		<div id="hidden" style="visibility: hidden"></div>
 		<div id="wr">
 			<div id="wrapper">

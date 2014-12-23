@@ -39,6 +39,7 @@
 		
 		public function receiveStringOfTags($tags) {
 			$this->_tags = strip_tags($tags);
+			$this->_tags = str_replace("&nbsp;", "", $this->_tags);
 			$this->_tags = explode('#', $this->_tags);
 			$this->_tags = Sanitize::trim($this->_tags);
 			foreach($this->_tags as $key => $item)

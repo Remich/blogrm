@@ -122,7 +122,7 @@
 					$tags->setTableTags("categories");
 					$tags->setTableRelation("rel_articles_categories");
 					$tags->setFontMax(35);
-					$tags->setFontMin(15);
+					$tags->setFontMin(13);
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
@@ -219,7 +219,7 @@
 					$tags->setTableTags("categories");
 					$tags->setTableRelation("rel_articles_categories");
 					$tags->setFontMax(35);
-					$tags->setFontMin(15);
+					$tags->setFontMin(13);
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();

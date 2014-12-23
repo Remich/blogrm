@@ -8,7 +8,7 @@
             /*"siteurl"=> "http://localhost/public/MVC Framework/page/",
             "serverdir" => "/Users/pepe-roni/Sites/public/MVC Framework/page/",*/
             
-            "dbhost" => "127.0.0.1",
+            "dbhost" => "192.168.178.64",
             "dbname" => "rm",
             "dbuser" => "rm",
             "dbpass" => "xZvyCcqfvxZAtbJK",
