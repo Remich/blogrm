@@ -20,7 +20,8 @@ Todo:
 		* wenn man ohne änderung ein bookmark mehrmals speichert, so stacken sich die amps (e.g. language agnostic - What does it mean to &amp;amp;amp;amp;amp;quot;program to an interface&amp;amp;amp;amp;amp;quot;? - Stack Overflow)	
 		* prüfe ob ungespeicherte änderungen vorhanden sind -> methode verbessern
 		* implement saving of alle edited articles
-		* fix trimming in tags
+			* fix bug: new article -> edit heading -> edit message -> edit tags -> save ==> NOT SAVING THE FUCKING TITLE
+		* (DONE) fix trimming in tags
 		* add error message, when request item, article, tag, could not be found
 	 
 	Architecture:
