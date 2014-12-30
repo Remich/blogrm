@@ -269,7 +269,7 @@
 						require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
 						$model = new $this->_request['model'](array('id'=>$this->_request['id']));
 					
-						die($model->trash());
+						die($model->delete());
 						break;
 						
 				case 'delete':

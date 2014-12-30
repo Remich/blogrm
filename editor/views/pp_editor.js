@@ -188,8 +188,7 @@ $(document).ready(function() {
 	
 	
 	//library editor
-	function componentToHex(c) {
-		var hex = c.toString(16);
+	function componentToHex(c) { var hex = c.toString(16);
 		return hex.length == 1 ? "0" + hex : hex;
 	}
 
@@ -234,28 +233,32 @@ $(document).ready(function() {
 	}
 	
 	var delete_item = function(to_delete) {
-		console.log(to_delete);
 		item = to_delete.pop();
-		console.log(item);
 		var model = item.attr("model");
 		var id = item.attr("model_id");
-		
-		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
-				'&action=trash&id=' + encodeURIComponent(id), function ( bool ) {
-			
-				$('#'+id).remove();
-			
-			if(to_delete.length > 0)
-				delete_item(to_delete);
-		});
+
+		if( confirm("Really Delete Object?") ) {
+			$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
+					'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
+				
+					if (bool === "true") {
+						$('#a'+id).slideUp("slow", function() {
+							this.remove();
+						});
+					}
+				
+				if(to_delete.length > 0)
+					delete_item(to_delete);
+			});
+		}	
 		
 	}
 	
 	
 	
 	$(document).on("click", "#insertimage", function(e) {
-		//$.colorbox({href:"plugin.php?plugin_name=editor&page=file_upload", width: "65%", height: "90%"});
-		alert('File Upload is disabled in Demo Mode');
+		$.colorbox({href:"plugin.php?plugin_name=editor&page=file_upload", width: "65%", height: "90%"});
+		//alert('File Upload is disabled in Demo Mode');
 	});
 	
 	$(document).on("click", "#imageleft", function(e) {
@@ -269,17 +272,17 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click", "#fileupload #uploaded_files *", function(e) {
-		//e.preventDefault();
-		alert('File Upload is disabled in Demo Mode');
-		return false;
+		e.preventDefault();
+		//alert('File Upload is disabled in Demo Mode');
+		//return false;
 		var html = '<img src="upload/'+($(this).attr('name'))+'">';
 		document.execCommand('inserthtml', false, html);		
 	});
 	
 	$(document).on("click", "#choose_link #uploaded_files *", function(e) {
-		//e.preventDefault();
-		alert('File Upload is disabled in Demo Mode');
-		return false;
+		e.preventDefault();
+		//alert('File Upload is disabled in Demo Mode');
+		//return false;
 		var url = $(this).attr('href');
 		document.execCommand('createlink', false, url);
 	});
@@ -335,9 +338,8 @@ $(document).ready(function() {
 		
 		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 				'&action=newfile', function ( bool ) {
-			
-			$('#articles').append(bool);
-			 
+				
+			$('#content').prepend( bool );
 		});
 		
 		$('#pp_editor').slideUp();

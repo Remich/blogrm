@@ -79,7 +79,7 @@
 				</footer>
 			</div>
 		</div>
-		<script src="<?php echo get_theme_folder(); ?>extensions/jquery-2.0.3.min.js"></script>
+		<!--<script src="<?php echo get_theme_folder(); ?>extensions/jquery-2.0.3.min.js"></script>-->
 		<script type="text/javascript" src="<?php echo get_theme_folder(); ?>extensions/google-code-prettify/prettify.js"></script>
 		<script type="text/javascript">
 			$( document ).ready( function() {

@@ -127,8 +127,8 @@ body#admin_panel {
     #pp_editor .pp-editor-toolbar-group .not-supported {
       opacity: 0.4; }
   #pp_editor #bold {
-    font-weight: bold; }
-  #pp_editor #italic {
+		font-weight: bold; }
+	#pp_editor #italic {
     font-style: italic; }
   #pp_editor #underline {
     text-decoration: underline; }
@@ -696,11 +696,12 @@ body#admin_panel {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 1px; }
   #pp_editor #forecolor, #pp_editor #backcolor {
-
     position: relative;
-    top: 8px;
+    top: 1px;
     right: 1px;
-    padding: 3px 6px 3px 6px;
+    padding:0px 
+    margin: 0px;
+	height: 20px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     border-top-left-radius: 0px;

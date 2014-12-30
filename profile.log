@@ -1,0 +1,296 @@
+FUNCTION  <SNR>76_update_matches()
+Called 114 times
+Total time:   0.220630
+ Self time:   0.220630
+
+count  total (s)   self (s)
+  114              0.000864 	call filter(b:color_match_id, 'matchdelete(v:val)')
+  114              0.000297 	if &l:cursorline
+                            		" adds matches based that duplicate the highlighted colors on the current line
+  114              0.000404 		let lnr = line('.')
+  114              0.000215 		let group = ''
+  114              0.000223 		let groupstart = 0
+  114              0.000357 		let endcol = col('$')
+ 5593              0.007075 		for col in range( 1, endcol )
+ 5479              0.148388 			let nextgroup = col < endcol ? synIDattr( synID( lnr, col, 1 ), 'name' ) : ''
+ 9031              0.017267 			if group == nextgroup | continue | endif
+ 1923              0.010151 			if group =~ '^BG\x\{6}$'
+                            				let regex = '\%'.lnr.'l\%'.groupstart.'c'.repeat( '.', col - groupstart )
+                            				let match = matchadd( group, regex, -1 )
+                            				let b:color_match_id += [ match ]
+                            			endif
+ 1923              0.003884 			let group = nextgroup
+ 1923              0.003627 			let groupstart = col
+ 1923              0.002133 		endfor
+  114              0.000098 	endif
+
+FUNCTION  Pl#Statusline()
+Called 128 times
+Total time:   0.009330
+ Self time:   0.009330
+
+count  total (s)   self (s)
+  128              0.001685 		let mode = mode()
+                            
+  128              0.000364 		if ! a:current
+                            			let mode = 'N' " Normal (non-current)
+                            		elseif mode =~# '\v(v|V|)'
+                            			let mode = 'v' " Visual mode
+                            		elseif mode =~# '\v(s|S|)'
+                            			let mode = 's' " Select mode
+                            		elseif mode =~# '\vi'
+                            			let mode = 'i' " Insert mode
+                            		elseif mode =~# '\v(R|Rv)'
+                            			let mode = 'r' " Replace mode
+                            		else
+                            			" Fallback to normal mode
+  128              0.000281 			let mode = 'n' " Normal (current)
+  128              0.000119 		endif
+                            
+  128              0.001191 		return g:Pl#THEME[a:statusline].mode_statuslines[mode]
+
+FUNCTION  Powerline#Functions#GetMode()
+Called 128 times
+Total time:   0.006521
+ Self time:   0.006521
+
+count  total (s)   self (s)
+  128              0.000451 	let mode = mode()
+                            
+  128              0.000224 	if mode ==# 'v'
+                            		let mode = get(g:, "Powerline_mode_v", "VISUAL")
+                            	elseif mode ==# 'V'
+                            		let mode = get(g:, "Powerline_mode_V", "V⋅LINE")
+                            	elseif mode ==# ''
+                            		let mode = get(g:, "Powerline_mode_cv", "V⋅BLOCK")
+                            	elseif mode ==# 's'
+                            		let mode = get(g:, "Powerline_mode_s", "SELECT")
+                            	elseif mode ==# 'S'
+                            		let mode = get(g:, "Powerline_mode_S", "S⋅LINE")
+                            	elseif mode ==# ''
+                            		let mode = get(g:, "Powerline_mode_cs", "S⋅BLOCK")
+                            	elseif mode =~# '\vi'
+                            		let mode = get(g:, "Powerline_mode_i", "INSERT")
+                            	elseif mode =~# '\v(R|Rv)'
+                            		let mode = get(g:, "Powerline_mode_R", "REPLACE")
+                            	else
+                            		" Fallback to normal mode
+  128              0.000661 		let mode = get(g:, "Powerline_mode_n", "NORMAL")
+  128              0.000110 	endif
+                            
+  128              0.000180 	return mode
+
+FUNCTION  UltiSnips#CursorMoved()
+Called 114 times
+Total time:   0.020121
+ Self time:   0.020121
+
+count  total (s)   self (s)
+  114              0.019935     exec g:_uspy "UltiSnips_Manager._cursor_moved()"
+
+FUNCTION  <SNR>76_parse_css_screen()
+Called 114 times
+Total time:   0.276216
+ Self time:   0.055586
+
+count  total (s)   self (s)
+  114              0.054410 	call substitute( join( getline('w0','w$'), "\n" ), s:_csscolor, '\=s:create_syn_match()', 'g' )
+  114   0.221633   0.001003 	call s:update_matches()
+
+FUNCTION  <SNR>61_Highlight_Matching_Pair()
+Called 133 times
+Total time:   0.012968
+ Self time:   0.012968
+
+count  total (s)   self (s)
+                              " Remove any previous match.
+  133              0.000728   if exists('w:paren_hl_on') && w:paren_hl_on
+    2              0.000007     3match none
+    2              0.000008     let w:paren_hl_on = 0
+    2              0.000003   endif
+                            
+                              " Avoid that we remove the popup menu.
+                              " Return when there are no colors (looks like the cursor jumps).
+  133              0.000627   if pumvisible() || (&t_Co < 8 && !has("gui_running"))
+                                return
+                              endif
+                            
+                              " Get the character under the cursor and check if it's in 'matchpairs'.
+  133              0.000585   let c_lnum = line('.')
+  133              0.000480   let c_col = col('.')
+  133              0.000250   let before = 0
+                            
+  133              0.000762   let c = getline(c_lnum)[c_col - 1]
+  133              0.002511   let plist = split(&matchpairs, '.\zs[:,]')
+  133              0.000594   let i = index(plist, c)
+  133              0.000182   if i < 0
+                                " not found, in Insert mode try character before the cursor
+  131              0.000419     if c_col > 1 && (mode() == 'i' || mode() == 'R')
+                                  let before = 1
+                                  let c = getline(c_lnum)[c_col - 2]
+                                  let i = index(plist, c)
+                                endif
+  131              0.000156     if i < 0
+                                  " not found, nothing to do
+  131              0.000143       return
+                                endif
+                              endif
+                            
+                              " Figure out the arguments for searchpairpos().
+    2              0.000003   if i % 2 == 0
+    2              0.000004     let s_flags = 'nW'
+    2              0.000008     let c2 = plist[i + 1]
+    2              0.000001   else
+                                let s_flags = 'nbW'
+                                let c2 = c
+                                let c = plist[i - 1]
+                              endif
+    2              0.000005   if c == '['
+    2              0.000004     let c = '\['
+    2              0.000004     let c2 = '\]'
+    2              0.000002   endif
+                            
+                              " Find the match.  When it was just before the cursor move it there for a
+                              " moment.
+    2              0.000003   if before > 0
+                                let save_cursor = winsaveview()
+                                call cursor(c_lnum, c_col - before)
+                              endif
+                            
+                              " When not in a string or comment ignore matches inside them.
+                              " We match "escape" for special items, such as lispEscapeSpecial.
+    2              0.000010   let s_skip ='synIDattr(synID(line("."), col("."), 0), "name") ' . '=~?  "string\\|character\\|singlequote\\|escape\\|comment"'
+    2              0.001344   execute 'if' s_skip '| let s_skip = 0 | endif'
+                            
+                              " Limit the search to lines visible in the window.
+    2              0.000072   let stoplinebottom = line('w$')
+    2              0.000010   let stoplinetop = line('w0')
+    2              0.000005   if i % 2 == 0
+    2              0.000006     let stopline = stoplinebottom
+    2              0.000002   else
+                                let stopline = stoplinetop
+                              endif
+                            
+                              " Limit the search time to 300 msec to avoid a hang on very long lines.
+                              " This fails when a timeout is not supported.
+    2              0.000008   if mode() == 'i' || mode() == 'R'
+                                let timeout = exists("b:matchparen_insert_timeout") ? b:matchparen_insert_timeout : g:matchparen_insert_timeout
+                              else
+    2              0.000014     let timeout = exists("b:matchparen_timeout") ? b:matchparen_timeout : g:matchparen_timeout
+    2              0.000002   endif
+    2              0.000005   try
+    2              0.000413     let [m_lnum, m_col] = searchpairpos(c, '', c2, s_flags, s_skip, stopline, timeout)
+    2              0.000007   catch /E118/
+                                " Can't use the timeout, restrict the stopline a bit more to avoid taking
+                                " a long time on closed folds and long lines.
+                                " The "viewable" variables give a range in which we can scroll while
+                                " keeping the cursor at the same position.
+                                " adjustedScrolloff accounts for very large numbers of scrolloff.
+                                let adjustedScrolloff = min([&scrolloff, (line('w$') - line('w0')) / 2])
+                                let bottom_viewable = min([line('$'), c_lnum + &lines - adjustedScrolloff - 2])
+                                let top_viewable = max([1, c_lnum-&lines+adjustedScrolloff + 2])
+                                " one of these stoplines will be adjusted below, but the current values are
+                                " minimal boundaries within the current window
+                                if i % 2 == 0
+                                  if has("byte_offset") && has("syntax_items") && &smc > 0
+                            	let stopbyte = min([line2byte("$"), line2byte(".") + col(".") + &smc * 2])
+                            	let stopline = min([bottom_viewable, byte2line(stopbyte)])
+                                  else
+                            	let stopline = min([bottom_viewable, c_lnum + 100])
+                                  endif
+                                  let stoplinebottom = stopline
+                                else
+                                  if has("byte_offset") && has("syntax_items") && &smc > 0
+                            	let stopbyte = max([1, line2byte(".") + col(".") - &smc * 2])
+                            	let stopline = max([top_viewable, byte2line(stopbyte)])
+                                  else
+                            	let stopline = max([top_viewable, c_lnum - 100])
+                                  endif
+                                  let stoplinetop = stopline
+                                endif
+                                let [m_lnum, m_col] = searchpairpos(c, '', c2, s_flags, s_skip, stopline)
+                              endtry
+                            
+    2              0.000004   if before > 0
+                                call winrestview(save_cursor)
+                              endif
+                            
+                              " If a match is found setup match highlighting.
+    2              0.000006   if m_lnum > 0 && m_lnum >= stoplinetop && m_lnum <= stoplinebottom 
+    2              0.000093     exe '3match MatchParen /\(\%' . c_lnum . 'l\%' . (c_col - before) . 'c\)\|\(\%' . m_lnum . 'l\%' . m_col . 'c\)/'
+    2              0.000007     let w:paren_hl_on = 1
+    2              0.000002   endif
+
+FUNCTION  Powerline#Functions#GetFilepath()
+Called 128 times
+Total time:   0.003502
+ Self time:   0.003502
+
+count  total (s)   self (s)
+                            	" Recalculate the filepath when cwd changes.
+  128              0.000985 	let cwd = getcwd()
+  128              0.000759 	if exists("b:Powerline_cwd") && cwd != b:Powerline_cwd
+                            		unlet! b:Powerline_filepath
+                            	endif
+  128              0.000298 	let b:Powerline_cwd = cwd
+                            
+  128              0.000427 	if exists('b:Powerline_filepath')
+  128              0.000257 		return b:Powerline_filepath
+                            	endif
+                            
+                            	let dirsep = has('win32') && ! &shellslash ? '\' : '/'
+                            	let filepath = expand('%:p')
+                            
+                            	if empty(filepath)
+                            		return ''
+                            	endif
+                            
+                            	let ret = ''
+                            
+                            	if g:Powerline_stl_path_style == 'short'
+                            		" Display a short path where the first directory is displayed with its
+                            		" full name, and the subsequent directories are shortened to their
+                            		" first letter, i.e. "/home/user/foo/foo/bar/baz.vim" becomes
+                            		" "~/foo/f/b/baz.vim"
+                            		"
+                            		" This displays the shortest possible path, relative to ~ or the
+                            		" current directory.
+                            		let mod = (exists('+acd') && &acd) ? ':~:h' : ':~:.:h'
+                            		let fpath = split(fnamemodify(filepath, mod), dirsep)
+                            		let fpath_shortparts = map(fpath[1:], 'v:val[0]')
+                            		let ret = join(extend([fpath[0]], fpath_shortparts), dirsep) . dirsep
+                            	elseif g:Powerline_stl_path_style == 'relative'
+                            		" Display a relative path, similar to the %f statusline item
+                            		let ret = fnamemodify(filepath, ':~:.:h') . dirsep
+                            	elseif g:Powerline_stl_path_style == 'full'
+                            		" Display the full path, similar to the %F statusline item
+                            		let ret = fnamemodify(filepath, ':h') . dirsep
+                            	endif
+                            
+                            	if ret == ('.' . dirsep)
+                            		let ret = ''
+                            	endif
+                            
+                            	let b:Powerline_filepath = ret
+                            	return ret
+
+FUNCTIONS SORTED ON TOTAL TIME
+count  total (s)   self (s)  function
+  114   0.276216   0.055586  <SNR>76_parse_css_screen()
+  114   0.220630             <SNR>76_update_matches()
+  114   0.020121             UltiSnips#CursorMoved()
+  133   0.012968             <SNR>61_Highlight_Matching_Pair()
+  128   0.009330             Pl#Statusline()
+  128   0.006521             Powerline#Functions#GetMode()
+  128   0.003502             Powerline#Functions#GetFilepath()
+
+FUNCTIONS SORTED ON SELF TIME
+count  total (s)   self (s)  function
+  114              0.220630  <SNR>76_update_matches()
+  114   0.276216   0.055586  <SNR>76_parse_css_screen()
+  114              0.020121  UltiSnips#CursorMoved()
+  133              0.012968  <SNR>61_Highlight_Matching_Pair()
+  128              0.009330  Pl#Statusline()
+  128              0.006521  Powerline#Functions#GetMode()
+  128              0.003502  Powerline#Functions#GetFilepath()
+

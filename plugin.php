@@ -25,7 +25,7 @@
 	$request = array_merge($_GET, $_POST);
 	$request['files'] = $_FILES;
 	$request = Sanitize::trim($request);
-	
+
 	require_once 'Config.inc.php';
 	if(!in_array(@$request['plugin_name'], Config::getOption('plugins')))
 		die('Das Plugin existiert nicht');

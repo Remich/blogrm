@@ -160,5 +160,13 @@
 			$catman->generate();
 		}
 
+		public function delete() {
+			$query = 'DELETE FROM article
+						WHERE id = :id';
+			$params = array('id' => $this->_data['id']);
+			DB::execute($query, $params);
+			return "true";
+		}
+
 	} // <!-- end class ’Controller’ -->
 ?>

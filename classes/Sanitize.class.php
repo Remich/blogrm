@@ -57,6 +57,9 @@
 			$config = HTMLPurifier_Config::createDefault();
 			$purifier = new HTMLPurifier($config);
 			$config->set('Core.Encoding', 'UTF-8');
+			$config->set('HTML.Allowed', 'div, span, p, br, i, u, strike, sub, sup, blockquote, ul, ol, li, a[href], img[src], h1, h2, h3, h4, h5, h6, pre, address, *[style|class]');
+			$config->set('CSS.AllowedProperties', 'text-align');
+
 			$clean_html = $purifier->purify($string);
 
 			return $clean_html;
