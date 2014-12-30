@@ -12,21 +12,38 @@
 		protected $_name = "Article";
 		
 		public function __construct($array = null) {
+
+			$this->_data['title'] = "Das ist der Default Article Title";
+			$this->_data['url'] = "Lorem Ipsum Articlum";
 			
-			if($array == null || sizeof($array) == 0) {
-				$this->_data['title'] = "Das ist der Default Article Title";
-				$this->_data['url'] = "Lorem Ipsum Articlum";
+			if ($array == null || sizeof($array) == 0 || ! $this->IDExists($array['id'])) {
 				$this->newEntry();
 			}
-			if(isset($array['id']))
+			if (isset($array['id']) &&
+				$this->IDExists($array['id'])) {
 				$this->load($array['id']);
-				
-			if(isset($array['data'])) {
+			}
+			if (isset($array['data'])) {
 				$this->_data = $array['data'];
 				$this->newEntry();
 			}
 			
 		} 
+		
+		// TODO: implement in ParentClass
+		public function IDExists($id) {
+			$query = "SELECT COUNT(id) as quantity
+						FROM article
+						WHERE id = :id LIMIT 1";
+			$params = array(':id' => $id);
+			$data = DB::getOne($query, $params);
+
+			if ($data['quantity'] === "0") {
+				return false;
+			} else {
+				return true;
+			}
+		}
 		
 		public function newEntry() {
 			$query = "INSERT INTO article 

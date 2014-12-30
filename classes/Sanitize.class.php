@@ -14,15 +14,25 @@
 	class Sanitize {
 
 		public static function process_array(&$array, $options) {
-			if(in_array("htmlspecialchars", $options))
+			if (in_array("htmlspecialchars", $options)) {
 				$array = self::htmlspecialchars($array);
-			if(in_array("utf8_encode", $options))
+			}
+			if (in_array("utf8_encode", $options)) {
 				$array = self::utf8_encode($array);
-			if(in_array("stripslashes", $options))
+			}
+			if (in_array("stripslashes", $options)) {
 				$array = self::stripslashes($array);
-			if(in_array("make_save_str_in", $options))
+			}
+			if (in_array("make_save_str_in", $options)) {
 				$array = self::make_save_str_in($array);
-		}		
+			}
+			if (in_array("htmlspecialchars_decode", $options)) {
+				$array = self::htmlspecialchars_decode($array);
+			}
+			if (in_array("purify", $options)) {
+				$array = self::purify($array);
+			}
+	}		
 		
 		public static function htmlspecialchars($array) {
 			foreach($array as $key => $item) {
@@ -32,7 +42,35 @@
 			} 
 			return $array;
 		}
-		
+		public static function purify($array) {
+			foreach($array as $key => $item) {
+				$array[$key] = is_array($item)
+				? self::purify($item)
+				: self::purify_check($item);
+			} 
+			return $array;
+		}
+
+		public static function purify_check($string) {
+			require_once 'libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
+
+			$config = HTMLPurifier_Config::createDefault();
+			$purifier = new HTMLPurifier($config);
+			$config->set('Core.Encoding', 'UTF-8');
+			$clean_html = $purifier->purify($string);
+
+			return $clean_html;
+		}
+
+		public static function htmlspecialchars_decode($array) {
+			foreach($array as $key => $item) {
+				$array[$key] = is_array($item)
+				? self::htmlspecialchars_decode($item)
+				: htmlspecialchars_decode($item, ENT_QUOTES | ENT_DISALLOWED);
+			} 
+			return $array;
+		}
+
 		public static function utf8_encode($array) {
 			foreach($array as $key => $item)
 				$array[$key] = is_array($item)

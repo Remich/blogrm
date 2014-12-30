@@ -199,6 +199,7 @@ $(document).ready(function() {
 		return "#" + componentToHex(parseInt(str[0])) + componentToHex(parseInt(str[1])) + componentToHex(parseInt(str[2]));
 	}
 
+
 	
 	var save_item = function() {
 			
@@ -217,6 +218,7 @@ $(document).ready(function() {
 		var key = item.attr("model_key");
 		var value = item.html();
 		
+		console.log(value);
 		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 				'&action=save&id=' + encodeURIComponent(id) + 
 				'&key='+ encodeURIComponent(key), 
