@@ -293,6 +293,17 @@ article.alt header time {
 	color: rgba(0,0,0,.65);
 	   text-decoration: none;
 }
+.blog article img {
+	padding: .3em;
+	background-color: white;
+	border: 1px solid #ccc;
+}
+.blog article img.left {
+margin: 0 .5em 0 0;
+}
+.blog article img.right {
+margin: 0 0 0 .5em;
+}
 footer article header h1 a {
 	color: #fff;
 	text-decoration: none;

@@ -23,6 +23,7 @@ Todo:
 			* fix bug: new article -> edit heading -> edit message -> edit tags -> save ==> NOT SAVING THE FUCKING TITLE
 		* (DONE) fix trimming in tags
 		* add error message, when request item, article, tag, could not be found
+		* fix bug, when removing style blockquote
 	 
 	Architecture:
 	=============

@@ -201,6 +201,8 @@ $(document).ready(function() {
 
 	
 	var save_item = function() {
+	
+		console.log(history);
 			
 		item = history.pop();
 		
