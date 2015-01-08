@@ -1,0 +1,1 @@
+rsync -e "ssh -t -v" -aAXv --force --exclude='.htaccess' --exclude='Config.inc.php' --exclude='upload/*' --exclude='.git/' --exclude='images' --delete-during --progress /home/pepe/html/wygiwys/ pi@192.168.178.64:/home/pi/html/diary/
