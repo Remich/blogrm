@@ -247,18 +247,26 @@
 						break;
 				
 				case 'save':				
-					$this->isInRequest( array( 'id', 'model', 'key', 'value' ) );
+					$this->isInRequest( array( 'data') );
+					foreach($this->_request['data'] as $item) {
+						if (!isset($item['id']) ||
+							!isset($item['model']) ||
+							!isset($item['key']) ||
+							!isset($item['value']) ) {
+							continue;
+						}
 
-					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
-					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
-					$this->_request['value'] = Sanitize::RemoveTagsFromPre($this->_request['value']);
-					
-					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
-					$model = new $this->_request['model'](array('id'=>$this->_request['id']));
-					$model->set(array($this->_request['key'] => $this->_request['value']));
-					$model->save();	
-					
-					die($this->_request['value']);
+						$item['id'] = filter_var($item['id'], FILTER_VALIDATE_INT);
+						$item['model'] = Sanitize::FileName($item['model']);
+						$item['value'] = Sanitize::RemoveTagsFromPre($item['value']);
+						
+						require_once("models/".$item['model']."/".$item['model'].".class.php");
+						$model = new $item['model'](array('id'=>$item['id']));
+						$model->set(array($item['key'] => $item['value']));
+						$model->save();	
+					}
+						
+					die("true");
 					break;
 				
 				case 'trash':

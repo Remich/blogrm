@@ -199,13 +199,7 @@ $(document).ready(function() {
 	}
 
 
-	
-	var save_item = function() {
-	
-		console.log(history);
-			
-		item = history.pop();
-		
+	var remove_prettyprint = function(item) {
 		item.find('pre').each( function() {
 			$(this).removeClass('prettyprint prettyprinted linenums');
 		});
@@ -213,23 +207,29 @@ $(document).ready(function() {
 		item.find('pre').each( function() {
 			$(this).addClass('prettyprint linenums');
 		});
+	};
+	var save_items = function() {
 		
-		var model = item.attr("model");
-		var id = item.attr("model_id");
-		var key = item.attr("model_key");
-		var value = item.html();
-		
-		console.log(value);
-		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
-				'&action=save&id=' + encodeURIComponent(id) + 
-				'&key='+ encodeURIComponent(key), 
-				{ value: value }, function ( bool ) {
+		data = [];
+		while(history.length !== 0) {
+
+			item = history.pop();
+			remove_prettyprint(item);
+			var model = item.attr("model");
+			var id = item.attr("model_id");
+			var key = item.attr("model_key");
+			var value = item.html();
+
+			data.push({ "model" : model, "id" : id, "key" : key, "value" : value }) ;
+
+		}
+
+		$("#hidden").load('ajax.php?&action=save', 
+				{ data : data }, function ( bool ) {
 			
 			item.html(bool);
 			prettyPrint();
 			
-			if(history.length != 0)
-				save_item();
 		});
 		
 	}
@@ -291,7 +291,7 @@ $(document).ready(function() {
 	
 	$(document).on("click", "#save", function(e) {
 		
-		save_item();	
+		save_items();	
 		
 		$('#pp_editor').slideUp();
 
