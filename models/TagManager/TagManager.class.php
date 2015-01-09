@@ -41,10 +41,11 @@
 			$this->_tags = strip_tags($tags);
 			$this->_tags = str_replace("&nbsp;", "", $this->_tags);
 			$this->_tags = explode('#', $this->_tags);
-			$this->_tags = Sanitize::trim($this->_tags);
-			foreach($this->_tags as $key => $item)
-				if($item == "")
+			Sanitize::process_array($this->_tags, array('trim'));
+			foreach($this->_tags as $key => $item) {
+				if(trim($item) == "")
 					unset($this->_tags[$key]);
+			}
 		}
 		
 		public function generate() {

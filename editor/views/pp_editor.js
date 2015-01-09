@@ -229,6 +229,7 @@ $(document).ready(function() {
 			
 			if (bool !== "#t") {
 				alert('Fehler beim Speichern');
+				console.log(bool);
 			}
 			prettyPrint();
 		});

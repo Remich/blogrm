@@ -32,6 +32,9 @@
 			if (in_array("purify", $options)) {
 				$array = self::purify($array);
 			}
+			if (in_array("trim", $options)) {
+				$array = self::trim($array);
+			}
 	}		
 		
 		public static function htmlspecialchars($array) {
@@ -109,8 +112,14 @@
 			foreach($array as $key => $item)
 				$array[$key] = is_array($item)
 				? self::trim($item)
-				: trim($item);
+				: self::ubertrim($item);
 			return $array;
+		}
+
+		public static function ubertrim($s) {
+			$s = preg_replace('/\xA0/u', ' ', $s);  // strips UTF-8 NBSP: "\xC2\xA0"
+			$s = trim($s);
+			return $s;
 		}
 
 		
