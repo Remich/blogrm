@@ -227,9 +227,10 @@ $(document).ready(function() {
 		$("#hidden").load('ajax.php?&action=save', 
 				{ data : data }, function ( bool ) {
 			
-			item.html(bool);
+			if (bool !== "#t") {
+				alert('Fehler beim Speichern');
+			}
 			prettyPrint();
-			
 		});
 		
 	}

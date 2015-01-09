@@ -266,7 +266,7 @@
 						$model->save();	
 					}
 						
-					die("true");
+					die("#t");
 					break;
 				
 				case 'trash':
