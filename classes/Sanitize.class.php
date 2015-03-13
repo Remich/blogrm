@@ -56,16 +56,126 @@
 
 		public static function purify_check($string) {
 			require_once 'libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
+$config = HTMLPurifier_Config::createDefault();
+//$config->set('HTML.DefinitionID', 'enduser-customize.html tutorial');
+//$config->set('HTML.DefinitionRev', 1);
+$config->set('Cache.DefinitionImpl', null); // remove this later!
+$config->set('CSS.AllowTricky', true);
+$config->set('HTML.SafeEmbed',true);
+$config->set('HTML.SafeObject',true);
+$config->set('HTML.SafeIframe', true);
 
-			$config = HTMLPurifier_Config::createDefault();
-			$purifier = new HTMLPurifier($config);
-			$config->set('Core.Encoding', 'UTF-8');
-			$config->set('HTML.Allowed', 'div, span, p, br, i, u, strike, sub, sup, blockquote, ul, ol, li, a[href], img[src], h1, h2, h3, h4, h5, h6, pre, address, *[style|class]');
-			$config->set('CSS.AllowedProperties', 'text-align');
+$def = $config->getHTMLDefinition(true);
 
-			$clean_html = $purifier->purify($string);
 
-			return $clean_html;
+
+$def->addAttribute('a', 'target', new HTMLPurifier_AttrDef_Enum(
+	array('_blank','_self','_target','_top')
+));
+
+// http://developers.whatwg.org/sections.html
+$def->addElement('section', 'Block', 'Flow', 'Common');
+$def->addElement('nav',     'Block', 'Flow', 'Common');
+$def->addElement('article', 'Block', 'Flow', 'Common');
+$def->addElement('aside',   'Block', 'Flow', 'Common');
+$def->addElement('header',  'Block', 'Flow', 'Common');
+$def->addElement('footer',  'Block', 'Flow', 'Common');
+// Content model actually excludes several tags, not modelled here
+$def->addElement('address', 'Block', 'Flow', 'Common');
+$def->addElement('hgroup', 'Block', 'Required: h1 | h2 | h3 | h4 | h5 | h6', 'Common');
+
+// http://developers.whatwg.org/grouping-content.html
+$def->addElement('figure', 'Block', 'Optional: (figcaption, Flow) | (Flow, figcaption) | Flow', 'Common');
+$def->addElement('figcaption', 'Inline', 'Flow', 'Common');
+
+// http://developers.whatwg.org/the-video-element.html#the-video-element
+$def->addElement('video', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common', array(
+'src' => 'URI',
+'type' => 'Text',
+'width' => 'Length',
+'height' => 'Length',
+'poster' => 'URI',
+'preload' => 'Enum#auto,metadata,none',
+'controls' => 'Bool',
+));
+$def->addElement('audio', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common', array(
+'src' => 'URI',
+'type' => 'Text',
+'width' => 'Length',
+'height' => 'Length',
+'poster' => 'URI',
+'preload' => 'Enum#auto,metadata,none',
+'controls' => 'Bool',
+));
+$def->addElement('canvas', 'Block', 'Flow', 'Common');
+$def->addElement('source', 'Block', 'Flow', 'Common', array(
+'src' => 'URI',
+'type' => 'Text',
+));
+
+// http://developers.whatwg.org/text-level-semantics.html
+$def->addElement('s',    'Inline', 'Inline', 'Common');
+$def->addElement('var',  'Inline', 'Inline', 'Common');
+$def->addElement('sub',  'Inline', 'Inline', 'Common');
+$def->addElement('sup',  'Inline', 'Inline', 'Common');
+$def->addElement('mark', 'Inline', 'Inline', 'Common');
+$def->addElement('wbr',  'Inline', 'Empty', 'Core');
+
+// http://developers.whatwg.org/edits.html
+$def->addElement('ins', 'Block', 'Flow', 'Common', array('cite' => 'URI', 'datetime' => 'CDATA'));
+$def->addElement('del', 'Block', 'Flow', 'Common', array('cite' => 'URI', 'datetime' => 'CDATA'));
+
+$def->addElement('progress', 'Inline', 'Flow', 'Common');
+$def->addElement('form', 'Block', 'Flow', 'Common');
+$def->addElement('fieldset', 'Block', 'Flow', 'Common');
+$def->addElement('legend', 'Inline', 'Flow', 'Common');
+
+$def->addElement('input', 'Inline', 'Flow', 'Common');
+$def->addAttribute('input', 'type', 'Text');
+$def->addAttribute('input', 'placeholder', 'Text');
+$def->addAttribute('input', 'pattern', 'Text');
+$def->addAttribute('input', 'name', 'Text');
+$def->addAttribute('input', 'checked', 'Text');
+$def->addAttribute('input', 'value', 'Text');
+$def->addAttribute('input', 'min', 'Number');
+$def->addAttribute('input', 'max', 'Number');
+$def->addAttribute('input', 'id', 'Text');
+
+$def->addElement('textarea', 'Inline', 'Flow', 'Common');
+$def->addAttribute('textarea', 'rows', 'Number');
+$def->addAttribute('textarea', 'cols', 'Number');
+$def->addAttribute('textarea', 'placeholder', 'Text');
+
+$def->addElement('label', 'Inline', 'Flow', 'Common');
+$def->addAttribute('label', 'for', 'Text');
+
+
+// TinyMCE
+$def->addAttribute('img', 'data-mce-src', 'Text');
+$def->addAttribute('img', 'data-mce-json', 'Text');
+
+// Others
+$def->addAttribute('iframe', 'allowfullscreen', 'Bool');
+$def->addAttribute('iframe', 'src', 'Text');
+$def->addAttribute('table', 'height', 'Text');
+$def->addAttribute('td', 'border', 'Text');
+$def->addAttribute('th', 'border', 'Text');
+$def->addAttribute('tr', 'width', 'Text');
+$def->addAttribute('tr', 'height', 'Text');
+$def->addAttribute('tr', 'border', 'Text');
+
+$def->addElement('select', 'Inline', 'Flow', 'Common');
+$def->addElement('optgroup', 'Block', 'Flow', 'Common');
+$def->addElement('option', 'Inline', 'Flow', 'Common');
+
+$def->addElement('button', 'Inline', 'Flow', 'Common');
+$def->addAttribute('button', 'type', 'Text');
+
+$purifier = new HTMLPurifier($config);
+
+$clean_html = $purifier->purify($string);
+
+return $clean_html;
 		}
 
 		public static function htmlspecialchars_decode($array) {
