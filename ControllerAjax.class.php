@@ -4,7 +4,7 @@
 	*	Copyright 2010-2014 René Michalke.
 	*/
 	class ControllerAjax extends ControllerBase {
-		
+
 		/**
 		* Running the actual application
 		*/

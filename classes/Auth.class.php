@@ -1,17 +1,14 @@
 <?php
 
 	/**
-	*	Copyright 2010-2013 René Michlke
+	*	Copyright 2010-2015 René Michlke
 	*
 	*	This file is part of RM Internet Suite.
 	*/
-	require_once('classes/View.class.php');
-	require_once('classes/DB.class.php');
 
 	/**
 	* class Auth
 	*
-	* Some methods for Authentification
 	*/
 	class Auth {       
 	
@@ -22,6 +19,7 @@
 				if(!Auth::isCookie('userhash')) {
 				
 					$login = new View();
+					$login->setTemplateDir( Config::getOption("path_abs") . "admin-panel/views/");
 					$login->setTemplate('login');
 					die($login->loadTemplate());	
 				
@@ -43,6 +41,7 @@
 					else {
 						setcookie('userhash', 'invalid', time()-60*60*24*30);
 						$login = new View();
+						$login->setTemplateDir( Config::getOption("path_abs") . "admin-panel/views/");
 						$login->setTemplate('login');
 						die($login->loadTemplate());
 					}
@@ -53,7 +52,7 @@
 			
 		}
 	 
-        private static function isLoggedIn($str){  
+        public static function isLoggedIn($str){  
         
             if(isset($_SESSION[$str])) return 1;    
             else 0;
@@ -77,10 +76,13 @@
 			);
 			$data = DB::getOne($query, $params);
 			
-			if($data == 0) return($msg);
+			if(sizeof($data) === 0) {
+				return($msg);
+			}
 			
-			if($data['password'] != $password) die($msg);
-			else {
+			if($data['password'] != $password) {
+				 die($msg);
+			} else {
 				$_SESSION['userhash'] = $data['hash'];
 				$_SESSION['uid'] = $data['id'];
 				setcookie('userhash', $data['hash'], time()+60*60*24*30);

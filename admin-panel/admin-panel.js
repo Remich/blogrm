@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		
 	$.ajax({
-        url : "admin-panel/views/panel.html",
+        url : "admin-panel/index.php",
         dataType: "text",
         success : function (data) {
             $("#plugable_content").prepend(data);

@@ -18,15 +18,22 @@
 		public function __construct($request) {
 			
 			parent::__construct($request);
+
+			
+			
 			$this->_view = new View();
 			
 			$this->_footer .= '<script type="text/javascript" src="libs/jquery-2.0.3.min.js"></script>';
 			$this->_footer .= '<script type="text/javascript" src="libs/colorbox/jquery.colorbox-min.js"></script>';
 			$this->_header .= '<link href="libs/colorbox/colorbox.css" type="text/css" rel="stylesheet" />';
+
+			if(@$_SESSION['admin-panel']) {
 			
 			$this->_header .= '<link href="admin-panel/views/panel.css" type="text/css" rel="stylesheet" />';
 			$this->_footer .= '<script type="text/javascript" src="admin-panel/admin-panel.js"></script>';
 			
+			}
+
 			if(@$_SESSION['editor']) {
 				$this->_header .= '<link href="libs/google-code-prettify/desert.css" type="text/css" rel="stylesheet" />';
 				$this->_header .= '<link rel="stylesheet" type="text/css" href="editor/views/editor.css" media="all" />';
@@ -281,6 +288,22 @@
 							"comment" => $this->_request['comment'])));
 					header('Location: index.php?page=post&id=' . $this->_request['id']);
 					break;
+
+				case 'login':
+									
+					$this->isInRequest( array('username', 'password') );
+					require_once("classes/Auth.class.php");
+					die( Auth::login($this->request['username'], $this->request['password']) );		
+				
+					break; // <!-- end case ’login’ -->
+				
+				case 'logout':
+				
+					require_once("classes/Auth.class.php");
+					Auth::logout();
+					header('Location: index.php');
+							
+					break; // <!-- end case ’logout’ -->
 			} // <!-- end ’switch(@$this->request['page'])’ -->
 			
 			

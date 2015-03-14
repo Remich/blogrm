@@ -73,7 +73,7 @@
 			</div>
 			<!--<div id="wrapper">-->
 				<footer>
-					<div id="copy"><br>COPYRIGHT © 2014 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a>
+					<div id="copy"><br>COPYRIGHT © 2014 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a> | <a href="toggle.php?item=admin-panel">Admin</a>
 					<br><?php echo $this->_['footer']; ?> 
 					</div>
 				</footer>

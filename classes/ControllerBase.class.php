@@ -17,8 +17,7 @@
 		* @param Array $request, merged array of $_GET & $_POST & $_FILES
 		*/
 		public function __construct($request) {
-			
-			require_once 'Config.inc.php';
+		
 			$this->_request = $request;
 			
 		} // <!-- end function ’__construct()’ -->
