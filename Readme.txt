@@ -16,16 +16,15 @@ Todo:
 		Blog:
 		=====
 
-		* (fixed) conflict between prettify and color of font
-		* (fixed) insert horizontalruler disabled to due inserthtml
-		* (already fixed) implement ability to create sublists – just use indent button of editor
+		* (DONE) conflict between prettify and color of font
+		* (DONE) insert horizontalruler disabled to due inserthtml
+		* (DONE) implement ability to create sublists – just use indent button of editor
 		* (DONE) fix trimming in tags
-		
-		* 10 * authentifictation and protected areas/ajax requests
+		* (DONE) 10 * authentifictation and protected areas/ajax requests
 			* (DONE) 3 – TODO: add $bouncer to protected Areas
 			* (DONE) 3 – TODO: nicen the ajax login-prompt
-			* 4 – TODO: implement bruteforce protection on server-side!
-			
+			* (DONE) 4 – TODO: implement bruteforce protection on server-side!
+
 		* 10 * implement saving of alle edited articles
 			* fix bug: new article -> edit heading -> edit message -> edit tags -> save ==> NOT SAVING THE FUCKING TITLE
 

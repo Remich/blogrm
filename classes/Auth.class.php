@@ -69,7 +69,10 @@
         public static function login($username, $password) {
         	
 			$msg = 'Error: Wrong Username and/or Password';
-        
+			$msg2 = 'Error: Please wait 3 seconds until next login attempt.';
+
+
+        	// Check if username exists
         	$query = 'SELECT * FROM users WHERE username = :username LIMIT 1';
 			$params = array(
 				':username' => $username
@@ -79,6 +82,19 @@
 			if(sizeof($data) === 0) {
 				return($msg);
 			}
+
+
+
+			// Bruteforce Protection
+			$query = 'SELECT * FROM users WHERE username = :username AND last_login_attempt < NOW() - INTERVAL 3 Second';
+			$data = DB::getOne($query, $params);
+
+			if (sizeof($data) === 0) {
+				return($msg2);
+			}
+
+			$query = 'UPDATE users SET last_login_attempt = NOW() WHERE username = :username';
+			DB::execute($query, $params);
 			
 			if($data['password'] != $password) {
 				 die($msg);
