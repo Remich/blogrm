@@ -49,5 +49,6 @@
 		
 	}
 	
-	header('Location: '.$_SESSION['url_bookmarks']);
+
+	header('Location: '. ($_SESSION['url_bookmarks'] ? $_SESSION['url_bookmarks'] : 'index.php'));
 ?>

@@ -29,8 +29,9 @@
 
 			if(@$_SESSION['admin-panel']) {
 			
-			$this->_header .= '<link href="admin-panel/views/panel.css" type="text/css" rel="stylesheet" />';
-			$this->_footer .= '<script type="text/javascript" src="admin-panel/admin-panel.js"></script>';
+				$this->_header .= '<link href="admin-panel/views/panel.css" type="text/css" rel="stylesheet" />';
+				$this->_footer .= '<script type="text/javascript" src="admin-panel/admin-panel.js"></script>';
+				$this->_footer .= '<script src="libs/sha256.js" type="text/javascript"></script>';
 			
 			}
 

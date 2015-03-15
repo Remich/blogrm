@@ -1,71 +1,21 @@
-<!DOCTYPE HTML>
-<html>
-
-	<head>	
-		
-		<meta http-equiv="content-type" content="text/html;charset=utf-8">
-		<link rel="stylesheet" type="text/css" media="all" href="modules/styles/login.style.css">
-  		<link rel="stylesheet" type="text/css" media="all" href="extensions/jquery.alerts/jquery.alerts.css">
-	    <title>Login</title>
-	    
-  	</head>
-  	<body>
-  	
-  		<div id="hidden"></div>
-
-		<table>
-			<tr>
-				<td>
-					<form method="post" action="">
-			  			<fieldset>
-			  				<legend>Login</legend>
-				  			<dl>
-				  				<dt><label for="username">Username:</label></dt>
-								<dd><input type="text" id="username" name="username" maxlength="255" value=""></dd>
-								<dt><label for="password">Password:</label></dt>
-								<dd><input type="password" id="password" name="password" maxlength="255" value=""></dd>
-							</dl>
-							<input type="submit" value="Submit" id="login" />
-						</fieldset>
-					</form>
-				</td>
-			</tr>
-		</table>
-  		
-  		<script src="libs/jquery-2.0.3.min.js" type="text/javascript"></script>
-		<!-- <script src="libs/jquery.alerts/jquery.alerts.js" type="text/javascript"></script> -->
-  		<script src="libs/sha256.js" type="text/javascript"></script>
-  		<script type="text/javascript">
-  		
-  			$(document).ready( function() {
-  				
-  				$('body').on('submit', 'form', function(e) {
-	
-					e.preventDefault();
-					var user = $('#username').val().trim();
-					var pass = $('#password').val().trim();
-					
-	  					
-  					if(user == '' || pass == '') alert('Please fill out the required fields', 'Error');
-  					else {
-  					
-  						$('#hidden').load('admin-panel/index.php?page=login_step_2&username=' + encodeURIComponent(user) + '&password=' + encodeURIComponent(CryptoJS.SHA256(pass)), function( result ) {
-	  							
-	  						if(result == 1) 
-	  							window.location.reload(true);
-	  						else
-	  							alert(result, 'Error');
-	  							
-						});
-						
-  					}
-	
-				}); 
-  			
-  			});
-  		
-  		</script>
-  		
-  	</body>
-  	
-</html>
+<div id="admin-panel" class="login" state="false">
+	<table>
+		<tr>
+			<td>
+				<form method="post" action="">
+		  			<fieldset>
+		  				<legend>Login</legend>
+			  			<dl>
+			  				<dt><label for="username">Username:</label></dt>
+							<dd><input type="text" id="username" name="username" maxlength="255" value=""></dd>
+							<dt><label for="password">Password:</label></dt>
+							<dd><input type="password" id="password" name="password" maxlength="255" value=""></dd>
+						</dl>
+						<input type="submit" value="Submit" id="login" />
+						<input type="reset" value="Cancel" id="login_canacel" />
+					</fieldset>
+				</form>
+			</td>
+		</tr>
+	</table>
+</div>

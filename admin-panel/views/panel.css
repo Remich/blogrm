@@ -13,22 +13,19 @@
 }
 #admin-panel section {
   	line-height: 2.5rem;
-	padding: 1.5em 0 1.5em 2em;
 	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-	
   padding: .5rem 0 .5rem 1rem;
-
 	text-decoration: none;
 	font-size: 80%;
 }
-#admin-panel a {
+#admin-panel a, #admin-panel.login input[type=submit],
+#admin-panel.login input[type=reset] {
 	/*color: rgba(0,0,0,.9);
 	padding-left: 25px;
 	text-decoration: none;*/
 	
 	text-decoration: none;
-	height: 36px;
     	min-width: 36px;
       color: rgba(0, 0, 0, 0.7);
       outline: none;
@@ -53,7 +50,8 @@
       box-shadow: inset 0px -1px 1px #fff, inset 1px 0px 1px #fff, inset -1px 0px 1px #fff;
 
 }
- #admin-panel a:active {
+ #admin-panel a:active, #admin-panel.login input[type=submit]:active,
+#admin-panel.login input[type=reset]:active {
       position: relative;
       top: 1px; }
 .p_editor #admin-panel a#switch_editor {
@@ -68,7 +66,8 @@
       box-shadow: none !important;
       color: #fff;
 }
-#admin-panel a:hover {
+#admin-panel a:hover, #admin-panel.login input[type=submit]:hover,
+#admin-panel.login input[type=reset]:hover {
 	
 	cursor: pointer;
       box-shadow: none;
@@ -85,3 +84,26 @@
       border-bottom-right-radius: 5px; }
       #admin-panel a:not(:first-of-type) {
       margin-left: -1px; }
+
+  #admin-panel.login input {
+    border-radius: 5px;
+  }
+
+#admin-panel.login input[type=submit],
+#admin-panel.login input[type=reset] {
+  padding: 7px 11px;
+}
+
+.login {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 90%;
+}
+ .login table {
+    margin: auto;
+  }
+
+.login fieldset {
+  background: rgba(0,0,0,.2);
+  border-radius: 1em;
+}
