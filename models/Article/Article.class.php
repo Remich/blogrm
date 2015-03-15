@@ -138,8 +138,8 @@
 					'content' => "Fehler: Artikel mit id ".$id." nicht gefunden"
 				) );
 				
-			$options = array('stripslashes');
-			Sanitize::process_array($this->_data, $options);
+			// $options = array('stripslashes');
+			// Sanitize::process_array($this->_data, $options);
 		}
 		
 		public function save() {

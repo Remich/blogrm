@@ -171,6 +171,11 @@ $def->addElement('option', 'Inline', 'Flow', 'Common');
 $def->addElement('button', 'Inline', 'Flow', 'Common');
 $def->addAttribute('button', 'type', 'Text');
 
+$def->addElement('pre', 'Block', 'Flow', 'Common');
+$def->addElement('ol', 'Block', 'Flow', 'Common');
+$def->addElement('li', 'Block', 'Flow', 'Common');
+$def->addElement('span', 'Block', 'Flow', 'Common');
+
 $purifier = new HTMLPurifier($config);
 
 $clean_html = $purifier->purify($string);

@@ -24,7 +24,7 @@
 	
 	$request = array_merge($_GET, $_POST);
 	$request['files'] = $_FILES;
-	$options = array("trim", "purify", "addslashes");
+	$options = array("trim", /*"purify", */"addslashes");
 	Sanitize::process_array($request, $options);
 	
 	$controller = new ControllerAjax($request);

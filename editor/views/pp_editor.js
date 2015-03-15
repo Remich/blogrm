@@ -200,11 +200,11 @@ $(document).ready(function() {
 
 
 	var remove_prettyprint = function(item) {
-		item.find('pre').each( function() {
+		$(document).find('pre').each( function() {
 			$(this).removeClass('prettyprint prettyprinted linenums');
 		});
 		prettyPrint();
-		item.find('pre').each( function() {
+		$(document).find('pre').each( function() {
 			$(this).addClass('prettyprint linenums');
 		});
 	};
@@ -231,7 +231,7 @@ $(document).ready(function() {
 				alert('Fehler beim Speichern');
 				console.log(bool);
 			}
-			prettyPrint();
+			// prettyPrint();
 		});
 		
 	}
@@ -657,7 +657,7 @@ $(document).ready(function() {
 				var text = $(listId).html();
 				$(listId).html(text.trim());
 
-				prettyPrint();
+				// prettyPrint();
 			}
 			editing.focus();			
 		}
