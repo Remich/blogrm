@@ -247,13 +247,17 @@
 						break;
 				
 				case 'save':				
+					$bouncer = new Auth();
+
 					$this->isInRequest( array( 'data') );
+
 					foreach($this->_request['data'] as $item) {
+
 						if (!isset($item['id']) ||
 							!isset($item['model']) ||
 							!isset($item['key']) ||
 							!isset($item['value']) ) {
-							continue;
+							die('#f');
 						}
 
 						$item['id'] = filter_var($item['id'], FILTER_VALIDATE_INT);
@@ -269,18 +273,23 @@
 					die("#t");
 					break;
 				
+				// TODO evtl delete
 				case 'trash':
-						$this->isInRequest( array( 'id', 'model') );
-							
-						$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
-						$this->_request['model'] = Sanitize::FileName($this->_request['model']);	
-						require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
-						$model = new $this->_request['model'](array('id'=>$this->_request['id']));
-					
-						die($model->delete());
-						break;
+					$bouncer = new Auth();
+
+					$this->isInRequest( array( 'id', 'model') );
+						
+					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
+					$this->_request['model'] = Sanitize::FileName($this->_request['model']);	
+					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
+					$model = new $this->_request['model'](array('id'=>$this->_request['id']));
+				
+					die($model->delete());
+					break;
 						
 				case 'delete':
+					$bouncer = new Auth();
+
 					$this->isInRequest( array( 'id', 'model') );
 
 					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
@@ -292,19 +301,24 @@
 					die($model->delete());
 					break;
 						
+				// TODO evtl delet
 				case 'emptybin':
-						$this->isInRequest( array( 'model') );
-							
-						$this->_request['model'] = Sanitize::FileName($this->_request['model']);
-							
-						require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
-						$model = new $this->_request['model']();
-					
-						$model->emptyBin();
-						header('Location: '.$_SESSION['url_bookmarks']);
-						break;
+					$bouncer = new Auth();
+
+					$this->isInRequest( array( 'model') );
+						
+					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
+						
+					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
+					$model = new $this->_request['model']();
+				
+					$model->emptyBin();
+					header('Location: '.$_SESSION['url_bookmarks']);
+					break;
 				
 				case 'newfile':
+					$bouncer = new Auth();
+
 					$this->isInRequest( array( 'model' ) );
 						
 					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
@@ -322,6 +336,7 @@
 					break;
 					
 				case 'update_sorting_order':
+					$bouncer = new Auth();
 					
 					$this->isInRequest( array('prev_id', 'atm_id') );
 					

