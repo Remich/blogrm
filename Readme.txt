@@ -9,10 +9,15 @@ Todo:
 	* 10 * fix security hole with $_GET parameters
 	* 1 * move go and add bookmark to ajax controller, otherwise issues with sorting and going out
 	* 10 * implement multiple users
+	* 7 * implement child themes and child models
 	
 	Editor:
 	=======
 
+		* (DONE) protect session froms being hijacked by other projects on the same server
+		* implement styleless editable fields, otherwise user fucks up layout
+			* e.g. h1 of article should not be stylable
+!
 		Blog:
 		=====
 
