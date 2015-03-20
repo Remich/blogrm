@@ -7,6 +7,7 @@ Todo:
 	* 1 * rename Methods according to Coding Standards 
 	
 	* 10 * fix security hole with $_GET parameters
+	* 10 * make Config.inc.php protected!!!!!!!
 	* 1 * move go and add bookmark to ajax controller, otherwise issues with sorting and going out
 	* 10 * implement multiple users
 	* 7 * implement child themes and child models

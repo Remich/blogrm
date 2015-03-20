@@ -30,7 +30,7 @@
 		
 				default:
 				case "show_panel":
-					$bouncer = new Auth();
+					$bouncer = new Auth(true);
 					$this->_view->setTemplate('panel');
 					$this->_view->assign('is_logged_in', Auth::isLoggedIn('userhash') );
 					break; // <!-- end case ’default’ --> 

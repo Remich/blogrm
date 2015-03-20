@@ -12,7 +12,7 @@
 	*/
 	class Auth {       
 	
-		public function __construct() {
+		public function __construct($display_login_form = false) {
 		
 			if(!Auth::isLoggedIn('userhash')) {
 			
@@ -20,9 +20,13 @@
 				
 					$login = new View();
 					$login->setTemplateDir( Config::getOption("path_abs") . "admin-panel/views/");
-					$login->setTemplate('login');
+					if ($display_login_form === true) {
+						$login->setTemplate('login');
+					} else {
+						$login->setTemplate('access_denied');
+					}
 					die($login->loadTemplate());	
-				
+
 				} else {
 					
 					$query = "SELECT *
