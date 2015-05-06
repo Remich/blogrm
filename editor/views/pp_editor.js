@@ -246,19 +246,42 @@ $(document).ready(function() {
 					'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
 				
 					if (bool === "true") {
+
 						$('#a'+id).slideUp("slow", function() {
 							this.remove();
 						});
+
+						// remove model from edit history,
+						// otherwise it will reappear,
+						// when saving any other object
+						if( history_remove(id, model) ) {
+							if(to_delete.length > 0) {
+								delete_item(to_delete);
+							}
+						}
+						
 					}
-				
-				if(to_delete.length > 0)
-					delete_item(to_delete);
+
 			});
 		}	
 		
 	}
 	
-	
+		
+	var history_remove = function(id, model) {
+
+		for(var a = 0; a < history.length; a++) {
+
+			if( history[a].attr("model") === model &&
+				history[a].attr("model_id") === id) {
+				history.splice(a, 1);
+			}
+
+		}
+
+		return true;
+
+	}
 	
 	$(document).on("click", "#insertimage", function(e) {
 		$.colorbox({href:"plugin.php?plugin_name=editor&page=file_upload", width: "65%", height: "90%"});
@@ -572,6 +595,8 @@ $(document).ready(function() {
 		}
 		if(!found)
 			history.push($(this));	
+
+		console.log(history);
 	});
 	
 	

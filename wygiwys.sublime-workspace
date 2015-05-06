@@ -1,0 +1,1037 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"inputHandler",
+				"inputHandlerSendNewCenter"
+			],
+			[
+				"worker",
+				"worker_collision"
+			],
+			[
+				"init",
+				"initInputHandler"
+			],
+			[
+				"hist",
+				"history"
+			],
+			[
+				"obj",
+				"obj"
+			],
+			[
+				"change",
+				"changeState"
+			],
+			[
+				"sonic_",
+				"sonic_standing_right"
+			],
+			[
+				"set_scre",
+				"set_screen_width"
+			],
+			[
+				"colli",
+				"collisions_to_enact"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 117.0,
+		"selected_items":
+		[
+			[
+				"project",
+				"Project: Close"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"new file",
+				"File: New File Relative to Current View"
+			],
+			[
+				"settings user",
+				"Preferences: Settings - User"
+			],
+			[
+				"packagelist",
+				"Package Control: List Packages"
+			],
+			[
+				"packag instal",
+				"Package Control: Install Package"
+			],
+			[
+				":q",
+				"Set Syntax: SQL"
+			],
+			[
+				"settings defa",
+				"Preferences: Settings - Default"
+			],
+			[
+				"prefe user ",
+				"Preferences: Settings - User"
+			],
+			[
+				"key defa",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"key user",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"close",
+				"File: Close All"
+			],
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"list pack",
+				"Package Control: List Packages"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"packackes",
+				"Package Control: List Packages"
+			],
+			[
+				"packac",
+				"Package Control: Install Package"
+			],
+			[
+				"package discov",
+				"Package Control: Discover Packages"
+			],
+			[
+				"key binding user",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"key binding",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"settin defa",
+				"Preferences: Settings - Default"
+			],
+			[
+				"user",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"user ",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"key bind",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"save",
+				"File: Save All"
+			],
+			[
+				"folder",
+				"Project: Add Folder"
+			],
+			[
+				":r ls ",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"file new re",
+				"File: New File Relative to Current View"
+			],
+			[
+				"package ",
+				"Preferences: Browse Packages"
+			],
+			[
+				"packages ",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"key bindin us",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"keybinde",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"settings",
+				"Preferences: Settings - Default"
+			],
+			[
+				"file copy pat pro",
+				"File: Copy Path From Project"
+			],
+			[
+				"copy pat pr",
+				"File: Copy Path From Project"
+			],
+			[
+				"new fil",
+				"File: New File Relative to Current View"
+			],
+			[
+				"file pat",
+				"File: Copy Path From Project"
+			],
+			[
+				"brows",
+				"Preferences: Browse Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"snippet",
+				"Snippet: HTML - Ordered list"
+			],
+			[
+				"packace",
+				"Package Control: Install Package"
+			],
+			[
+				"snipp",
+				"Snippet: <?php else: ?>"
+			],
+			[
+				"snp",
+				"Set Syntax: PHP"
+			],
+			[
+				"snip lor",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"syntax ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"pa remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa inst",
+				"Package Control: Install Package"
+			],
+			[
+				"packa li",
+				"Package Control: List Packages"
+			],
+			[
+				"pak",
+				"Package Control: Install Package"
+			],
+			[
+				"pack	",
+				"Package Control: Install Package"
+			],
+			[
+				"toggle",
+				"View: Toggle Open Files in Side Bar"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/pepe/html/wygiwys/Readme.txt",
+		"/home/pepe/html/wygiwys/Controller.class.php",
+		"/home/pepe/html/wygiwys/admin-panel/Controller.class.php",
+		"/home/pepe/html/wygiwys/admin-panel/admin-panel.js",
+		"/home/pepe/html/wygiwys/admin-panel/views/panel.php",
+		"/home/pepe/html/wygiwys/ControllerAjax.class.php",
+		"/home/pepe/html/wygiwys/admin-panel/views/panel.css",
+		"/home/pepe/html/wygiwys/admin-panel/views/login.php",
+		"/home/pepe/html/wygiwys/admin-panel/views/access_denied.php",
+		"/home/pepe/html/wygiwys/classes/Auth.class.php",
+		"/home/pepe/html/wygiwys/admin-panel/index.php",
+		"/home/pepe/html/wygiwys/ajax.php",
+		"/home/pepe/html/wygiwys/index.php",
+		"/home/pepe/html/wygiwys/Config.inc.php",
+		"/home/pepe/html/wygiwys/init_system.php",
+		"/home/pepe/html/wygiwys/toggle.php",
+		"/home/pepe/html/wygiwys/plugin.php",
+		"/home/pepe/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/run/user/1000/gvfs/ftp:host=renemichalke.de/renemichalke.de/files/test.html",
+		"/home/pepe/Desktop/sadf/test.html",
+		"/home/pepe/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/pepe/html/wygiwys/themes/pineapple/index.php",
+		"/home/pepe/html/wygiwys/models/Article/Article.class.php",
+		"/home/pepe/html/wygiwys/editor/views/pp_editor.js",
+		"/home/pepe/html/wygiwys/classes/Sanitize.class.php",
+		"/home/pepe/html/wygiwys/libs/google-code-prettify/prettify.js",
+		"/home/pepe/html/wygiwys/classes/DB.class.php",
+		"/home/pepe/html/wygiwys/classes/Mail.class.php",
+		"/home/pepe/html/wygiwys/models/RSSFeed/RSSFeed.class.php",
+		"/home/pepe/html/wygiwys/models/RSSFeed/views/index.php",
+		"/home/pepe/html/wygiwys/ControllerLogin.class.php",
+		"/home/pepe/html/wygiwys/login.php",
+		"/home/pepe/html/wygiwys/themes/pineapple/login.php",
+		"/home/pepe/html/wygiwys/classes/ClassLoader.class.php",
+		"/home/pepe/html/wygiwys/classes/View.class.php",
+		"/home/pepe/html/wygiwys/classes/ControllerBase.class.php",
+		"/home/pepe/html/wygiwys/admin-panel/views/panel.html",
+		"/home/pepe/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/pepe/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/pepe/html/wygiwys/editor/views/editor.html",
+		"/home/pepe/html/wygiwys/themes/pineapple/style.css",
+		"/home/pepe/html/wygiwys/libs/htmlpurifier-4.6.0/tests/HTMLPurifier/PHPT/loading/auto-with-spl-autoload-default.phpt",
+		"/home/pepe/html/wygiwys/libs/htmlpurifier-4.6.0/library/HTMLPurifier/DefinitionCache/Serializer/HTML/4.6.0,475ca41bdf2d86cd446656acad790c1623a38518,1.ser",
+		"/home/pepe/html/wygiwys/deploy.sh",
+		"/home/pepe/html/wygiwys/test.html",
+		"/home/pepe/html/wygiwys/pury.php",
+		"/home/pepe/Desktop/test.html",
+		"/tmp/dbxlGLqHur.html",
+		"/tmp/dbxlRTEhyT.html",
+		"/home/pepe/Desktop/untitled folder/pg2.html",
+		"/home/pepe/Desktop/pg2.html",
+		"/home/pepe/Desktop/gba_dev/3ds/3DShomebrew/documentation/doxygen/pm_8h_source.html",
+		"/media/pepe/Datenbanksysteme/unibsp/index.html",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/DB - 7/4. Relationale Algebra.html",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/DB - 7/2. Datenbankentwurf.html",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/RegularExpressions/1. Einleitung.html",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/GameObject.class.js",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/ObjectChar.class.js",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/ObjectWithInput.class.js",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/style.css",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/ObjectRing.class.js",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/game.php",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/GameObjectStatic.class.js",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/Engine.class.js",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/BLOG/KW46.html",
+		"/home/pepe/html/2D_Game_Engine/git/ecmascript-gameengine/ObjectRing.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/GameObject.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/style.css",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/Engine.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/ObjectWithInput.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/ObjectChar.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/index.html",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/StateMachine.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.55/import_sprite.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.54/GameObject.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.54/ObjectChar.class.js",
+		"/home/pepe/html/share/test.html",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.54/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.54/Engine.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.54/library.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.54/ObjectWithInput.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/library.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/ObjectWithInput.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/ObjectChar.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/GameObject.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/StateMachine.class.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.53/Engine.class.js",
+		"/home/pepe/.config/sublime-text-2/Packages/Package Control/Package Control.sublime-settings",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.52/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.52/test.html",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.52/library.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.52/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.51/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.51/library.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.51/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.51/images/sonic-starting-right.png",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/BLOG/KW42.html",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/DB - 7/foobar.html",
+		"/home/pepe/.config/sublime-text-2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/home/pepe/.config/sublime-text-2/Packages/User/html/li.sublime-snippet",
+		"/home/pepe/.config/sublime-text-2/Packages/User/html/ol.sublime-snippet",
+		"/home/pepe/.config/sublime-text-2/Packages/User/html/em.sublime-snippet",
+		"/home/pepe/.config/sublime-text-2/Packages/User/html/insert_tag.sublime-snippet",
+		"/home/pepe/.config/sublime-text-2/Packages/User/html/wrap_selection.sublime-snippet",
+		"/home/pepe/.config/sublime-text-2/Packages/User/html/ul.sublime-snippet",
+		"/home/pepe/encfs/.ownCloud/ownCloud/14_15/DB - 7/Skript.html",
+		"/home/pepe/Downloads/physicsactor.c",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.51/collision.js",
+		"/home/pepe/Desktop/Gameforum oO Gameforum    powered by NW.de, G-P-W.de an all the Network Sites Oo HALO StarFox Resident Evil Biohazard Gran Turismo Metal Gear Solid Tekken Virtua Fighter Zelda Turok Star Wars Rouge Leader Colin McRae Rally Need For Speed Onimusha Tim.html",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/library.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/collision.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/index.html",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/manifest.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/objects.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/style.css",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/library.inc.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/index.html",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/collision.js",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/game.php",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/examples/index.htm",
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/index.php"
+	],
+	"find":
+	{
+		"height": 109.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"bounce",
+			".login",
+			"//",
+			"prettyPrint",
+			"done",
+			"formatBlock",
+			"code",
+			"tags",
+			"fixed",
+			"0",
+			"editor",
+			"ClassLoader",
+			"Auth",
+			"replace",
+			"class",
+			"?>\n",
+			"\n",
+			"lib",
+			"extensions",
+			"			",
+			"focus_group",
+			"panel",
+			"pane",
+			"ctrl+l",
+			"line",
+			"ctrl+h",
+			"canvas",
+			"iframe",
+			"Iframe",
+			"iframes",
+			"				",
+			"			\n",
+			"K",
+			"k +",
+			"address",
+			"Dead Language Theme   Just another WordPress site_files",
+			"http://192.168.178.64/html/base/index.php?page=default&jump=all",
+			"wad",
+			"dad",
+			" *",
+			"3ad",
+			"ha",
+			"strong",
+			"ring",
+			"2",
+			"level_width",
+			"ObjectChar",
+			"active",
+			"objects_ring",
+			".animations[0]",
+			"Stand",
+			"ring",
+			"flipped",
+			"obj",
+			"Walk",
+			"0.09375",
+			"in_air",
+			"obj",
+			"changestate",
+			"Super",
+			"super",
+			"Super",
+			"super",
+			"Crouch",
+			"super",
+			"animations[16]",
+			"super",
+			"Crouch",
+			"crouch",
+			"Crouch",
+			"released",
+			"pressed_keys",
+			"in_air",
+			"jump",
+			"var",
+			"this.breakable = function",
+			");\n",
+			"breakable",
+			"released_keys",
+			"jump",
+			"released_keys",
+			"objects[a]",
+			"assigned_keys",
+			"objects[a].",
+			"objects[a]",
+			"speed_x",
+			"8",
+			"Running",
+			"7",
+			"jump",
+			"this",
+			"Crouch",
+			"crouch",
+			"Crouch",
+			"crouch",
+			"Crouch",
+			"crouch",
+			"Crouch",
+			"prototype.",
+			"animations[10].",
+			"frames",
+			"animations[10].frames",
+			"animations[10].",
+			"crouch",
+			"Roll",
+			"roll",
+			"Roll",
+			"roll",
+			"Roll",
+			"keydown",
+			"rolling",
+			"animations[8].",
+			"frames",
+			"animations[8].frames",
+			"animations[8].",
+			"roll",
+			"Run",
+			"run",
+			"Run",
+			";\n",
+			"speed_x",
+			"isRunSpee",
+			"isRundSpee",
+			";\n",
+			"00",
+			"this",
+			"draw",
+			"break"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Auth",
+			"ClassLoader",
+			"pg2_resources",
+			"",
+			"/** filter_fps_lag()*/",
+			"/*filter_fps_lag()*/",
+			"abstrahiert",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"controller.class.php",
+				"Controller.class.php"
+			],
+			[
+				"controller",
+				"admin-panel/Controller.class.php"
+			],
+			[
+				"admincontro",
+				"admin-panel/Controller.class.php"
+			],
+			[
+				"admin-panejs",
+				"admin-panel/admin-panel.js"
+			],
+			[
+				"admin-panelpanelphp",
+				"admin-panel/views/panel.php"
+			],
+			[
+				"admincontr",
+				"admin-panel/Controller.class.php"
+			],
+			[
+				"contaja",
+				"ControllerAjax.class.php"
+			],
+			[
+				"access",
+				"admin-panel/views/access_denied.php"
+			],
+			[
+				"panel.css",
+				"admin-panel/views/panel.css"
+			],
+			[
+				"access_de",
+				"admin-panel/views/access_denied.php"
+			],
+			[
+				"adminlogin",
+				"admin-panel/views/login.php"
+			],
+			[
+				"admin-panellogin",
+				"admin-panel/views/login.php"
+			],
+			[
+				"auth",
+				"classes/Auth.class.php"
+			],
+			[
+				"readme",
+				"Readme.txt"
+			],
+			[
+				"reade",
+				"Readme.txt"
+			],
+			[
+				"admininde",
+				"admin-panel/index.php"
+			],
+			[
+				"plugin.p",
+				"plugin.php"
+			],
+			[
+				"toggle",
+				"toggle.php"
+			],
+			[
+				"index.php",
+				"index.php"
+			],
+			[
+				"ajax.php",
+				"ajax.php"
+			],
+			[
+				"aja",
+				"ControllerAjax.class.php"
+			],
+			[
+				"plugin.php",
+				"plugin.php"
+			],
+			[
+				"ajax.p",
+				"ajax.php"
+			],
+			[
+				"toggle.p",
+				"toggle.php"
+			],
+			[
+				"ajax",
+				"ControllerAjax.class.php"
+			],
+			[
+				"controler",
+				"Controller.class.php"
+			],
+			[
+				"plugin",
+				"plugin.php"
+			],
+			[
+				"index.",
+				"index.php"
+			],
+			[
+				"admin-panelindex",
+				"admin-panel/index.php"
+			],
+			[
+				"index.p",
+				"index.php"
+			],
+			[
+				"config",
+				"Config.inc.php"
+			],
+			[
+				"readm",
+				"Readme.txt"
+			],
+			[
+				"pp_edit",
+				"editor/views/pp_editor.js"
+			],
+			[
+				"sani",
+				"classes/Sanitize.class.php"
+			],
+			[
+				"controleraja",
+				"ControllerAjax.class.php"
+			],
+			[
+				"article",
+				"models/Article/Article.class.php"
+			],
+			[
+				"db.class",
+				"classes/DB.class.php"
+			],
+			[
+				"read",
+				"Readme.txt"
+			],
+			[
+				"contrller",
+				"Controller.class.php"
+			],
+			[
+				"pineapple",
+				"themes/pineapple/index.php"
+			],
+			[
+				"panelphp",
+				"admin-panel/views/panel.php"
+			],
+			[
+				"index",
+				"index.php"
+			],
+			[
+				"contrala",
+				"ControllerAjax.class.php"
+			],
+			[
+				"controlerll",
+				"ControllerLogin.class.php"
+			],
+			[
+				"login",
+				"login.php"
+			],
+			[
+				"login.",
+				"login.php"
+			],
+			[
+				"panel.php",
+				"admin-panel/views/panel.php"
+			],
+			[
+				"viewclas",
+				"classes/View.class.php"
+			],
+			[
+				"view.cl",
+				"classes/View.class.php"
+			],
+			[
+				"auth.class",
+				"classes/Auth.class.php"
+			],
+			[
+				"controlerbase",
+				"classes/ControllerBase.class.php"
+			],
+			[
+				"index.ph",
+				"index.php"
+			],
+			[
+				"panel.html",
+				"admin-panel/views/panel.html"
+			],
+			[
+				"paneljs",
+				"admin-panel/admin-panel.js"
+			],
+			[
+				"authclass",
+				"classes/Auth.class.php"
+			],
+			[
+				"css",
+				"themes/pineapple/style.css"
+			],
+			[
+				"panelhtml",
+				"admin-panel/views/panel.html"
+			],
+			[
+				"editorvieweditht",
+				"editor/views/editor.html"
+			],
+			[
+				"controlerclas",
+				"Controller.class.php"
+			],
+			[
+				"controlerclass",
+				"Controller.class.php"
+			],
+			[
+				"login.ph",
+				"themes/pineapple/login.php"
+			],
+			[
+				"clasauth",
+				"classes/Auth.class.php"
+			],
+			[
+				"asdf",
+				"libs/htmlpurifier-4.6.0/tests/HTMLPurifier/PHPT/loading/auto-with-spl-autoload-default.phpt"
+			],
+			[
+				"safdasdf",
+				"libs/htmlpurifier-4.6.0/library/HTMLPurifier/DefinitionCache/Serializer/HTML/4.6.0,475ca41bdf2d86cd446656acad790c1623a38518,1.ser"
+			],
+			[
+				"sublimekeymap",
+				"/home/pepe/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap"
+			],
+			[
+				"deplo",
+				"deploy.sh"
+			],
+			[
+				"re",
+				"Readme.txt"
+			],
+			[
+				"saniti",
+				"classes/Sanitize.class.php"
+			],
+			[
+				"pur",
+				"pury.php"
+			],
+			[
+				"test",
+				"test.html"
+			],
+			[
+				"pu",
+				"pury.php"
+			],
+			[
+				"pury",
+				"pury.php"
+			],
+			[
+				"test.h",
+				"test.html"
+			],
+			[
+				"test.t",
+				"test.html"
+			],
+			[
+				"regular",
+				"14_15/RegularExpressions/1. Einleitung.html"
+			],
+			[
+				"regularexpre",
+				"14_15/RegularExpressions/1. Einleitung.html"
+			],
+			[
+				"gameobje",
+				"ecmascript-gameengine/GameObject.class.js"
+			],
+			[
+				"objectchar",
+				"ecmascript-gameengine/ObjectChar.class.js"
+			],
+			[
+				"objectinpu",
+				"ecmascript-gameengine/ObjectWithInput.class.js"
+			],
+			[
+				"style",
+				"ecmascript-gameengine/style.css"
+			],
+			[
+				"inde",
+				"2d_game_engine_app_0.55/index.html"
+			],
+			[
+				"stl",
+				"2d_game_engine_app_0.55/style.css"
+			],
+			[
+				"statema",
+				"2d_game_engine_app_0.55/StateMachine.class.js"
+			],
+			[
+				"game",
+				"2d_game_engine_app_0.55/game.php"
+			],
+			[
+				"objects",
+				"2d_game_engine_app_0.55/GameObject.class.js"
+			],
+			[
+				"import",
+				"2d_game_engine_app_0.55/import_sprite.php"
+			],
+			[
+				"objectwithinp",
+				"2d_game_engine_app_0.55/ObjectWithInput.class.js"
+			],
+			[
+				"gameobj",
+				"2d_game_engine_app_0.54/ObjectChar.class.js"
+			],
+			[
+				"libr",
+				"2d_game_engine_app_0.53/library.inc.js"
+			],
+			[
+				"pobje",
+				"2d_game_engine_app_0.53/objects.inc.js"
+			],
+			[
+				"pgame",
+				"2d_game_engine_app_0.53/game.php"
+			],
+			[
+				"obje",
+				"2d_game_engine_app_0.52/objects.inc.js"
+			],
+			[
+				"lib",
+				"2d_game_engine_app_0.52/library.inc.js"
+			],
+			[
+				"regex",
+				"14_15/RegularExpressions/1. Einleitung.html"
+			],
+			[
+				"",
+				"/home/pepe/encfs/.ownCloud/ownCloud/14_15/BLOG/KW42.html"
+			],
+			[
+				"coll",
+				"collision.js"
+			],
+			[
+				"manif",
+				"manifest.php"
+			],
+			[
+				"colli",
+				"collision.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 249.0,
+	"status_bar_visible": true
+}

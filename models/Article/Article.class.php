@@ -18,12 +18,10 @@
 			
 			if ($array == null || sizeof($array) == 0 || ! $this->IDExists($array['id'])) {
 				$this->newEntry();
-			}
-			if (isset($array['id']) &&
+			} elseif (isset($array['id']) &&
 				$this->IDExists($array['id'])) {
 				$this->load($array['id']);
-			}
-			if (isset($array['data'])) {
+			} elseif (isset($array['data'])) {
 				$this->_data = $array['data'];
 				$this->newEntry();
 			}

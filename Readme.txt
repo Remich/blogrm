@@ -16,8 +16,10 @@ Todo:
 	=======
 
 		* (DONE) protect session froms being hijacked by other projects on the same server
-		* implement styleless editable fields, otherwise user fucks up layout
+		* 10 – implement styleless editable fields, otherwise user fucks up layout
 			* e.g. h1 of article should not be stylable
+		* 9 – improve UI & Usability of Image / File Upload and Image / File / Link inserting ( 20 Points )
+	
 !
 		Blog:
 		=====
@@ -37,7 +39,7 @@ Todo:
 		* (DONE) 10 – modify config of htmlpurifier
 		* (DONE) 7 – add missing html elements to prettify config
 			* (DONE) Audio, Video, Canvas, IFRAME
-	 
+		* (DONE) 10 – Deleting an entry and then saving any other entry/item, causes the deleted item of the entry to be saved again, because it still is in the history array
 
 		* 7 * prüfe ob ungespeicherte änderungen vorhanden sind -> methode verbessern
 		* 7 add error message, when request item, article, tag, could not be found
@@ -48,7 +50,8 @@ Todo:
 		* 2 * comment and clean up pp_editor.js
 		* 1 – add Inline SVG to config of htmlpurifier
 		* 2 – Can't leave prettyprinted <code>, workaround -> edit html 
-			
+		* wrap history array in an object	
+		* fix NaN with RGB somewhere, see console
 
 		Bookmarks:
 		==========
