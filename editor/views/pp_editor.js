@@ -259,7 +259,7 @@ $(document).ready(function() {
 								delete_item(to_delete);
 							}
 						}
-						
+
 					}
 
 			});
@@ -274,7 +274,7 @@ $(document).ready(function() {
 
 			if( history[a].attr("model") === model &&
 				history[a].attr("model_id") === id) {
-				history.splice(a, 1);
+				history.splice(a--, 1);
 			}
 
 		}
