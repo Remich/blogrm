@@ -7,7 +7,7 @@
         	"db_type" => "sql",
             /*"siteurl"=> "http://localhost/public/MVC Framework/page/",
             "serverdir" => "/Users/pepe-roni/Sites/public/MVC Framework/page/",*/
-            "path_abs" => "/home/pepe/html/wygiwys/",
+            "path_abs" => "/home/pepe/Desktop/html/wygiwys/",
             "session_name" => "wygiwys",
             
             "dbhost" => "localhost", //"192.168.178.64",

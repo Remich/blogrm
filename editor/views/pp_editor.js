@@ -1,6 +1,51 @@
 $(document).ready(function() {
 	
-	var history = new Array();
+	var history = (function() {
+
+		var that = {};
+		that.items = new Array();
+
+		that.getLength = function() {
+			return that.items.length();
+		}
+
+		that.pop = function() {
+			return that.items.pop();
+		}
+
+		that.push = function(value) {
+			that.items.push(value);
+		}
+
+		that.remove = function(id, model) {
+			for(var a = 0; a < that.items.length; a++) {
+				if( that.items[a].attr("model") === model &&
+					that.items[a].attr("model_id") === id) {
+					that.items.splice(a--, 1);
+				}
+			}
+			return true;
+		}
+
+		that.find = function(id, model, key) {
+			for(var a = 0; a < that.items.length; a++) {
+
+				if( that.items[a].attr("model_id") === id
+					&& that.items[a].attr("model") === model
+					&& that.items[a].attr("model_key") === key) {
+
+					return true;
+				}
+			}
+			return false;
+		}
+
+		return that;
+
+	}());	
+
+	// var history = new Array();
+
 	var editing = null;
 	var html = false;
 	
@@ -211,7 +256,7 @@ $(document).ready(function() {
 	var save_items = function() {
 		
 		data = [];
-		while(history.length !== 0) {
+		while(history.getLength() !== 0) {
 
 			item = history.pop();
 			remove_prettyprint(item);
@@ -254,7 +299,7 @@ $(document).ready(function() {
 						// remove model from edit history,
 						// otherwise it will reappear,
 						// when saving any other object
-						if( history_remove(id, model) ) {
+						if( history.remove(id, model) ) {
 							if(to_delete.length > 0) {
 								delete_item(to_delete);
 							}
@@ -268,20 +313,6 @@ $(document).ready(function() {
 	}
 	
 		
-	var history_remove = function(id, model) {
-
-		for(var a = 0; a < history.length; a++) {
-
-			if( history[a].attr("model") === model &&
-				history[a].attr("model_id") === id) {
-				history.splice(a--, 1);
-			}
-
-		}
-
-		return true;
-
-	}
 	
 	$(document).on("click", "#insertimage", function(e) {
 		$.colorbox({href:"plugin.php?plugin_name=editor&page=file_upload", width: "65%", height: "90%"});
@@ -582,18 +613,7 @@ $(document).ready(function() {
 		var model = $(this).attr("model");
 		var id = $(this).attr("model_id");
 		var key = $(this).attr("model_key");
-		
-		var found = false;
-		for(var a = 0; a < history.length; a++) {
-			var h_model = history[a].attr("model");
-			var h_id = history[a].attr("model_id");
-			var h_key = history[a].attr("model_key");
-			
-			if(h_model == model 
-				&& h_id == id
-				&& h_key == key) found = true;
-		}
-		if(!found)
+		if(!history.find(id, model, key))
 			history.push($(this));	
 
 		console.log(history);
@@ -733,7 +753,7 @@ $(document).ready(function() {
 	
 	$(window).on('beforeunload', function() {
 		console.log(history);
-		if(history.length > 0)
+		if(history.getLength() > 0)
 			return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
 	});
 	editing = 23;

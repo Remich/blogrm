@@ -47,7 +47,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 117.0,
+		"height": 33.0,
 		"selected_items":
 		[
 			[
@@ -280,6 +280,12 @@
 	},
 	"file_history":
 	[
+		"/home/pepe/Desktop/html/wygiwys/editor/views/pp_editor.js",
+		"/home/pepe/Desktop/html/wygiwys/Readme.txt",
+		"/home/pepe/Desktop/html/wygiwys/models/Article/Article.class.php",
+		"/home/pepe/Desktop/html/wygiwys/classes/Model.class.php",
+		"/home/pepe/Desktop/html/wygiwys/classes/ModelList.class.php",
+		"/home/pepe/html/wygiwys/models/News/News.class.php",
 		"/home/pepe/html/wygiwys/Readme.txt",
 		"/home/pepe/html/wygiwys/Controller.class.php",
 		"/home/pepe/html/wygiwys/admin-panel/Controller.class.php",
@@ -401,13 +407,7 @@
 		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/index.html",
 		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.5/manifest.php",
 		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/objects.inc.js",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/style.css",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/library.inc.js",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/index.html",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/collision.js",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/game.php",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/examples/index.htm",
-		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/index.php"
+		"/home/pepe/html/2D_Game_Engine/2d_game_engine_app_0.451/style.css"
 	],
 	"find":
 	{
@@ -426,6 +426,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"history",
+			"edit",
 			"bounce",
 			".login",
 			"//",
@@ -551,9 +553,7 @@
 			"isRundSpee",
 			";\n",
 			"00",
-			"this",
-			"draw",
-			"break"
+			"this"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -582,6 +582,11 @@
 			"sheets":
 			[
 			]
+		},
+		{
+			"sheets":
+			[
+			]
 		}
 	],
 	"incremental_find":
@@ -601,11 +606,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -625,6 +637,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"readme",
+				"Readme.txt"
+			],
+			[
+				"pp_editr",
+				"editor/views/pp_editor.js"
+			],
 			[
 				"controller.class.php",
 				"Controller.class.php"
@@ -676,10 +696,6 @@
 			[
 				"auth",
 				"classes/Auth.class.php"
-			],
-			[
-				"readme",
-				"Readme.txt"
 			],
 			[
 				"reade",
