@@ -44,192 +44,198 @@ $(document).ready(function() {
 
 	}());	
 
+
 	// var history = new Array();
+
+	// ***
+	// * Start Buttons
+	// ***
 
 	var editing = null;
 	var html = false;
 	
-	var c = 0;
 	var buttons = new Array();
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'newfile';
-	buttons[c].action = 'inserthtml';
-	buttons[c++].disabled_when_html = false;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'save';
-	buttons[c].action = 'inserthtml';
-	buttons[c++].disabled_when_html = false;
-	
+	var q = buttons.length;
+	buttons[q++] = { 
+		id : 'newfile', 
+		action : 'inserthtml',
+		on_html_disabled : false 
+	}; 
+	buttons[q++] = { 
+		id : 'save', 
+		action : 'inserthtml',
+		on_html_disabled : false 
+	}; 
 	/*buttons[c] = new Array();
 	buttons[c].id = 'deletefile';
 	buttons[c].action = 'inserthtml';
-	buttons[c++].disabled_when_html = false;*/
+	buttons[c++].on_html_disabled = false;*/
+	buttons[q++] = { 
+		id : 'undo', 
+		action : 'undo',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'redo', 
+		action : 'redo',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'removeformat', 
+		action : 'removeformat',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'fontname', 
+		action : 'fontname',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'fontsize', 
+		action : 'fontsize',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'color_front', 
+		action : 'color_front',
+		on_html_disabled : false 
+	}; 
+	buttons[q++] = { 
+		id : 'color_back', 
+		action : 'color_back',
+		on_html_disabled : false 
+	}; 
+	buttons[q++] = { 
+		id : 'formatblock', 
+		action : 'formatblock',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'bold', 
+		action : 'bold',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'italic', 
+		action : 'italic',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'underline', 
+		action : 'underline',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'strikethrough', 
+		action : 'strikethrough',
+		on_html_disabled : true 
+	}; 
+	buttons[q++] = { 
+		id : 'subscript', 
+		action : 'subscript',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'superscript', 
+		action : 'superscript',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'justifyleft', 
+		action : 'justifyleft',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'justifycenter', 
+		action : 'justifycenter',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'justifyright', 
+		action : 'justifyright',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'justifyfull', 
+		action : 'justifyfull',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'indent', 
+		action : 'indent',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'outdent', 
+		action : 'outdent',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'insertorderedlist', 
+		action : 'insertorderedlist',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'inserunorderedlist', 
+		action : 'inserunorderedlist',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'inserthorizontalruler', 
+		action : 'inserthorizontalruler',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'blockquote', 
+		action : 'formatblock',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'createlink', 
+		action : 'createlink',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'unlink', 
+		action : 'unlink',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'inserthtml', 
+		action : 'inserthtml',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'insertimage', 
+		action : 'insertimage',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'imageleft', 
+		action : 'imageleft',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'imagenone', 
+		action : 'imageleft',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'imageright', 
+		action : 'imageright',
+		on_html_disabled : true
+	}; 
+	buttons[q++] = { 
+		id : 'edithtml', 
+		action : 'edithtml',
+		on_html_disabled : false
+	}; 
 	
-	buttons[c] = new Array();
-	buttons[c].id = 'undo';
-	buttons[c].action = 'undo';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'redo';
-	buttons[c].action = 'redo';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'removeformat';
-	buttons[c].action = 'removeformat';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'fontname';
-	buttons[c].action = 'fontname';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'fontsize';
-	buttons[c].action = 'fontsize';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'forecolor';
-	buttons[c].action = 'forecolor';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'backcolor';
-	buttons[c].action = 'backcolor';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'formatblock';
-	buttons[c].action = 'formatblock';
-	buttons[c++].disabled_when_html = true;
-		
-	buttons[c] = new Array();
-	buttons[c].id = 'bold';
-	buttons[c].action = 'bold';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'italic';
-	buttons[c].action = 'italic';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'underline';
-	buttons[c].action = 'underline';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'strikethrough';
-	buttons[c].action = 'strikethrough';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'subscript';
-	buttons[c].action = 'subscript';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'superscript';
-	buttons[c].action = 'superscript';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'justifyleft';
-	buttons[c].action = 'justifyleft';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'justifycenter';
-	buttons[c].action = 'justifycenter';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'justifyright';
-	buttons[c].action = 'justifyright';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'justifyfull';
-	buttons[c].action = 'justifyfull';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'indent';
-	buttons[c].action = 'indent';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'outdent';
-	buttons[c].action = 'outdent';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'insertorderedlist';
-	buttons[c].action = 'insertorderedlist';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'insertunorderedlist';
-	buttons[c].action = 'insertunorderedlist';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'inserthorizontalruler';
-	buttons[c].action = 'inserthtml';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'blockquote';
-	buttons[c].action = 'formatblock';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'createlink';
-	buttons[c].action = 'createlink';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'unlink';
-	buttons[c].action = 'unlink';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'inserthtml';
-	buttons[c].action = 'inserthtml';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'insertimage';
-	buttons[c].action = 'insertimage';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'imageleft';
-	buttons[c].action = 'imageleft';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'imagenone';
-	buttons[c].action = 'imageleft';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'imageright';
-	buttons[c].action = 'imageright';
-	buttons[c++].disabled_when_html = true;
-	
-	buttons[c] = new Array();
-	buttons[c].id = 'edithtml';
-	buttons[c].action = 'inserthtml';
-	buttons[c++].disabled_when_html = false;
-	
+	console.log(buttons);
 
-	
-	//console.log(buttons);
+	// ***
+	// * End Buttons
+	// ***
 	
 	
 	//library editor
@@ -465,18 +471,18 @@ $(document).ready(function() {
 			return false;
 		}
 		
-		if(button.id == 'forecolor') {
+		if(button.id == 'color_front') {
 			
 			var foreColor = document.queryCommandValue("ForeColor");
-			$('#pp_editor #forecolor').val(rgbToHex(foreColor));
+			$('#pp_editor #color_front').val(rgbToHex(foreColor));
 			
 			return false;
 		}
 		
-		if(button.id == 'backcolor') {
+		if(button.id == 'color_back') {
 			
 			var foreColor = document.queryCommandValue("BackColor");
-			$('#pp_editor #backcolor').val(rgbToHex(foreColor));
+			$('#pp_editor #color_back').val(rgbToHex(foreColor));
 			
 			return false;
 		}
@@ -505,7 +511,7 @@ $(document).ready(function() {
 		
 		is_supported = function(button) { /*function(state, id)*/
 			
-			if(!document.queryCommandEnabled(button.action) || (html && button.disabled_when_html)) {
+			if(!document.queryCommandEnabled(button.action) || (html && button.on_html_disabled)) {
 				if(!$('#pp_editor #'+ button.id).hasClass("not-supported"))
 					$('#pp_editor #'+ button.id).addClass("not-supported").attr('disabled', 'true');
 			} else {
@@ -667,12 +673,12 @@ $(document).ready(function() {
 		document.execCommand("fontsize", false, $(this).val() );
 	});
 	
-	$(document).on('change', '#forecolor', function() { 
-		document.execCommand("forecolor", false, $(this).val() );
+	$(document).on('change', '#color_front', function() { 
+		document.execCommand("color_front", false, $(this).val() );
 	});
 	
-	$(document).on('change', '#backcolor', function() { 
-		document.execCommand("backcolor", false, $(this).val() );
+	$(document).on('change', '#color_back', function() { 
+		document.execCommand("color_back", false, $(this).val() );
 	});
 	
 	$('#formatblock').focusout(function(e) {
@@ -752,7 +758,8 @@ $(document).ready(function() {
 	$("body").css('padding-top', padding + 100 + 'px');
 	
 	$(window).on('beforeunload', function() {
-		console.log(history);
+		console.log(history)
+		;
 		if(history.getLength() > 0)
 			return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
 	});
