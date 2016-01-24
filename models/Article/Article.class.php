@@ -27,6 +27,23 @@
 			}
 			
 		} 
+
+		public static function createTable() {
+
+			// TODO Unterscheide zwischen mysql und sqlite!!
+
+			$query = "CREATE TABLE IF NOT EXISTS `article` (
+`id` int(11) NOT NULL PRIMARY KEY,
+  `uid` int(11) NOT NULL DEFAULT '1',
+  `a_sort` int(11) DEFAULT '0',
+  `title` varchar(255) NOT NULL,
+  `a_date` datetime NOT NULL,
+  `content` text NOT NULL,
+  `published` int(1) NOT NULL DEFAULT '1',
+  `comments` longtext NOT NULL
+)";
+			DB::execute($query);
+		}
 		
 		// TODO: implement in ParentClass
 		public function IDExists($id) {

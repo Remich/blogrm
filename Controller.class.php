@@ -55,9 +55,9 @@
 				return "themes/".Config::getOption("theme")."/";
 			}
 
-			require_once("models/NavigationFromFolder/NavigationFromFolder.class.php");
-			$nav = new NavigationFromFolder('../');
-			$this->_view->assign('navigation', $nav->display());
+			// require_once("models/NavigationFromFolder/NavigationFromFolder.class.php");
+			// $nav = new NavigationFromFolder('../');
+			// $this->_view->assign('navigation', $nav->display());
 
 			$this->_request['page'] = @$this->_request['page'] ? $this->_request['page'] : "default";
 			$this->_view->assign('page', $this->_request['page']);
@@ -105,7 +105,8 @@
 					
 					}
 					die("done");*/
-					
+
+
 					// TODO: in klasse auslagern
 					if(isset($this->_request['tag_id'])) {
 						require_once("models/Tag/Tag.class.php");
@@ -124,6 +125,8 @@
 					require_once("models/News/News.class.php");
 					$news = new News(@$this->_request['tag_id'], $this->_request);
 					$this->_view->assign('news', $news->display() );
+
+					// die();
 				
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);

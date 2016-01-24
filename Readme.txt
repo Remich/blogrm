@@ -11,6 +11,7 @@ Todo:
 	* 1 * move go and add bookmark to ajax controller, otherwise issues with sorting and going out
 	* 10 * implement multiple users
 	* 7 * implement child themes and child models
+	* 10 * implement markdown support
 	
 	Editor:
 	=======

@@ -12,19 +12,32 @@
 		private static function getInstance() {
 			if(!self::$_db) {
 				try {
-					self::$_db = new PDO(
-							'mysql:host='.Config::getOption('dbhost').';'.
-							'dbname='.Config::getOption('dbname').';'.
-							'charset=utf8mb4',
-							/*'port='.Config::getOption('dbport'),*/
-							Config::getOption('dbuser'),
-							Config::getOption('dbpass'),
-							array(
-									PDO::ATTR_PERSISTENT => false,
-									PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ,
-									PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-							)
-					);
+
+					switch(Config::getOption('db_type')) {
+						case 'mysql':
+							self::$_db = new PDO(
+								'mysql:host='.Config::getOption('dbhost').';'.
+								'dbname='.Config::getOption('dbname').';'.
+								'charset=utf8mb4',
+								/*'port='.Config::getOption('dbport'),*/
+								Config::getOption('dbuser'),
+								Config::getOption('dbpass'),
+								array(
+										PDO::ATTR_PERSISTENT => false,
+										PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ,
+										PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+								)
+							);
+						break;
+
+						case 'sqlite':
+							self::$_db = new PDO('sqlite:'.Config::getOption('path_abs').'db/'.Config::getOption('dbname').'.sqlite');
+							self::$_db->setAttribute(PDO::ATTR_PERSISTENT, false);
+							self::$_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							self::$_db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+						break;
+					}
+
 					self::$_number_of_connections++;
 				}
 				catch(Exception $e){
@@ -116,6 +129,21 @@
 		}
 		public static function getNumberOfConnections() {
 			return self::$_number_of_connections;
+		}
+
+		public static function doesTableExist($name) {
+
+
+			// TODO: make it work for mysql
+
+			$query = "SELECT COUNT(*) as number FROM sqlite_master WHERE type='table' AND name='".$name."'";
+			$data = self::getOne($query);
+			if($data['number'] === "0") {
+				return false;
+			} else {
+				return true;
+			}
+
 		}
        
 	}

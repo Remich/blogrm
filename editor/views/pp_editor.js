@@ -764,5 +764,20 @@ $(document).ready(function() {
 			return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
 	});
 	editing = 23;
+
+	// var foobar = 0;
+	// $("a").on("click", function(e) {
+	// 	if(!foobar) {
+	// 		var answer = confirm("Follow Link?");
+	// 		if(!answer) {
+	// 			e.preventDefault();
+	// 			foobar = 0;
+	// 		}
+	// 	} else {
+	// 		console.log($(this));
+	// 		$(this).click();
+	// 		foobar = 1;
+	// 	}
+	// });
 	
 });

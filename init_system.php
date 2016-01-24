@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 	/**
 	*	Copyright 2010-2015 René Michlke
@@ -14,7 +14,7 @@
 	mb_http_input('UTF-8');
 	header("Content-Type: text/html; charset=UTF-8");
 	
-	require_once("Config.inc.php");
+	require_once("protected/Config.inc.php");
 
 	session_name(Config::getOption("session_name"));
 	session_start();
@@ -22,5 +22,12 @@
 	spl_autoload_register(function ($class) {
 		require_once  Config::getOption("path_abs") . 'classes/' . $class . '.class.php';
 	});
+
+	// Create Tables if they don't exist
+	if(!DB::doesTableExist("article")) {
+		require_once("models/Article/Article.class.php");
+		Article::createTable();
+	}
+
 
 ?>
