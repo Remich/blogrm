@@ -6,7 +6,7 @@ $(document).ready(function() {
 		that.items = new Array();
 
 		that.getLength = function() {
-			return that.items.length();
+			return that.items.length;
 		}
 
 		that.pop = function() {
@@ -278,7 +278,7 @@ $(document).ready(function() {
 		$("#hidden").load('ajax.php?&action=save', 
 				{ data : data }, function ( bool ) {
 			
-			if (bool !== "#t") {
+			if (bool.trim() !== "#t") {
 				alert('Fehler beim Speichern');
 				console.log(bool);
 			}
@@ -296,7 +296,7 @@ $(document).ready(function() {
 			$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 					'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
 				
-					if (bool === "true") {
+					if (bool.trim() === "true") {
 
 						$('#a'+id).slideUp("slow", function() {
 							this.remove();

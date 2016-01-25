@@ -28,22 +28,6 @@
 			
 		} 
 
-		public static function createTable() {
-
-			// TODO Unterscheide zwischen mysql und sqlite!!
-
-			$query = "CREATE TABLE IF NOT EXISTS `article` (
-`id` int(11) NOT NULL PRIMARY KEY,
-  `uid` int(11) NOT NULL DEFAULT '1',
-  `a_sort` int(11) DEFAULT '0',
-  `title` varchar(255) NOT NULL,
-  `a_date` datetime NOT NULL,
-  `content` text NOT NULL,
-  `published` int(1) NOT NULL DEFAULT '1',
-  `comments` longtext NOT NULL
-)";
-			DB::execute($query);
-		}
 		
 		// TODO: implement in ParentClass
 		public function IDExists($id) {
@@ -61,10 +45,24 @@
 		}
 		
 		public function newEntry() {
-			$query = "INSERT INTO article 
-						(a_sort, title, a_date, content) 
-					  VALUES 
-						(:a_sort, :title, NOW(), :content)";
+
+			switch(Config::getOption("db_type")) {
+
+				case "mysql":
+					$query = "INSERT INTO article 
+								(a_sort, title, a_date, content) 
+							  VALUES 
+								(:a_sort, :title, NOW(), :content)";
+					break;
+
+				case "sqlite":
+					$query = "INSERT INTO article 
+								(a_sort, title, a_date, content) 
+							  VALUES 
+								(:a_sort, :title, datetime('now'), :content)";
+					break;
+			}
+
 			$params = array(
 					':a_sort' => $this->getLatestSortingNumber(), 
 					':title' => (isset($this->_data['title']) ? $this->_data['title'] : $this->getNewTitleId()." – Das ist der Default-Title"),
@@ -118,23 +116,33 @@
 		
 		
 		public function load($id) {
-			$query = "SELECT *, DATE_FORMAT(a_date, '%D %M %Y') as a_date 
-					  FROM article WHERE id = :id";
+
+			switch(Config::getOption("db_type")) {
+				case "mysql":
+					$query = "SELECT *, DATE_FORMAT(a_date, '%D %M %Y – %H:%i') as a_date 
+							  FROM article WHERE id = :id";
+					break;
+
+				case "sqlite":
+					$query = "SELECT *, strftime('%d.%m.%Y – %H:%M', a_date) as a_date 
+							  FROM article WHERE id = :id";
+					break;
+			}
 			
 			$this->_data = DB::getOne($query, array(':id' => $id));
-			
+
 			$query = "SELECT id_b FROM rel_articles_categories WHERE id_a = :id_a";
 			$data = DB::get($query, array(':id_a' => $id));
 			$cats = array();
 			foreach($data as $key => $item) {
 				$query = "SELECT id, name FROM categories WHERE id = :id_b";
 				$data = DB::getOne($query, array(':id_b' => $item['id_b']));
-				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">" . $data['name'] . "</a>";			
+				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">#" . $data['name'] . "</a>";			
 			}
 			if(sizeof($cats) == 0)
 				$cats[] = 'Uncategorized';
 			
-			$this->_data['categories'] = "#" . implode(" #", $cats);
+			$this->_data['categories'] = implode(" ", $cats);
 
  			require_once("models/Comment/Comment.class.php");
 			$query = "SELECT * FROM comment WHERE a_id = :a_id";

@@ -3,9 +3,11 @@ Todo:
 
 	* (done) $_db als Referenz entlang des Controllers weiterreichen
 	* (done) implement a MySql database;
+	* (done) Apply trim to all ajax results!!
+	* (done) Rewrite MySQL queries for SQLite
+	* completely remove bookmarks
 		
 	* 1 * rename Methods according to Coding Standards 
-	
 	* 10 * fix security hole with $_GET parameters
 	* 10 * make Config.inc.php protected!!!!!!!
 	* 1 * move go and add bookmark to ajax controller, otherwise issues with sorting and going out
@@ -41,6 +43,8 @@ Todo:
 		* (DONE) 7 – add missing html elements to prettify config
 			* (DONE) Audio, Video, Canvas, IFRAME
 		* (DONE) 10 – Deleting an entry and then saving any other entry/item, causes the deleted item of the entry to be saved again, because it still is in the history array
+
+		* keine kommentare laden, wenn man nicht den einzelnen Eintrag ansieht
 
 		* 7 * prüfe ob ungespeicherte änderungen vorhanden sind -> methode verbessern
 		* 7 add error message, when request item, article, tag, could not be found

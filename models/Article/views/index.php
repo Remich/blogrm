@@ -9,5 +9,6 @@
 			<?php  echo ($item['content'] != "") ? $item['content'] : "Lorem Ipsum"; ?>
 		</div>
 	</section>
+	<footer> </footer>
 </article>
 <?php } ?>

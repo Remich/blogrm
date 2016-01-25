@@ -8,7 +8,7 @@
 		
 		private $_tags = null;
 		private $_min = 9; // Minimum Fontsize
-		private $_max = 94; // Maximum Fontsize
+		private $_max = 128; // Maximum Fontsize
 		private $_table_relation = null;
 		private $_table_tags = null;
 		private $_tag_id = null;
@@ -125,7 +125,7 @@
 		}
 			
 		
-		public function display($foo = null) {
+		public function display($colorgradient = true) {
 			if( count($this->_tags) == 0) {	
 				return "Nicht genug Daten für die TagCloud";
 			} else {
@@ -142,13 +142,18 @@
 				$tags = array();
 				foreach($this->_tags as $key => $item) {						
 					$font = ceil(  ($item['occurences'] / $most ) * $this->_max );
-					$color = ceil(($item['hits'] / $mosthits ) * 255);
-					if($color < 100 && $color != 0) $color = 100;
-					$half = dechex(ceil(ceil(  ($item['hits'] / $mosthits ) * 255) / 2.5));
 					if($font < $this->_min)	$font = $this->_min;
-					$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px; color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
+
+					if($colorgradient) {
+						$color = ceil(($item['hits'] / $mosthits ) * 255);
+						if($color < 100 && $color != 0) $color = 100;
+						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px; color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
+					} else {
+						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px;" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
+
+					}
 				}
-				return "<h1>Tags</h1><p>" . implode("", $tags) . "</p>";
+				return "<p>" . implode("", $tags) . "</p>";
 			}
 		}
 	} 

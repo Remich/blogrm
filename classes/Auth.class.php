@@ -90,14 +90,32 @@
 
 
 			// Bruteforce Protection
-			$query = 'SELECT * FROM users WHERE username = :username AND last_login_attempt < NOW() - INTERVAL 3 Second';
+			switch(Config::getOption("db_type")) {
+				case "mysql": 
+					$query = 'SELECT * FROM users WHERE username = :username AND last_login_attempt < NOW() - INTERVAL 3 Second';
+				break;
+			
+				case "sqlite":
+					$query = "SELECT * FROM users WHERE username = :username AND last_login_attempt <  datetime('now', '-3 seconds')";
+				break;
+			}
+
 			$data = DB::getOne($query, $params);
 
 			if (sizeof($data) === 0) {
 				return($msg2);
 			}
 
-			$query = 'UPDATE users SET last_login_attempt = NOW() WHERE username = :username';
+			switch(Config::getOption("db_type")) {
+				case "mysql": 
+					$query = 'UPDATE users SET last_login_attempt = NOW() WHERE username = :username';
+				break;
+			
+				case "sqlite":
+					$query = "UPDATE users SET last_login_attempt = datetime('now') WHERE username = :username";
+				break;
+			}
+
 			DB::execute($query, $params);
 			
 			if($data['password'] != $password) {

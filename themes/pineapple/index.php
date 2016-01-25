@@ -63,11 +63,12 @@
 			<div id="wrapper-2">
 				<footer>
 					<section id="sec_1">
-						<?php echo $this->_['static_hi']; ?>
+						<?php echo $this->_['this']->singleArticle(1); ?>
 					</section>
 					  
 					<section id="sec_2">
-						<?php echo $this->_['tagcloud']; ?>
+						<h1>Tagcloud</h1>
+						<?php echo $this->_['tagcloud']->display(); ?>
 					</section>
 				</footer>
 			</div>

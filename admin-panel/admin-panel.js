@@ -34,7 +34,7 @@ $(document).ready(function() {
 		
 		$('#hidden').load('admin-panel/index.php?page=login_step_2&username=' + encodeURIComponent(user) + '&password=' + encodeURIComponent(CryptoJS.SHA256(pass)), function( result ) {
 				
-			if(result === "1") 
+			if(result.trim() === "1") 
 				window.location.reload(true);
 			else
 				alert(result, 'Error');

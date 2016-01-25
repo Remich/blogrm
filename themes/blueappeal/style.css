@@ -1,0 +1,238 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+body {
+	margin: 3em 0;
+	background: url(images_theme/bg-top.png) top repeat-x fixed, url(images_theme/bg.png);
+	color: #333333;
+	font-size: 90%;
+	font-family: sans-serif;
+}
+a {
+	color: #0596dd;
+	text-decoration: none;
+}
+a:hover {
+	color: #00539f;
+	text-decoration: underline;
+}
+.right {
+	float: right;
+}
+.left {
+	float: left;
+}
+
+#wrapper {
+	max-width: 920px;	
+	margin: auto;
+}
+
+#logo {
+	font-family: CabinRegular, Helvetica, sans-serif;
+}
+#rm {
+	font-family: CabinRegular, Helvetica, sans-serif;
+	float: left;
+	font-size: 100%;
+	margin-left: .20em;
+	/*color: #FF9900;*/
+	color: #00539f;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-shadow: 0 1px 0 #fff, 0 2px 0 rgba(0,0,0,.15);
+}
+#rm span {
+	/*color: #FFBB00;*/
+	color: #0596dd;
+}
+#r {
+	/*color: #FFBB00;*/
+	color: #0596dd;
+	position: absolute;
+	left: 0px;
+	text-shadow: 1px 0px 0px #fff;
+}
+#m {
+	text-shadow: 0 2px 0 #fff, 0 4px 0 rgba(0,0,0,.15);
+}
+#m2 {
+	position: absolute;
+	left: 0px;
+	opacity: 0;
+}
+#head h1 {
+	margin-top: -.35em;
+	margin-bottom: 1em;
+	/*color: #FF9900;*/
+	color: #00539f;
+	font-size: 450%;
+	position: relative;
+	float: left;
+}
+#head nav {
+	float: right;
+	display: inline;
+	line-height: 48px;
+	/*clear: both;*/
+	/*margin: auto;*/
+	/*width: 700px;*/
+}
+#head nav ul {
+	margin-top: 0;
+	list-style-type: none;
+	display: inline-block;
+}
+#head nav ul li {
+	float: left;
+	margin-right: 3em;
+	font-size: 80%;
+	text-transform: uppercase;
+	font-weight: normal;
+	background: none;
+	letter-spacing: 3px;
+}
+#head nav ul li:last-child {
+	margin-right: 0em;
+}
+#head nav ul li a {
+	padding: .5em;
+	text-shadow: 0 1px 0 #fff;
+}
+#content article {
+	clear: both;
+	line-height: 1.5em;
+}
+hr.style-two { 
+	clear: both;
+	border: 0; 
+	height: 1px; 
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(38, 102, 166, 0.75), rgba(0, 0, 0, 0));
+	margin-bottom: 0;
+	margin-top: 5em;
+	padding-bottom: 0;
+}
+hr.style-three {
+	margin-top: 0;
+	margin-bottom: 5em;
+	padding-top: 0;
+	border: 0; 
+	height: 1px; 
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 1), rgba(0, 0, 0, 0));
+}
+
+article {
+	margin-bottom: 4em;
+}
+article header{
+	margin-bottom: 2em;
+}
+article footer {
+	clear: both;
+}
+article header h1 {
+	color: #2666a6;
+	font-family: "DejaVu Sans";
+	font-weight: lighter;
+	font-size: 250%;
+	text-shadow: 0px 2px 0px white;
+	margin-bottom: -0.0em;
+	line-height: 1.1em;
+}
+article header h1 a {
+	color: #2666a6;
+	text-decoration: none;
+}
+article header h1 a:hover {
+	text-decoration: underline;
+}
+article time {
+	font-size: 80%;
+}
+article section h1, 
+article section h2, 
+article section h3, 
+article section h4, 
+article section h5, 
+article section h6 {
+	font-family: "DejaVu Sans";
+	font-weight: lighter;
+}
+article img {
+	padding: .3em;
+	background-color: white;
+	border: 1px solid #ccc;
+}
+article img.left {
+margin: 0 .5em 0 0;
+}
+article img.right {
+margin: 0 0 0 .5em;
+}
+article pre {
+	background: rgba(255,255,255,.3);
+	padding: 1em;
+}
+article blockquote {
+	padding-left: 0em;
+	padding-right: 1em;
+	font-style: italic;
+}
+article blockquote:before {
+	font-family: "Droid Serif";
+	color: #2666a6;
+	font-size: 700%;
+	content: '\201C';
+	position:relative;
+	top:+65px;
+	left: -56px;
+}
+article blockquote:after {
+	font-family: "Droid Serif";
+	color: #2666a6;
+	font-size: 700%;
+	content: '\201D';
+	float: right;
+	position:relative;
+	top: 10px;
+	left: 43px;
+}
+
+.pages {	
+	padding-top: 1em;
+	font-family: "DejaVu Sans";
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-size: 90%;
+	display: block;
+	text-align: center;
+}
+.pages a, .pages strong {
+	border-radius: 5px;
+	padding: .5em .8em .5em 1.1em;
+	background: rgba(255,255,255,.3);
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+.pages a {
+	text-decoration: none;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+.pages a:hover {
+	color: #0596dd;
+	background: rgba(0,0,0,0.05);
+}
+
+section#tagcloud {
+	text-align: center;
+}
+
+section#copy {
+	text-align: center;
+	width: 100%;
+	font-size: 0.8em;
+	font-family:  CabinRegular, Helvetica, sans-serif;
+	letter-spacing: 3px;
+	margin-bottom: 7em; 
+}
+

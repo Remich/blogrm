@@ -697,11 +697,11 @@ body#admin_panel {
     border-bottom-right-radius: 1px; }
   #pp_editor #forecolor, #pp_editor #backcolor {
     position: relative;
-    top: 1px;
+    top: 4px;
     right: 1px;
     padding:0px 
     margin: 0px;
-	height: 20px;
+  	height: 36px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     border-top-left-radius: 0px;

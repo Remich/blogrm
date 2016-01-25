@@ -23,11 +23,5 @@
 		require_once  Config::getOption("path_abs") . 'classes/' . $class . '.class.php';
 	});
 
-	// Create Tables if they don't exist
-	if(!DB::doesTableExist("article")) {
-		require_once("models/Article/Article.class.php");
-		Article::createTable();
-	}
-
 
 ?>

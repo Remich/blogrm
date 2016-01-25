@@ -64,7 +64,16 @@
 			
 			$_SESSION['url_bookmarks'] = Url::getCurrentUrl();
 
+			$this->_view->assign('this', $this);
+
 		} // <!-- end function ’__construct()’ -->
+
+		public function singleArticle($id) {
+			require_once("models/Article/Article.class.php");
+			$article = new Article(array("id"=>$id));
+			$article->setTemplate("teaser");
+			echo $article->display("Article");
+		}
 		
 		/**
 		* Running the actual application
@@ -132,22 +141,18 @@
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
 					$tags->setTableTags("categories");
 					$tags->setTableRelation("rel_articles_categories");
-					$tags->setFontMax(35);
-					$tags->setFontMin(13);
+					$tags->setFontMax(128);
+					$tags->setFontMin(8);
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_view->assign('tagcloud', $tags->display());
+					$this->_view->assign('tagcloud', $tags);
+
 				
 					require_once("models/ListOfContents/ListOfContents.class.php");
 					$lof = new ListOfContents("article", @$this->_request['tag_id']);
 					$this->_view->assign('list_of_contents', $lof->display("ListOfContents"));					
-					
-					require_once("models/Article/Article.class.php");
-					$article = new Article(array("id"=>"1"));
-					$article->setTemplate("teaser");
-					$this->_view->assign('static_hi', $article->display("Article"));
-									
+
 					$this->_view->setTemplate('index');
 				
 					break; // <!-- end case ’default’ --> 
@@ -229,12 +234,12 @@
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
 					$tags->setTableTags("categories");
 					$tags->setTableRelation("rel_articles_categories");
-					$tags->setFontMax(35);
-					$tags->setFontMin(13);
+					$tags->setFontMax(128);
+					$tags->setFontMin(8);
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_view->assign('tagcloud', $tags->display());
+					$this->_view->assign('tagcloud', $tags);
 
 					require_once("models/Article/Article.class.php");
 					$article = new Article(array("id"=>"1"));

@@ -48,8 +48,18 @@
 		
 	
 		public function load($id) {
-			$query = "SELECT *, DATE_FORMAT(c_date, '%D of %M %Y') as c_date 
-					  FROM comment WHERE id = :id";
+
+			switch(Config::getOption("db_type")) {
+				case "mysql": 
+					$query = "SELECT *, DATE_FORMAT(c_date, '%D of %M %Y – %H:%i') as c_date 
+						  FROM comment WHERE id = :id";
+				break;
+			
+				case "sqlite": 
+					$query = "SELECT *, strftime('%d %m %Y – %H:%M', c_date) as c_date 
+						  FROM comment WHERE id = :id";
+				break;
+			}
 			
 			$this->_data = DB::getOne($query, array(':id' => $id));
 						

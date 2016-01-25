@@ -130,21 +130,6 @@
 		public static function getNumberOfConnections() {
 			return self::$_number_of_connections;
 		}
-
-		public static function doesTableExist($name) {
-
-
-			// TODO: make it work for mysql
-
-			$query = "SELECT COUNT(*) as number FROM sqlite_master WHERE type='table' AND name='".$name."'";
-			$data = self::getOne($query);
-			if($data['number'] === "0") {
-				return false;
-			} else {
-				return true;
-			}
-
-		}
        
 	}
 
