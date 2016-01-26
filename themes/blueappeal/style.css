@@ -150,14 +150,18 @@ article header h1 a:hover {
 article time {
 	font-size: 80%;
 }
-article section h1, 
-article section h2, 
-article section h3, 
-article section h4, 
-article section h5, 
-article section h6 {
+article div h1, 
+article div h2, 
+article div h3, 
+article div h4, 
+article div h5, 
+article div h6 {
 	font-family: "DejaVu Sans";
 	font-weight: lighter;
+	margin: 1.5em 0;
+}
+article div h1 {
+	font-size: 200%;
 }
 article img {
 	padding: .3em;
@@ -175,28 +179,33 @@ article pre {
 	padding: 1em;
 }
 article blockquote {
-	padding-left: 0em;
-	padding-right: 1em;
+	background: rgba(255,255,255,.3);
+	padding: 1em 4em 2em 4em;
+	margin: 0;
 	font-style: italic;
+	border-left: 5px solid rgba(38, 102, 166, .2);
 }
 article blockquote:before {
 	font-family: "Droid Serif";
-	color: #2666a6;
+	color: rgba(38,102,166,.5);
 	font-size: 700%;
 	content: '\201C';
 	position:relative;
-	top:+65px;
+	float: left;
+	width: 100%;
+	top: 15px;
 	left: -56px;
 }
 article blockquote:after {
 	font-family: "Droid Serif";
-	color: #2666a6;
+	color: rgba(38,102,166,.5);
 	font-size: 700%;
 	content: '\201D';
 	float: right;
+	margin-left: 9em;
 	position:relative;
-	top: 10px;
-	left: 43px;
+	top: 24px;
+	left: 50px;
 }
 
 .pages {	
@@ -209,18 +218,23 @@ article blockquote:after {
 	text-align: center;
 }
 .pages a, .pages strong {
-	border-radius: 5px;
+	border-radius: 6px;
+	border-bottom-color: rgba(0,0,0,0.1);
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
 	padding: .5em .8em .5em 1.1em;
 	background: rgba(255,255,255,.3);
-	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+}
+.pages strong {
+	background: #fff;
 }
 .pages a {
 	text-decoration: none;
-	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
 }
 .pages a:hover {
 	color: #0596dd;
-	background: rgba(0,0,0,0.05);
+	background: #fff;
 }
 
 section#tagcloud {

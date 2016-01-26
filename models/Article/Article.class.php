@@ -184,6 +184,14 @@
 		}
 
 		public function delete() {
+			// remove category-relation
+			require_once('models/TagManager/TagManager.class.php');
+			$catman = new TagManager($this->_data['id'], "");
+			$catman->setTableRelation("rel_articles_categories");
+			$catman->setTableTags("categories");
+			$catman->generate();
+
+			// delete item
 			$query = 'DELETE FROM article
 						WHERE id = :id';
 			$params = array('id' => $this->_data['id']);

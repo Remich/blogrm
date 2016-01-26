@@ -12,7 +12,7 @@
 	</head>
 	<body id="<?php echo $this->_['page']; ?>">
 		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important; z-index: 1;"></div>
-		<div id="hidden" style="visibility: hidden"></div>
+		<div id="hidden" style="visibility: hidden; height: 0px; overflow: hidden;"></div>
 
 		<div id="wrapper">
 
@@ -23,10 +23,13 @@
 				<nav>
 					<ul>
 						<li>
-							<a href="#manifesto">Manifest</a>
+							<a href="index.php">All</a>
 						</li>
 						<li>
-							<a href="#content">Diary</a>
+							<a href="index.php?page=post&id=678">Manifest</a>
+						</li>
+						<li>
+							<a href="index.php?page=tag&tag_id=27">Diary</a>
 						</li>
 						<li>
 							<a href="#tagcloud">Tags</a>
@@ -39,14 +42,11 @@
 			</header>
 
 			<hr class="style-two" width="600">
-			<hr id="manifesto" class="style-three" width="600">
+			<hr class="style-three" width="600">
 
 			<section id="content">
 
-				<?php echo $this->_['this']->singleArticle(678); ?>
-
-				<hr class="style-two" width="600">
-				<hr class="style-three" width="600">
+				<?php #echo $this->_['this']->singleArticle(678); ?>
 
 				<?php if (@$this->_['news']) { ?>
 					<?php echo @$this->_['news']; ?>			

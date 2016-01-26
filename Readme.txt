@@ -22,6 +22,9 @@ Todo:
 		* 10 – implement styleless editable fields, otherwise user fucks up layout
 			* e.g. h1 of article should not be stylable
 		* 9 – improve UI & Usability of Image / File Upload and Image / File / Link inserting ( 20 Points )
+
+		* make edithtml button disabled, when no item has focus
+		* fix uhrzeit bei new entry und sqlite
 	
 !
 		Blog:

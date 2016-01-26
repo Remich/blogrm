@@ -507,9 +507,11 @@ $(document).ready(function() {
 		if(editing == null) 
 			return false;
 		
-		
-		
 		is_supported = function(button) { /*function(state, id)*/
+
+			if(button.id === "edithtml") {
+				return false;
+			}
 			
 			if(!document.queryCommandEnabled(button.action) || (html && button.on_html_disabled)) {
 				if(!$('#pp_editor #'+ button.id).hasClass("not-supported"))
