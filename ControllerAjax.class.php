@@ -16,236 +16,6 @@
 					die('This is the default action of the Ajax Controller');
 				break; // <!-- end case ’default’ --> 
 				
-				case 'load':
-				
-						$url = $_SESSION['url_bookmarks'];
-						$aUrl = Url::explode($url);
-							
-				
-						switch ($this->_request['id']) {
-				
-							default:
-								die('Error: No $this->request["id"] not set.');
-								break;
-				
-							case 'all_bookmarks':
-				
-								$url = Url::setParams( $url, array(), array('module', 'search') );
-								$url = Url::updateParams( $url, array('type' => 'all') );
-				
-								break;
-				
-							case 'trashed':
-									
-								if(!isset($this->_request['trashed']))
-									$this->_request['trashed'] = 0;
-								$url = Url::removeParams( $url, array('jump') );
-								$url = Url::updateParams( $url, array('trashed' => !$this->_request['trashed']) );
-				
-								break;
-				
-							case 'clear_all_filter':
-									
-								$url = Url::removeParams( $url, array('jump', 'type', 'tag_id', 'month', 'year', 'status') );
-								$url = Url::updateParams( $url, array() );
-								
-								break;
-				
-							case 'filter_not_tagged':
-									
-								$url = Url::removeParams( $url, array('jump', 'tag', 'page', 'status') );
-								$url = Url::updateParams( $url, array('type' => 'notag') );
-				
-								break;
-				
-							case 'filter_tag':
-				
-								$this->isInRequest( 'tid' );
-				
-								$url = Url::removeParams( $url, array('jump', 'month', 'year', 'page', 'status') );
-								$url = Url::updateParams( $url, array('type' => 'tag', 'tid' => $this->request['tid']) );
-									
-								break;
-				
-							case 'filter_month':
-				
-								$this->isInRequest( array('month', 'year') );
-				
-								$url = Url::removeParams( $url, array('jump', 'tag', 'page', 'status') );
-								$url = Url::updateParams(
-										$url,
-										array(
-												'type' => 'month',
-												'month' => $this->_request['month'],
-												'year' => $this->_request['year']
-										)
-								);
-				
-								break;
-				
-							case 'filter_year':
-				
-								$this->isInRequest( 'year' );
-				
-								$url = Url::removeParams( $url, array( 'jump', 'tag', 'page', 'status') );
-								$url = Url::updateParams( $url, array('type' => 'year', 'year' => $this->request['year'] ) );
-				
-								break;
-				
-							case 'sort_date':
-									
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-									$url = Url::updateParams( $url, array('sort' => 'date') );
-				
-									break;
-				
-							case 'sort_title':
-									
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-									$url = Url::updateParams( $url, array('sort' => 'title' ) );
-				
-									break;
-				
-							case 'sort_hits':
-									
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-									$url = Url::updateParams( $url, array('sort' => 'hits' ) );
-				
-									break;
-									
-							case 'sort_tag':
-									
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-									$url = Url::updateParams( $url, array('sort' => 'tags' ) );
-							
-									break;
-				
-							case 'sort_last_hit':
-				
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-									$url = Url::updateParams( $url, array('sort' => 'last_hit' ) );
-										
-									break;
-				
-							case 'order':
-				
-								$this->isInRequest( 'order' );
-				
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-								$url = Url::updateParams( $url, array('order' => $this->_request['order'] ) );
-									
-								break;
-				
-							case 'page':
-				
-								$this->isInRequest( 'jump' );
-									
-								$url = Url::updateParams( $url, array('jump' => $this->_request['jump'] ) );
-				
-								break;
-								
-							case 'realpage':
-									
-								$this->isInRequest( 'page' );
-								$url = Url::removeParams( $url, array('jump', 'tag_id') );
-								$url = Url::updateParams( $url, array('page' => $this->_request['page'] ) );
-									
-								break;
-								
-							case 'realfolder':
-										
-									$this->isInRequest( 'folder' );
-									$path = Url::getCurrentPath()."../".$this->_request['folder'];
-									//die($location);
-									header('Location: '.$path);
-									die();
-										
-									break;
-								
-							case 'tag':
-								
-								$this->isInRequest( 'tag_id' );
-
-								$url = Url::removeParams( $url, array('jump') );
-								
-								$tags = Url::getParams($url);
-								if(isset($tags['tag_id'])) 
-									$url = Url::updateParams( $url, array('tag_id' => $tags['tag_id'].".".$this->_request['tag_id'] ) );
-								else
-									$url = Url::updateParams( $url, array('tag_id' => $this->_request['tag_id'] ) );
-							
-								break;
-									
-							case 'removetag':
-								
-								$this->isInRequest( 'tag_id' );
-							
-								$url = Url::removeParams( $url, array('jump') );
-									
-								$tags = Url::getParams($url);
-								$tags_ar = explode(".", $tags['tag_id']);
-								
-								foreach($tags_ar as $key => $item)
-									if($item == $this->_request['tag_id'])
-										unset($tags_ar[$key]);
-
-								if(sizeof($tags_ar)==0) {
-									$url = Url::removeParams($url, array('tag_id'));
-								} else {
-									$tags = implode(".", $tags_ar);
-									$url = Url::updateParams( $url, array('tag_id' => $tags ) );
-								}
-								
-								break;
-									
-							case 'tag_clear':
-									
-									$url = Url::removeParams( $url, array('tag_id', 'jump') );
-									break;
-				
-							case 'search':
-				
-								$this->isInRequest( 'search' );
-									
-								if(@$aUrl['query_params']['jump'] != 'all')
-									$url = Url::removeParams( $url, array('jump') );
-								$url = Url::updateParams( $url, array('search' => urlencode($this->request['search']) ) );
-				
-								break;
-				
-							case 'favelet':
-				
-								$url = Url::setParams( $url, array(), array('module') );
-								$url = Url::updateParams( $url, array('page' => 'favelet', 'module' => 'bookmarks') );
-				
-								break;
-				
-							case 'change_module':
-				
-								$this->isInRequest('new_module');
-				
-								$url = Url::setParams( $url, array() );
-								$url = Url::updateParams( $url, array('module' => $this->request['new_module'] ) );
-									
-								break;
-				
-						}
-							
-						$_SESSION['url_bookmarks'] = $url;
-							
-						if(isset($this->request['redirect']) && $this->request['redirect'] == 0)
-							die($_SESSION['url_bookmarks']);
-						else
-							header('Location: '.$_SESSION['url_bookmarks']);
-				
-						break;
-				
 				case 'save':				
 					$bouncer = new Auth();
 
@@ -273,20 +43,6 @@
 					die("#t");
 					break;
 				
-				// TODO evtl delete
-				case 'trash':
-					$bouncer = new Auth();
-
-					$this->isInRequest( array( 'id', 'model') );
-						
-					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
-					$this->_request['model'] = Sanitize::FileName($this->_request['model']);	
-					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
-					$model = new $this->_request['model'](array('id'=>$this->_request['id']));
-				
-					die($model->delete());
-					break;
-						
 				case 'delete':
 					$bouncer = new Auth();
 
@@ -301,21 +57,6 @@
 					die($model->delete());
 					break;
 						
-				// TODO evtl delet
-				case 'emptybin':
-					$bouncer = new Auth();
-
-					$this->isInRequest( array( 'model') );
-						
-					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
-						
-					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
-					$model = new $this->_request['model']();
-				
-					$model->emptyBin();
-					header('Location: '.$_SESSION['url_bookmarks']);
-					break;
-				
 				case 'newfile':
 					$bouncer = new Auth();
 
@@ -335,6 +76,7 @@
 					
 					break;
 					
+				// TODO: remove
 				case 'update_sorting_order':
 					$bouncer = new Auth();
 					

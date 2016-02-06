@@ -1,6 +1,6 @@
 <h1>List of Contents</h1>
 <?php if(sizeof($this->_['data']) == 0) echo "No entries found"; else { ?>
-<ul id="sortable">
+<ul>
 	<?php 
 	foreach($this->_['data'] as $key => $item) {
 	

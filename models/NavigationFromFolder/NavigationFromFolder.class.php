@@ -14,7 +14,6 @@
 	*/
 	class NavigationFromFolder extends ModelList {
 		
-		// path to the modules  
 		private $_path = null;
 		private $_navigation = null;
 		protected $_name = "NavigationFromFolder";

@@ -16,15 +16,10 @@
 	
 		var $_entrys;
 		var $_itemsPerPage;
-		private $module;
 		
-		public function __construct($entrys, $itemsPerPage, $module = NULL) {
+		public function __construct($entrys, $itemsPerPage) {
 			$this->_entrys = $entrys;
 			$this->_itemsPerPage = $itemsPerPage;
-			if($module == NULL)
-				$this->module = 'bookmarks';
-			else
-				$this->module = $module;
 		}
 		
 		public function getPages() {
@@ -52,11 +47,11 @@
 			if(is_numeric($pageActive) AND $pages != 1) {
 				$return = '<span class="pages'.@$class.'"><span>Pages: </span>';
 				if($pageActive != $pages AND $pageActive != 0) {
-					$return .= '<a href="ajax.php?action=load&id=page&jump='.$pageActive_plus_1.'">&#171;</a> ';
+					$return .= '<a href="index.php?jump='.$pageActive_plus_1.'">&#171;</a> ';
 				}
 				
 				if($pageActive != $pages) {
-					$return .= '<a href="ajax.php?action=load&id=page&jump='.$pages.'">'.$pages.'</a> ';
+					$return .= '<a href="index.php?jump='.$pages.'">'.$pages.'</a> ';
 				} else {
 					$return .= '<strong>'.$pages.'</strong> ';
 				}
@@ -70,25 +65,25 @@
     							$return .= '&#133 ';
     						}
     					} else {
-    						$return .= '<a href="ajax.php?action=load&id=page&jump='.$a.'">'.$a.'</a> ';
+    						$return .= '<a href="index.php?jump='.$a.'">'.$a.'</a> ';
     					}
     				} else{
     					$return .= '<strong>'.$a.'</strong> ';
     				}
     			}
     			if($pageActive != 1) {
-    				$return .= '<a href="ajax.php?action=load&id=page&jump=1">1</a> ';
+    				$return .= '<a href="index.php?jump=1">1</a> ';
     			} else {
     				$return .= '<strong>1</strong> ';
     			}
     			
     			if($pageActive != 1 AND $pageActive != 0) {
-    				$return .= '<a href="ajax.php?action=load&id=page&jump='.$pageActive_minus_1.'">&#187;</a> ';
+    				$return .= '<a href="index.php?jump='.$pageActive_minus_1.'">&#187;</a> ';
     			}
     			if($pageActive == 0) {
     				$return .= '<strong>All</strong> </span>';
     			} else {
-    				$return .= '<a href="ajax.php?action=load&id=page&jump=all">All</a> </span>';
+    				$return .= '<a href="index.php?jump=all">All</a> </span>';
     			}
     		}
     		return $return;

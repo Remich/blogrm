@@ -153,30 +153,6 @@
             return self::implode($aUrl);
         }
         
-        public static function initAndFixPath() {
-        
-        	$modules = array('bookmarks', 'money');
-        	
-        	foreach($modules as $item) {
-        	
-        		if(!isset($_SESSION['url_'.$item]))
-        			$_SESSION['url_'.$item] = Url::getCurrentUrl();
-        		else {
-		    	
-		    		$aSe = Url::explode($_SESSION['url_'.$item]);
-					$aCu = Url::explode(Url::getCurrentUrl());
-				
-					if($aSe['path'] != $aCu['path'])
-						$aSe['path'] = $aCu['path'];
-					
-					$_SESSION['url_'.$item] = Url::implode($aSe);
-				
-				}
-        		
-        	}
-        	
-        }
-        
         public static function is_local_host($url) {
 
 			$host = parse_url($url, PHP_URL_HOST);

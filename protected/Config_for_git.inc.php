@@ -14,9 +14,8 @@
             "dbpass" => "",
         		
         	"plugins" => array(
-				"editor", "fileupload" /* ,"sortable", "admin-panel"*/
+				"editor", "fileupload"
 			),
-        	"bookmarks_per_page" => 30,
         	"articles_per_page" => 7,
         ); 
 

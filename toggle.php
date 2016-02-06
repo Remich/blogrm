@@ -15,23 +15,15 @@
 		switch($request['item']) {
 			
 			case 'editor':
-
 				$bouncer = new Auth();
 				$_SESSION['editor'] = !(isset($_SESSION['editor']) ? $_SESSION['editor'] : false);
 				break;
 			case 'admin-panel':
 				$_SESSION['admin-panel'] = !(isset($_SESSION['admin-panel']) ? $_SESSION['admin-panel'] : false);
 				break;
-			case 'sortable':
-
-				$bouncer = new Auth();
-				$_SESSION['sortable'] = !(isset($_SESSION['sortable']) ? $_SESSION['sortable'] : false);	
-				break;	
-			
 		}
 		
 	}
-	
 
-	header('Location: '. ($_SESSION['url_bookmarks'] ? $_SESSION['url_bookmarks'] : 'index.php'));
+	header('Location: '. ($_SESSION['currentURL'] ? $_SESSION['currentURL'] : 'index.php'));
 ?>

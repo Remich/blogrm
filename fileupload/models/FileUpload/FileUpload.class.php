@@ -98,6 +98,7 @@
 					die('<script language="javascript" type="text/javascript">parent.stopUpload(1);</script>');
 		}
 		
+		// TODO: Modify
 		public function GetUploadedFile() {
 				
 			$this->isInRequest(array('hash', 'name'));

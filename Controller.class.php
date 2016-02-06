@@ -44,11 +44,6 @@
 					$( document ).ready( function() {prettyPrint(); });
 				</script>';
 			}
-			if(@$_SESSION['sortable']) {
-				$this->_header .= '<link href="sortable/sortable.css" type="text/css" rel="stylesheet" />';
-				$this->_footer .= '<script type="text/javascript" src="libs/jquery-ui-1.11.0/jquery-ui.js"></script>';
-				$this->_footer .= '<script type="text/javascript" src="sortable/sortable.js"></script>';
-			}
 						
 			//TODO: Move to helpers.inc.php
 			function get_theme_folder() {
@@ -62,7 +57,7 @@
 			$this->_request['page'] = @$this->_request['page'] ? $this->_request['page'] : "default";
 			$this->_view->assign('page', $this->_request['page']);
 			
-			$_SESSION['url_bookmarks'] = Url::getCurrentUrl();
+			$_SESSION['currentURL'] = Url::getCurrentUrl();
 
 			$this->_view->assign('this', $this);
 
@@ -157,62 +152,6 @@
 				
 					break; // <!-- end case ’default’ --> 
 					
-				case "bookmarks":
-					$this->_header .= '<link href="models/ListOfBookmarks/views/listofbookmarks.css" type="text/css" rel="stylesheet" />';
-					$this->_footer .= '<script type="text/javascript" src="models/ListOfBookmarks/views/listofbookmarks.js"></script>';
-
-					
-					require_once("models/TagCloud/TagCloud.class.php");		
-					$tags = new TagCloud(@$this->_request['tag_id']);
-					$tags->setTableTags("bookmark_tags");
-					$tags->setTableRelation("rel_bitems_btags");
-					#$tags->setFontMax(35);
-					$tags->setFontMin(11);
-					if(isset($this->_request['page']))
-						$tags->setPage($this->_request['page']);
-					$tags->generate();
-					$this->_view->assign('tagcloud', $tags->display());
-					
-					
-					if(isset($this->_request['tag_id'])) {
-						require_once("models/Tag/Tag.class.php");
-						$tag = new Tag(array('table'=>"bookmark_tags", "id"=>$this->_request['tag_id']));
-						$this->_view->assign('tagname', $tag->getName());
-						$tag->incHit();
-					}
-					
-					require_once("models/ListOfBookmarks/ListOfBookmarks.class.php");
-					$bookmarks = new ListOfBookmarks(@$this->_request['tag_id'], $this->_request);
-					$this->_view->assign('bookmarks', $bookmarks->display() );
-					
-					$this->_view->setTemplate('bookmarks');
-					
-					break;
-					
-				case "go":
-					$this->isInRequest( array( 'id') );
-					require_once("models/Bookmark/Bookmark.class.php");
-					$bookmark = new Bookmark(array('id'=>$this->_request['id']));
-					$bookmark->go();
-												
-					break;
-					
-				case 'add_bookmark':
-					
-					$this->isInRequest(array('title', 'url'));
-					require_once("models/Bookmark/Bookmark.class.php");
-						
-					$data = array(
-							'uid' => 0,
-							'title' => $this->_request['title'],
-							'url' => $this->_request['url']
-					);
-					$bookmark = new Bookmark(array('data'=>$data));
-				
-					$this->_view->setTemplate('bookmarks-add');
-					die($this->_view->loadTemplate());
-				
-				break; // <!-- end case ’add_bookmark’ -->
 				
 				case 'rss':
 					require_once("models/RSSFeed/RSSFeed.class.php");

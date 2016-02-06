@@ -1,19 +1,36 @@
 Todo:
 =====
+	
+	* (done) grep nach modules und removen
+	* (done) Sorting stuff removen
 
 	* (done) $_db als Referenz entlang des Controllers weiterreichen
 	* (done) implement a MySql database;
 	* (done) Apply trim to all ajax results!!
 	* (done) Rewrite MySQL queries for SQLite
-	* completely remove bookmarks
+	* (done) completely remove bookmarks
 		
 	* 1 * rename Methods according to Coding Standards 
 	* 10 * fix security hole with $_GET parameters
 	* 10 * make Config.inc.php protected!!!!!!!
-	* 1 * move go and add bookmark to ajax controller, otherwise issues with sorting and going out
 	* 10 * implement multiple users
 	* 7 * implement child themes and child models
 	* 10 * implement markdown support
+	* fileupload testen / besser machen
+		* FileUpload.class.php aufräumen
+
+	Panel:
+	=======
+	* Autoload 
+		* entries in admin-panel/views/panel.php
+		* switch styles in admin-panel/views/panel.css
+		* cases in toggle.php
+		* css- / js files in Controller.class.php (line 30ff)
+	* Make Login / Logout extra Plugin
+
+	Themes:
+	=======
+		* deadlanguage theme unsassen
 	
 	Editor:
 	=======
@@ -25,6 +42,7 @@ Todo:
 
 		* make edithtml button disabled, when no item has focus
 		* fix uhrzeit bei new entry und sqlite
+		* remove googleprettify
 	
 !
 		Blog:
@@ -60,10 +78,6 @@ Todo:
 		* 2 – Can't leave prettyprinted <code>, workaround -> edit html 
 		* wrap history array in an object	
 		* fix NaN with RGB somewhere, see console
-
-		Bookmarks:
-		==========
-		* // wenn man ohne änderung ein bookmark mehrmals speichert, so stacken sich die amps (e.g. language agnostic - What does it mean to &amp;amp;amp;amp;amp;quot;program to an interface&amp;amp;amp;amp;amp;quot;? - Stack Overflow)	
 
 		
 	Architecture:
