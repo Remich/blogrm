@@ -18,8 +18,7 @@
 		public function __construct($request) {
 			
 			parent::__construct($request);
-
-			
+			$this->_areas = array();
 			
 			$this->_view = new View();
 			
@@ -59,7 +58,21 @@
 			
 			$_SESSION['currentURL'] = Url::getCurrentUrl();
 
-			$this->_view->assign('this', $this);
+
+			// Navigation
+			$navigation = array();
+			$navigation[0]['name'] = "All";
+			$navigation[0]['url'] = "index.php";
+			$navigation[1]['name'] = "Manifest";	
+			$navigation[1]['url'] = "index.php?page=post&id=678";
+			$navigation[2]['name'] = "Diary";
+			$navigation[2]['url'] = "index.php?page=tag&tag_id=27";
+			$navigation[3]['name'] = "Tags";
+			$navigation[3]['url'] = "#tagcloud";
+			$navigation[4]['name'] = "Login";
+			$navigation[4]['url'] = "toggle.php?item=admin-panel";
+
+			$this->_view->assign('navigation', $navigation);
 
 		} // <!-- end function ’__construct()’ -->
 
@@ -81,57 +94,30 @@
 				case "default":
 				case "blog":
 					
-
-
-					/*$query = "SELECT * FROM article2";
-					 $data = DB::get($query);
-					
-					
-					//Misc::pre($data);
-					
-					require_once("models/Article/Article.class.php");
-					require_once("models/Tag/Tag.class.php");
-					foreach($data as $item) {
-					$query = "SELECT * FROM rel_articles_categories2 WHERE a_id = :a_id";
-					$tags = DB::get($query, array(':a_id'=>$item['id']));
-					
-					$str = "";
-					foreach($tags as $item2) {
-					$query = "SELECT * FROM categories2 WHERE id = :c_id";
-					$name = DB::getOne($query, array(':c_id'=>$item2['c_id']));
-					$str .= "#".$name['c_name'];
-						
-					}
-					$str .= "#Programmieren 2";
-					
-					$daten = array('title' => $item['title'], 'content' => $item['content'], 'tags' => $str);
-					$article = new Article(array('data'=>$daten));
-					
-					}
-					die("done");*/
-
-
 					// TODO: in klasse auslagern
-					if(isset($this->_request['tag_id'])) {
-						require_once("models/Tag/Tag.class.php");
-						$tags = explode(".", $this->_request['tag_id']);
-						$names = array();
-						$i = 0;
-						foreach($tags as $item) {
-							$tag = new Tag(array('table'=>'categories', 'id'=>$item));
-							$names[$i]['id'] = $item;
-							$names[$i++]['name'] = $tag->getName();
-							$tag->incHit();
-						}
-						$this->_view->assign('tagnames', $names);
-					}
+					// if(isset($this->_request['tag_id'])) {
+					// 	require_once("models/Tag/Tag.class.php");
+					// 	$tags = explode(".", $this->_request['tag_id']);
+					// 	$names = array();
+					// 	$i = 0;
+					// 	foreach($tags as $item) {
+					// 		$tag = new Tag(array('table'=>'categories', 'id'=>$item));
+					// 		$names[$i]['id'] = $item;
+					// 		$names[$i++]['name'] = $tag->getName();
+					// 		$tag->incHit();
+					// 	}
+					// 	$this->_view->assign('tagnames', $names);
+					// }
 						
+					$this->_areas[0] = array();
+
+
+					// News
 					require_once("models/News/News.class.php");
 					$news = new News(@$this->_request['tag_id'], $this->_request);
-					$this->_view->assign('news', $news->display() );
-
-					// die();
+					$this->_areas[0][] = $news->display();
 				
+					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
 					$tags->setTableTags("categories");
@@ -141,12 +127,17 @@
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_view->assign('tagcloud', $tags);
+					$this->_areas[2][] = $tags->display(false);
 
-				
+					// Articles by Month
+					require_once("models/ListOfMonths/ListOfMonths.class.php");
+					$lom = new ListOfMonths();
+					$this->_areas[1][] = $lom->display();
+
+					// News by Title
 					require_once("models/ListOfContents/ListOfContents.class.php");
 					$lof = new ListOfContents("article", @$this->_request['tag_id']);
-					$this->_view->assign('list_of_contents', $lof->display("ListOfContents"));					
+					$this->_areas[1][] = $lof->display("ListOfContent");
 
 					$this->_view->setTemplate('index');
 				
@@ -162,13 +153,14 @@
 				case 'post':
 
 					$this->isInRequest(array('id'));
-					
 
+					// Article
 					require_once("models/Article/Article.class.php");
 					$post = new Article(array('id'=>$this->_request['id']));
 					$post->setTemplate("single");
-					$this->_view->assign('news', $post->display() );
+					$this->_areas[0][] = $post->display();
 
+					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
 					$tags->setTableTags("categories");
@@ -178,14 +170,9 @@
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_view->assign('tagcloud', $tags);
+					$this->_areas[0][] = $tags->display(false);
 
-					require_once("models/Article/Article.class.php");
-					$article = new Article(array("id"=>"1"));
-					$article->setTemplate("teaser");
-					$this->_view->assign('static_hi', $article->display("Article"));
-
-					break;
+				break;
 
 				case 'portfolio':
 					$innerView = new View();
@@ -270,6 +257,7 @@
 			
 			$this->_view->assign('header', $this->_header);
 			$this->_view->assign('footer', $this->_footer);
+			$this->_view->assign('areas', $this->_areas);
 			return $this->_view->loadTemplate();
 		} // <!-- end function ’display()’ -->
 		

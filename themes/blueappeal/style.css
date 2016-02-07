@@ -100,9 +100,20 @@ a:hover {
 	padding: .5em;
 	text-shadow: 0 1px 0 #fff;
 }
+#content {
+	float: left;
+	width: 80%;
+}
 #content article {
 	clear: both;
 	line-height: 1.5em;
+}
+#sidebar {
+	float: right;
+	width: 20%;
+}
+#area_2 {
+	clear: both;
 }
 hr.style-two { 
 	clear: both;
@@ -249,4 +260,5 @@ section#copy {
 	letter-spacing: 3px;
 	margin-bottom: 7em; 
 }
+
 

@@ -9,8 +9,16 @@ Todo:
 	* (done) Apply trim to all ajax results!!
 	* (done) Rewrite MySQL queries for SQLite
 	* (done) completely remove bookmarks
+
+
+
+	CURRENTLY:
+		* make articles viewable by month and year
+		* create ListOfYears
+		* finish styling of blueappeal
 		
 	* 1 * rename Methods according to Coding Standards 
+	* rename News to ListOfArticles
 	* 10 * fix security hole with $_GET parameters
 	* 10 * make Config.inc.php protected!!!!!!!
 	* 10 * implement multiple users
@@ -18,6 +26,9 @@ Todo:
 	* 10 * implement markdown support
 	* fileupload testen / besser machen
 		* FileUpload.class.php aufräumen
+
+	* remove field a_sort from database scheme
+	* salt passwords
 
 	Panel:
 	=======

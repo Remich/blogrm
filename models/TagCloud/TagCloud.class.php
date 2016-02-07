@@ -153,7 +153,7 @@
 
 					}
 				}
-				return "<p>" . implode("", $tags) . "</p>";
+				return '<section id="tagcloud">'."\n<p>" . implode("", $tags) . "</p>\n</section>";
 			}
 		}
 	} 
