@@ -10,7 +10,7 @@
 		
 		protected $_id;
 		protected $_name = "Tag";
-		protected $_table = "";
+		protected $_table = "categories";
 		
 		/**
 		* Constructor
@@ -34,6 +34,16 @@
 				}
 			}
 			
+		}
+
+		public static function doesExist($tag_id) {
+
+			$query = 'SELECT COUNT(*) as no FROM categories';
+			$data = DB::getOne($query);
+
+			if($data['no'] == 0) {
+				return false;
+			}
 		}
 		
 		private function newEntry() {

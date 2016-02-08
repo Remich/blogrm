@@ -11,6 +11,10 @@ Todo:
 	* (done) completely remove bookmarks
 
 
+	* (100) USE prepared statements everywhere!!!
+	* (50) make tables hardcoded in 
+		TAGS, RELATION, ARTITCLE etc...
+
 
 	CURRENTLY:
 		* make articles viewable by month and year

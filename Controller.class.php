@@ -61,16 +61,19 @@
 
 			// Navigation
 			$navigation = array();
-			$navigation[0]['name'] = "All";
-			$navigation[0]['url'] = "index.php";
-			$navigation[1]['name'] = "Manifest";	
-			$navigation[1]['url'] = "index.php?page=post&id=678";
-			$navigation[2]['name'] = "Diary";
-			$navigation[2]['url'] = "index.php?page=tag&tag_id=27";
-			$navigation[3]['name'] = "Tags";
-			$navigation[3]['url'] = "#tagcloud";
-			$navigation[4]['name'] = "Login";
-			$navigation[4]['url'] = "toggle.php?item=admin-panel";
+			$i=0;
+			$navigation[$i]['name'] = "All";
+			$navigation[$i++]['url'] = "index.php";
+			$navigation[$i]['name'] = "Manifest";	
+			$navigation[$i++]['url'] = "index.php?page=post&id=678";
+			$navigation[$i]['name'] = "Diary";
+			$navigation[$i++]['url'] = "index.php?page=tag&tag_id=27";
+			$navigation[$i]['name'] = "Tags";
+			$navigation[$i++]['url'] = "#tagcloud";
+			$navigation[$i]['name'] = "Archive";
+			$navigation[$i++]['url'] = "#ListOfMonths";
+			$navigation[$i]['name'] = "Login";
+			$navigation[$i++]['url'] = "toggle.php?item=admin-panel";
 
 			$this->_view->assign('navigation', $navigation);
 
@@ -114,7 +117,7 @@
 
 					// News
 					require_once("models/News/News.class.php");
-					$news = new News(@$this->_request['tag_id'], $this->_request);
+					$news = new News($this->_request);
 					$this->_areas[0][] = $news->display();
 				
 					// Tagcloud
@@ -134,10 +137,10 @@
 					$lom = new ListOfMonths();
 					$this->_areas[1][] = $lom->display();
 
-					// News by Title
-					require_once("models/ListOfContents/ListOfContents.class.php");
-					$lof = new ListOfContents("article", @$this->_request['tag_id']);
-					$this->_areas[1][] = $lof->display("ListOfContent");
+					// Articles by Year
+					require_once("models/ListOfYears/ListOfYears.class.php");
+					$loy = new ListOfYears();
+					$this->_areas[1][] = $loy->display();
 
 					$this->_view->setTemplate('index');
 				

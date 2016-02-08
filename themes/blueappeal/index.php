@@ -46,14 +46,6 @@
 
 			</div>
 
-			<div id="sidebar">
-				<?php if(@$this->_['areas'][1]) { ?>
-					<?php foreach($this->_['areas'][1] as $item) { ?>
-						<?php echo $item; ?>
-					<?php } ?>
-				<?php } ?>
-			</div>
-
 			<div id="area_2">
 				<hr class="style-two" width="600">
 				<hr class="style-three" width="600">
@@ -65,6 +57,19 @@
 					<?php } ?>
 				<?php } ?>
 			</div>
+
+			<div id="area_1">
+				<?php if(@$this->_['areas'][1]) { ?>
+					<?php foreach($this->_['areas'][1] as $item) { ?>
+						<?php echo $item; ?>
+					<?php } ?>
+				<?php } ?>
+			</div>
+
+			<div class="clear"></div>
+
+			<hr class="style-two" width="600">
+			<hr class="style-three" width="600">
 
 			<footer>
 				<section id="copy"><br>COPYRIGHT © 2016 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a> | <a href="toggle.php?item=admin-panel">Admin</a>

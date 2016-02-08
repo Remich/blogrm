@@ -15,6 +15,35 @@
 				default:	
 					die('This is the default action of the Ajax Controller');
 				break; // <!-- end case ’default’ --> 
+
+				case 'load':
+				
+						$url = $_SESSION['currentURL'];
+						$aUrl = Url::explode($url);
+							
+				
+						switch ($this->_request['id']) {
+				
+							default:
+								die('Error: No $this->request["id"] not set.');
+							break;
+
+							case 'page':
+								$this->isInRequest( 'jump' );
+									
+								$url = Url::updateParams( $url, array('jump' => $this->_request['jump'] ) );
+							break;
+
+						}
+
+						$_SESSION['currentURL'] = $url;
+							
+						if(isset($this->request['redirect']) && $this->request['redirect'] == 0)
+							die($_SESSION['currentURL']);
+						else
+							header('Location: '.$_SESSION['currentURL']);
+				break;
+				
 				
 				case 'save':				
 					$bouncer = new Auth();

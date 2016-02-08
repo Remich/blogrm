@@ -100,20 +100,9 @@ a:hover {
 	padding: .5em;
 	text-shadow: 0 1px 0 #fff;
 }
-#content {
-	float: left;
-	width: 80%;
-}
 #content article {
 	clear: both;
 	line-height: 1.5em;
-}
-#sidebar {
-	float: right;
-	width: 20%;
-}
-#area_2 {
-	clear: both;
 }
 hr.style-two { 
 	clear: both;
@@ -261,4 +250,25 @@ section#copy {
 	margin-bottom: 7em; 
 }
 
+#area_1 {
+}
+#area_1 section {
+	float: left;
+	width:50%;
+}
+#area_1 section h1 {
+	color: #2666a6;
+	font-family: "DejaVu Sans";
+	font-weight: lighter;
+	font-size: 250%;
+	text-shadow: 0px 2px 0px white;
+	margin-bottom: -0.0em;
+	line-height: 1.1em;
+}
 
+footer {
+	clear: both;
+}
+.clear {
+	clear: both;
+}
