@@ -50,21 +50,20 @@
 
 				case "mysql":
 					$query = "INSERT INTO article 
-								(a_sort, title, a_date, content) 
+								(title, a_date, content) 
 							  VALUES 
-								(:a_sort, :title, NOW(), :content)";
+								(:title, NOW(), :content)";
 					break;
 
 				case "sqlite":
 					$query = "INSERT INTO article 
-								(a_sort, title, a_date, content) 
+								(title, a_date, content) 
 							  VALUES 
-								(:a_sort, :title, datetime('now'), :content)";
+								(:title, datetime('now'), :content)";
 					break;
 			}
 
 			$params = array(
-					':a_sort' => $this->getLatestSortingNumber(), 
 					':title' => (isset($this->_data['title']) ? $this->_data['title'] : $this->getNewTitleId()." – Das ist der Default-Title"),
 					':content' => (isset($this->_data['content']) ? $this->_data['content'] : 'Das ist der Default-Content')
 			);
@@ -98,22 +97,6 @@
 			
 			return implode(".", $number_ar);
 		}
-		
-		private function getLatestSortingNumber() {
-			$query = "SELECT
-						a_sort
-					  FROM
-						article
-					  ORDER BY
-					    a_sort DESC
-					  LIMIT 1";
-			$data = DB::getOne($query);
-			if(!sizeof($data))
-				return 0;
-			
-			return ++$data['a_sort'];			
-		}
-		
 		
 		public function load($id) {
 

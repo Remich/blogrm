@@ -21,21 +21,6 @@
 					
 		} 
 		
-		private function getLatestSortingNumber() {
-			$query = "SELECT
-						a_sort
-					  FROM
-						article
-					  ORDER BY
-					    a_sort DESC
-					  LIMIT 1";
-			$data = DB::getOne($query);
-			if(!sizeof($data))
-				return 0;
-			
-			return ++$data['a_sort'];			
-		}
-		
 		public function load($id) {
 			$query = "SELECT *, DATE_FORMAT(a_date, '%a, %d %b %Y %T') as a_date_rss
 					  FROM article WHERE id = :id";

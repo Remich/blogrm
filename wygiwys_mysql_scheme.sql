@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `article` (
 `id` int(11) NOT NULL,
   `uid` int(11) NOT NULL DEFAULT '1',
-  `a_sort` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `published` int(11) NOT NULL DEFAULT '1',

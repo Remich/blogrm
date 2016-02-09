@@ -15,7 +15,7 @@
 		
 		public function load() {
 			
-			$this->_query = 'SELECT * FROM article ORDER BY a_sort DESC';
+			$this->_query = 'SELECT * FROM article ORDER BY a_date DESC';
 			$data = $this->getData();
 						
 			if(!sizeof($data)) {

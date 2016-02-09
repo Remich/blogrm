@@ -1,14 +1,15 @@
 Todo:
 =====
 	
-	* (done) grep nach modules und removen
-	* (done) Sorting stuff removen
+	* (DONE) grep nach modules und removen
+	* (DONE) Sorting stuff removen
+		* (DONE) remove field a_sort from database scheme
 
-	* (done) $_db als Referenz entlang des Controllers weiterreichen
-	* (done) implement a MySql database;
-	* (done) Apply trim to all ajax results!!
-	* (done) Rewrite MySQL queries for SQLite
-	* (done) completely remove bookmarks
+	* (DONE) $_db als Referenz entlang des Controllers weiterreichen
+	* (DONE) implement a MySql database;
+	* (DONE) Apply trim to all ajax results!!
+	* (DONE) Rewrite MySQL queries for SQLite
+	* (DONE) completely remove bookmarks
 
 
 	* (100) USE prepared statements everywhere!!!
@@ -22,6 +23,10 @@ Todo:
 		* (DONE) make articles viewable by month and year
 		* (DONE) create ListOfYears
 		* finish styling of blueappeal
+		* accustom themes to new content passing
+			* (DONE) blueappeal
+			* pineapple
+			* deadlanguage
 		
 	* 1 * rename Methods according to Coding Standards 
 	* rename News to ListOfArticles
@@ -33,7 +38,6 @@ Todo:
 	* fileupload testen / besser machen
 		* FileUpload.class.php aufräumen
 
-	* remove field a_sort from database scheme
 	* salt passwords
 
 	Panel:
@@ -112,7 +116,7 @@ Todo:
 	==================================
 	
 		* TODO: Category Darstellung überarbeiten und linkbar machen (tags ordentlich trimmen und darstellen ohne links im post)
-		* (done) Create class Tag, which behaves like class Article
-		* (done) Rewrite CategoryManager according to class Tag
-		* (done) Rename CategoryManager to TagManager
-		* (done) Generalize TagManager to handle other types of modles ( currently it handles only Article-Models)
+		* (DONE) Create class Tag, which behaves like class Article
+		* (DONE) Rewrite CategoryManager according to class Tag
+		* (DONE) Rename CategoryManager to TagManager
+		* (DONE) Generalize TagManager to handle other types of modles ( currently it handles only Article-Models)
