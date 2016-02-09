@@ -250,22 +250,13 @@ $(document).ready(function() {
 	}
 
 
-	var remove_prettyprint = function(item) {
-		$(document).find('pre').each( function() {
-			$(this).removeClass('prettyprint prettyprinted linenums');
-		});
-		prettyPrint();
-		$(document).find('pre').each( function() {
-			$(this).addClass('prettyprint linenums');
-		});
-	};
 	var save_items = function() {
 		
 		data = [];
 		while(history.getLength() !== 0) {
 
 			item = history.pop();
-			remove_prettyprint(item);
+
 			var model = item.attr("model");
 			var id = item.attr("model_id");
 			var key = item.attr("model_key");
@@ -282,7 +273,6 @@ $(document).ready(function() {
 				alert('Fehler beim Speichern');
 				console.log(bool);
 			}
-			// prettyPrint();
 		});
 		
 	}
@@ -704,14 +694,6 @@ $(document).ready(function() {
 		
 		var execFormatBlock = function(obj){
 			document.execCommand("formatblock", false, $(obj).val() );
-			if($(obj).val() == 'pre') {
-				var listId = window.getSelection().focusNode.parentNode;
-				$(listId).addClass("prettyprint linenums");
-				var text = $(listId).html();
-				$(listId).html(text.trim());
-
-				// prettyPrint();
-			}
 			editing.focus();			
 		}
 		

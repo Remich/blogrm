@@ -10,8 +10,9 @@ body {
  	color: rgba(0,0,0,.65);
 }
 #wr {
-	max-width: 840px;
+	max-width: 960;
 	margin: auto;
+	padding: 0;
 }
 #wrapper {
 	float: left;
@@ -23,7 +24,7 @@ body {
 	box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.4);
 	margin: auto;
 	margin-bottom: 0em;
-	padding:4em;
+	padding:4em 4em 7em 4em;
 	/*border-left: 1px solid #adadad;*/
 	/*border-right: 1px solid #adadad;*/
 }
@@ -85,7 +86,7 @@ article header .post-subtitle {
 	color: rgba(255,255,255,.9);
 	background-color: rgba(255,255,255,.075);
 	display: block;
-	padding: 0.5em;
+	padding: 0.75em 0.5em 0.5em 0.8em;
 	border-top-right-radius: 20px;
 	border-bottom-left-radius: 20px;
 	width: 100%;
@@ -124,12 +125,6 @@ article header .post-subtitle {
 article section {
 	line-height: 1.5em;
 	font-size: 90%;
-}
-#wrapper_2 {
-	font-size: 100%;
-	text-align: center;
-	width: 100%;
-	/*color: rgba(255,255,255,.9);*/
 }
 #heading {
 	margin: auto;
@@ -173,12 +168,12 @@ header nav ul {
 	list-style-type: none;
 	display: inline;
 }
-#wrapper-2 section#sec_1 {
+#wrapper-2 section#ListOfMonths {
 	width: 45%;
 	display: inline;
 	float: left;
 }
-#wrapper-2 section#sec_2 {
+#wrapper-2 section#ListOfYears {
 	width: 45%;
 	display: inline;
 	float: right;
@@ -192,7 +187,7 @@ div#copy {
 	font-size: 0.8em;
 	font-family:  CabinRegular, Helvetica, sans-serif;
 	letter-spacing: 3px;
-	padding:4em;
+	padding:4em 0em;
 }
 
 header nav ul li {
@@ -243,10 +238,13 @@ clear: both;
 	padding-left: 1.7em;
 	font-size: 0.8em;
 }
-#sec_1 p {
+#ListOfMonths p {
 	text-align: justify;
 }
-#sec_2 p {
+#ListOfMonths li, #ListofYears li {
+	font-size: 90%;
+}
+#ListOfYears p {
 	text-align: center;
 }
 #mail {
@@ -349,6 +347,7 @@ opacity: .7;
 	font-size: 90%;
 	display: block;
 	text-align: center;
+	margin-top: 6em;
 }
 .pages a, .pages strong {
 	border-radius: 5px;
@@ -364,9 +363,6 @@ box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
 }
 .pages a:hover {
 	opacity: 1;
-}
-.prettyprint {
-	color: #fff;
 }
 .comments h3 {
 	font-weight: normal;
@@ -388,4 +384,11 @@ margin: 0;
 }
 blockquote {
 	font-style: italic;
+}
+#area_2 {
+	text-align: center;
+}
+#area_1 {
+	margin-top: 4em;
+	color: rgba(255,255,255,.9);
 }

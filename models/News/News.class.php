@@ -13,6 +13,7 @@
 		
 		public function __construct($request = NULL) {
 			$this->_request = $request;
+
 			$this->_tag_id = @$this->_request['tag_id'] ? $this->_request['tag_id'] : NULL;
 			$this->_month = @$this->_request['month'] ? $this->_request['month'] : NULL;
 			$this->_year = @$this->_request['year'] ? $this->_request['year'] : NULL;

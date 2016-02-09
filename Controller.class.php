@@ -35,13 +35,8 @@
 			}
 
 			if(@$_SESSION['editor']) {
-				$this->_header .= '<link href="libs/google-code-prettify/desert.css" type="text/css" rel="stylesheet" />';
 				$this->_header .= '<link rel="stylesheet" type="text/css" href="editor/views/editor.css" media="all" />';
 				$this->_footer .= '<script type="text/javascript" src="editor/views/pp_editor.js"></script>';
-				$this->_footer .= '<script type="text/javascript" src="libs/google-code-prettify/prettify.js"></script>';
-				$this->_footer .= '<script type="text/javascript">
-					$( document ).ready( function() {prettyPrint(); });
-				</script>';
 			}
 						
 			//TODO: Move to helpers.inc.php
@@ -71,7 +66,7 @@
 			$navigation[$i]['name'] = "Tags";
 			$navigation[$i++]['url'] = "#tagcloud";
 			$navigation[$i]['name'] = "Archive";
-			$navigation[$i++]['url'] = "#ListOfMonths";
+			$navigation[$i++]['url'] = "index.php?page=archive";
 			$navigation[$i]['name'] = "Login";
 			$navigation[$i++]['url'] = "toggle.php?item=admin-panel";
 
@@ -112,14 +107,58 @@
 					// 	$this->_view->assign('tagnames', $names);
 					// }
 						
-					$this->_areas[0] = array();
-
-
 					// News
 					require_once("models/News/News.class.php");
 					$news = new News($this->_request);
 					$this->_areas[0][] = $news->display();
 				
+					// Tagcloud
+					require_once("models/TagCloud/TagCloud.class.php");
+					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
+					$tags->setTableTags("categories");
+					$tags->setTableRelation("rel_articles_categories");
+					$tags->setFontMax(128);
+					$tags->setFontMin(8);
+					if(isset($this->_request['page']))
+						$tags->setPage($this->_request['page']);
+					$tags->generate();
+					$this->_areas[1][] = $tags->display(false);
+
+					$this->_view->setTemplate('index');
+				
+					break; // <!-- end case ’default’ --> 
+					
+				
+				case 'rss':
+					require_once("models/RSSFeed/RSSFeed.class.php");
+					$rss = new RSSFeed();
+					die($rss->display());
+				break;
+
+				case 'archive':
+					// Articles by Month
+					require_once("models/ListOfMonths/ListOfMonths.class.php");
+					$lom = new ListOfMonths();
+					$this->_areas[0][] = $lom->display();
+
+					// Articles by Year
+					require_once("models/ListOfYears/ListOfYears.class.php");
+					$loy = new ListOfYears();
+					$this->_areas[0][] = $loy->display();
+
+					$this->_view->setTemplate('index');
+				break;
+
+				case 'post':
+
+					$this->isInRequest(array('id'));
+
+					// Article
+					require_once("models/Article/Article.class.php");
+					$post = new Article(array('id'=>$this->_request['id']));
+					$post->setTemplate("single");
+					$this->_areas[0][] = $post->display();
+
 					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
@@ -143,37 +182,6 @@
 					$this->_areas[1][] = $loy->display();
 
 					$this->_view->setTemplate('index');
-				
-					break; // <!-- end case ’default’ --> 
-					
-				
-				case 'rss':
-					require_once("models/RSSFeed/RSSFeed.class.php");
-					$rss = new RSSFeed();
-					die($rss->display());
-				break;
-
-				case 'post':
-
-					$this->isInRequest(array('id'));
-
-					// Article
-					require_once("models/Article/Article.class.php");
-					$post = new Article(array('id'=>$this->_request['id']));
-					$post->setTemplate("single");
-					$this->_areas[0][] = $post->display();
-
-					// Tagcloud
-					require_once("models/TagCloud/TagCloud.class.php");
-					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
-					$tags->setTableTags("categories");
-					$tags->setTableRelation("rel_articles_categories");
-					$tags->setFontMax(128);
-					$tags->setFontMin(8);
-					if(isset($this->_request['page']))
-						$tags->setPage($this->_request['page']);
-					$tags->generate();
-					$this->_areas[0][] = $tags->display(false);
 
 				break;
 

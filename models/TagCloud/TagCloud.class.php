@@ -147,9 +147,9 @@
 					if($colorgradient) {
 						$color = ceil(($item['hits'] / $mosthits ) * 255);
 						if($color < 100 && $color != 0) $color = 100;
-						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px; color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
+						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px; color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
 					} else {
-						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px;" href="index.php?page=tag&tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
+						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px;" href="index.php?tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
 
 					}
 				}

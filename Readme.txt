@@ -12,13 +12,15 @@ Todo:
 
 
 	* (100) USE prepared statements everywhere!!!
+	* (100) fix sqlite error in RSS-Feed
 	* (50) make tables hardcoded in 
 		TAGS, RELATION, ARTITCLE etc...
-
+	* (1000) new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor
+		-> otherwise anybody visitor could just create dozens of entries, just by manipulating the url
 
 	CURRENTLY:
-		* make articles viewable by month and year
-		* create ListOfYears
+		* (DONE) make articles viewable by month and year
+		* (DONE) create ListOfYears
 		* finish styling of blueappeal
 		
 	* 1 * rename Methods according to Coding Standards 
@@ -45,7 +47,9 @@ Todo:
 
 	Themes:
 	=======
-		* deadlanguage theme unsassen
+		* deadlanguage theme / editor? unsassen
+		* image-width über theme stylen
+
 	
 	Editor:
 	=======
@@ -57,7 +61,7 @@ Todo:
 
 		* make edithtml button disabled, when no item has focus
 		* fix uhrzeit bei new entry und sqlite
-		* remove googleprettify
+		* (DONE) remove googleprettify
 	
 !
 		Blog:

@@ -9,76 +9,78 @@
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>cabin/stylesheet.css" /> 
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>juice/stylesheet.css" />
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>style.css" />
-		
-		<link href="<?php echo get_theme_folder(); ?>extensions/google-code-prettify/desert.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body id="<?php echo $this->_['page']; ?>">
 		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important; z-index: 1;"></div>
 		<div id="hidden" style="visibility: hidden"></div>
+
 		<div id="wr">
 			<div id="wrapper">
-			
 				
 				<header id="head">
 					<hgroup>
 						<a href="index.php"><h1 id="logo"><span id="r">r</span><span id="m">m</span><span id="m2">m</span></h1>
 						<h2 id="rm"><span>rene</span>michalke.de</h2></a>
+
 						<span id="icons">
-				<nav>
-						<ul>
-							<li>
-								<a href="index.php?page=blog" class="blog default">Blog</a>
-							</li>
-							<li>
-								<a href="index.php?page=portfolio" class="portfolio">Portfolio</a>
-							</li>
-							<!--<li>-->
-								<!--<a href="">Kontakt</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="">Software</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="">About</a>-->
-							<!--</li>-->
-						</ul>
-					</nav>
+
+							<?php if(@$this->_['navigation']) { ?>
+							<nav>
+								<ul>
+								<?php foreach($this->_['navigation'] as $item) { ?>
+									<li>
+										<a href="<?php echo $item['url']; ?>"><?php echo $item['name']; ?></a>
+									</li>
+								<?php } ?>
+								</ul>
+							</nav>
+							<?php } ?>
+
 							<a href="index.php?page=rss">
 								<img src="<?php echo get_theme_folder(); ?>img/rss.png">
 							</a>
+
 						</span>
 					</hgroup>
 				</header>
 				
 				<!--<hr id="hr-1">-->
 
-				<?php if (@$this->_['news']) { ?>
-				<section id="content" class="blog">
-					<?php echo @$this->_['news']; ?>			
-				</section>	
-				<?php } ?>
+				<div id="content" class="blog">
 
-				<?php echo @$this->_['content']; ?>	
+					<?php if (@$this->_['areas'][0]) { ?>
+						<?php foreach($this->_['areas'][0] as $item) { ?>
+							<?php echo $item; ?>
+						<?php } ?>
+					<?php } ?>
+
+				</div>
+
 			</div>
 			<div id="wrapper-2">
-				<footer>
-					<section id="sec_1">
-						<?php echo $this->_['this']->singleArticle(1); ?>
-					</section>
-					  
-					<section id="sec_2">
-						<h1>Tagcloud</h1>
-						<?php echo $this->_['tagcloud']->display(); ?>
-					</section>
-				</footer>
+				<div id="area_2">
+					<?php if (@$this->_['areas'][2]) { ?>
+						<?php foreach($this->_['areas'][2] as $item) { ?>
+							<?php echo $item; ?>
+						<?php } ?>
+					<?php } ?>
+				</div>
+
+
+				<div id="area_1">
+					<?php if(@$this->_['areas'][1]) { ?>
+						<?php foreach($this->_['areas'][1] as $item) { ?>
+							<?php echo $item; ?>
+						<?php } ?>
+					<?php } ?>
+				</div>
 			</div>
-			<!--<div id="wrapper">-->
-				<footer>
-					<div id="copy"><br>COPYRIGHT © 2014 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a> | <a href="toggle.php?item=admin-panel">Admin</a>
-					<br><?php echo $this->_['footer']; ?> 
-					</div>
-				</footer>
-			</div>
+
+			<footer>
+				<div id="copy"><br>COPYRIGHT © 2014 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a> | <a href="toggle.php?item=admin-panel">Admin</a>
+				<br><?php echo $this->_['footer']; ?> 
+				</div>
+			</footer>
 		</div>
 		<!--<script src="<?php echo get_theme_folder(); ?>extensions/jquery-2.0.3.min.js"></script>-->
 		<script type="text/javascript" src="<?php echo get_theme_folder(); ?>extensions/google-code-prettify/prettify.js"></script>

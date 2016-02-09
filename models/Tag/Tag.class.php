@@ -41,8 +41,10 @@
 			$query = 'SELECT COUNT(*) as no FROM categories';
 			$data = DB::getOne($query);
 
-			if($data['no'] == 0) {
+			if($data['no'] === 0) {
 				return false;
+			} else {
+				return true;
 			}
 		}
 		

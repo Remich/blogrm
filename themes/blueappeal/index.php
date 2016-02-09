@@ -7,8 +7,6 @@
 
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>cabin/stylesheet.css" /> 
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>style.css" />
-
-		<link href="<?php echo get_theme_folder(); ?>extensions/google-code-prettify/desert.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body id="<?php echo $this->_['page']; ?>">
 		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important; z-index: 1;"></div>
@@ -36,40 +34,37 @@
 			<hr class="style-two" width="600">
 			<hr class="style-three" width="600">
 
-			<div id="content">
-
-				<?php if (@$this->_['areas'][0]) { ?>
-					<?php foreach($this->_['areas'][0] as $item) { ?>
-						<?php echo $item; ?>
-					<?php } ?>
-				<?php } ?>
-
-			</div>
-
-			<div id="area_2">
-				<hr class="style-two" width="600">
-				<hr class="style-three" width="600">
-				<?php if (@$this->_['areas'][2]) { ?>
-					<?php foreach($this->_['areas'][2] as $item) { ?>
-						<?php echo $item; ?>
-						<hr class="style-two" width="600">
-						<hr class="style-three" width="600">
-					<?php } ?>
+			<?php if (@$this->_['areas'][0]) { ?>
+			<div id="area_0">
+				<?php foreach($this->_['areas'][0] as $item) { ?>
+					<?php echo $item; ?>
 				<?php } ?>
 			</div>
-
-			<div id="area_1">
-				<?php if(@$this->_['areas'][1]) { ?>
-					<?php foreach($this->_['areas'][1] as $item) { ?>
-						<?php echo $item; ?>
-					<?php } ?>
-				<?php } ?>
-			</div>
-
 			<div class="clear"></div>
-
 			<hr class="style-two" width="600">
 			<hr class="style-three" width="600">
+			<?php } ?>
+
+			<?php if (@$this->_['areas'][1]) { ?>
+			<div id="area_2">
+				<?php foreach($this->_['areas'][1] as $item) { ?>
+					<?php echo $item; ?>
+					<hr class="style-two" width="600">
+					<hr class="style-three" width="600">
+				<?php } ?>
+			</div>
+			<?php } ?>
+
+			<?php if(@$this->_['areas'][2]) { ?>
+			<div id="area_1">
+				<?php foreach($this->_['areas'][2] as $item) { ?>
+					<?php echo $item; ?>
+				<?php } ?>
+			</div>
+			<hr class="style-two" width="600">
+			<hr class="style-three" width="600">
+			<?php } ?>
+
 
 			<footer>
 				<section id="copy"><br>COPYRIGHT © 2016 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a> | <a href="toggle.php?item=admin-panel">Admin</a>
