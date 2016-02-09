@@ -46,35 +46,35 @@
 				
 				<!--<hr id="hr-1">-->
 
+				<?php if (@$this->_['areas'][0]) { ?>
 				<div id="content" class="blog">
-
-					<?php if (@$this->_['areas'][0]) { ?>
-						<?php foreach($this->_['areas'][0] as $item) { ?>
-							<?php echo $item; ?>
-						<?php } ?>
+					<?php foreach($this->_['areas'][0] as $item) { ?>
+						<?php echo $item; ?>
 					<?php } ?>
-
 				</div>
+				<?php } ?>
 
 			</div>
+
+			<?php if (@$this->_['areas'][1] || @$this->_['areas'][2]) { ?>
 			<div id="wrapper-2">
-				<div id="area_2">
-					<?php if (@$this->_['areas'][2]) { ?>
-						<?php foreach($this->_['areas'][2] as $item) { ?>
-							<?php echo $item; ?>
-						<?php } ?>
-					<?php } ?>
-				</div>
-
-
+				<?php if(@$this->_['areas'][1]) { ?>
 				<div id="area_1">
-					<?php if(@$this->_['areas'][1]) { ?>
-						<?php foreach($this->_['areas'][1] as $item) { ?>
-							<?php echo $item; ?>
-						<?php } ?>
+					<?php foreach($this->_['areas'][1] as $item) { ?>
+						<?php echo $item; ?>
 					<?php } ?>
 				</div>
+				<?php } ?>
+
+				<?php if (@$this->_['areas'][2]) { ?>
+				<div id="area_2">
+					<?php foreach($this->_['areas'][2] as $item) { ?>
+						<?php echo $item; ?>
+					<?php } ?>
+				</div>
+				<?php } ?>
 			</div>
+			<?php } ?>
 
 			<footer>
 				<div id="copy"><br>COPYRIGHT © 2014 <strong>René Michalke</strong> – <a href="index.php?page=impressum">Impressum</a> | <a href="toggle.php?item=admin-panel">Admin</a>

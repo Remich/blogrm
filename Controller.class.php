@@ -62,9 +62,9 @@
 			$navigation[$i]['name'] = "Manifest";	
 			$navigation[$i++]['url'] = "index.php?page=post&id=678";
 			$navigation[$i]['name'] = "Diary";
-			$navigation[$i++]['url'] = "index.php?page=tag&tag_id=27";
+			$navigation[$i++]['url'] = "index.php?tag_id=27";
 			$navigation[$i]['name'] = "Tags";
-			$navigation[$i++]['url'] = "#tagcloud";
+			$navigation[$i++]['url'] = "#area_1";
 			$navigation[$i]['name'] = "Archive";
 			$navigation[$i++]['url'] = "index.php?page=archive";
 			$navigation[$i]['name'] = "Login";

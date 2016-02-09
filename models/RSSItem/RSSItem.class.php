@@ -22,11 +22,49 @@
 		} 
 		
 		public function load($id) {
-			$query = "SELECT *, DATE_FORMAT(a_date, '%a, %d %b %Y %T') as a_date_rss
-					  FROM article WHERE id = :id";
+
+			switch(Config::getOption("db_type")) {
+				case "mysql": 
+					$query = "SELECT *, DATE_FORMAT(a_date, '%a, %d %b %Y %T') as a_date_rss
+							  FROM article WHERE id = :id";
+				break;
+			
+				case "sqlite": 
+					$query = "SELECT *, 
+									case cast (strftime('%w', a_date) as integer)
+when 0 then 'Sun'
+when 1 then 'Mon'
+when 2 then 'Tue'
+when 3 then 'Wed'
+when 4 then 'Thu'
+when 5 then 'Fri'
+else 'Sat' end as weekday, 
+  									case cast (strftime('%m', a_date) as integer)
+when 1 then 'Jan'
+when 2 then 'Feb'
+when 3 then 'Mar'
+when 4 then 'Apr'
+when 5 then 'May'
+when 6 then 'Jun'
+when 7 then 'Jul'
+when 8 then 'Aug'
+when 9 then 'Sep'
+when 10 then 'Oct'
+when 11 then 'Nov'
+else 'Dec' end as month,
+  		STRFTIME('%d', a_date) as day_of_month,
+  		STRFTIME('%Y', a_date) as year,
+  		TIME(a_date) as hhmmss
+							  FROM article WHERE id = :id";
+				break;
+			}
 			
 			$this->_data = DB::getOne($query, array(':id' => $id));
-			
+
+			if(Config::getOption("db_type") === "sqlite") {
+				$this->_data['a_date_rss'] = $this->_data['weekday'].', '.$this->_data['day_of_month'].' '.$this->_data['month'].' '.$this->_data['year'].' '.$this->_data['hhmmss'];
+			}
+
 			$query = "SELECT id_b FROM rel_articles_categories WHERE id_a = :id_a";
 			$data = DB::get($query, array(':id_a' => $id));
 			$cats = array();

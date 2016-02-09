@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 	/**
 	*	Copyright 2010-2015 René Michlke

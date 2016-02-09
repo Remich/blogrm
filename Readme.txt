@@ -12,6 +12,10 @@ Todo:
 	* (DONE) completely remove bookmarks
 
 
+	* (DONE) find why there is a tab at the beginning of each file, especially in RSS-Feed
+	* get info of rss feed from config
+
+
 	* (100) USE prepared statements everywhere!!!
 	* (100) fix sqlite error in RSS-Feed
 	* (50) make tables hardcoded in 

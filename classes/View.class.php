@@ -52,7 +52,6 @@
 			
 				// The Output of the script is being stored in a buffer
 				ob_start();
-				
 				include $file;
 				$output = ob_get_contents();
 				ob_end_clean();
