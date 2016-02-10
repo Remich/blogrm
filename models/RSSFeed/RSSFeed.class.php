@@ -20,11 +20,15 @@
 						
 			if(!sizeof($data)) {
 				$this->_data['content'] = array();
-			} else
+			} else {
 				foreach($data as $key => $item) {
 	                $tmp = new RSSItem(array('id'=>$item['id']));
 	                $this->_data['content'][$key] =  $tmp->display();
 	            }
+	        }
+
+	        // Feed Title
+	        $this->_data['feed_title'] = Config::getOption("page_title")." – RSS Feed";
 		}		
 		
 	}

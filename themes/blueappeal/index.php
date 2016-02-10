@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
 	<head>
-		<meta charset="utf-8" />
-		<title>Diary</title>
+		<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8" />
+		<title><?php echo $this->_['page_title']; ?></title>
 		<?php echo $this->_['header']; ?> 
+		<link rel="alternate" type="application/rss+xml" title="<?php echo $this->_['page_title']; ?> – RSS Feed" href="index.php?page=rss" />
 
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>cabin/stylesheet.css" /> 
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>style.css" />

@@ -36,12 +36,16 @@
 			
 		}
 
-		public static function doesExist($tag_id) {
+		public static function doesExist($tag_id = NULL) {
 
-			$query = 'SELECT COUNT(*) as no FROM categories';
-			$data = DB::getOne($query);
+			if($tag_id === NULL) {
+				die("Error: No tag id supplied to function Tag::doesExist");
+			}
 
-			if($data['no'] === 0) {
+			$query = 'SELECT COUNT(*) as no FROM categories WHERE id = :id';
+			$data = DB::getOne($query, array(":id" => $tag_id));
+
+			if($data['no'] === "0") {
 				return false;
 			} else {
 				return true;

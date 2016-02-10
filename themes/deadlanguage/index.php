@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html lang="en-US">  
+<html lang="de">  
 	<head>  
 		<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8" />
-		<title>René Michalke – Portfolio – WYSIWYG-CMS</title> 
+		<title><?php echo $this->_['page_title']; ?></title>
 		<?php echo $this->_['header']; ?> 
+		<link rel="alternate" type="application/rss+xml" title="<?php echo $this->_['page_title']; ?> – RSS Feed" href="index.php?page=rss" />
 		<link rel="stylesheet" type="text/css" href="<?php echo get_theme_folder(); ?>styles/style.css" media="all" />
 	</head>
-	<body>
+	<body id="<?php echo $this->_['page']; ?>">
 		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important;"></div>
 		<div id="hidden" style="visibility: hidden"></div>
 
 		<header id="logo">  
 			<div class="wrapper">
-				<hgroup>
-					<?php if(isset($this->_ ['tagnames'])) {?>
-					
-					<div id="tag_headings">
-					<?php foreach($this->_['tagnames'] as $item) { ?>
-					<h1><a href="ajax.php?action=load&id=removetag&tag_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h1>
+				<header>
+					<h1>
+						renemichalke.de
+					</h1>
+				</header>
+		
+				<?php if(@$this->_['navigation']) { ?>
+				<nav>
+					<ul>
+					<?php foreach($this->_['navigation'] as $item) { ?>
+						<li>
+							<a href="<?php echo $item['url']; ?>"><?php echo $item['name']; ?></a>
+						</li>
 					<?php } ?>
-					</div>
-					<a href="index.php?page=<?php echo $this->_['page']; ?>"><h2>&laquo; All Tags</h2></a>
-					<hr noshade size="1">
-					<?php } ?>
-					<div id="tagcloud">
-					<?php echo $this->_['tagcloud']; ?>
-					</div>
-				</hgroup>
-	
-				<navigation> 
-					<?php echo $this->_['navigation']; ?>
-				</navigation>  
+					</ul>
+				</nav>
+				<?php } ?>
 			
 			</div>
 		</header>  
@@ -39,15 +38,14 @@
 		<div class="wrapper"> 
 
 			<div id="content">
-			
-		  		<div class="content-left">
-		  			
-		  			<?php echo $this->_['list_of_contents']; ?>
-		  			<br>
-		  			<div id="articles">
-		  				<?php echo $this->_['news']; ?>
-					</div>
-		 		</div>
+
+				<?php if (@$this->_['areas'][0]) { ?>
+				<div id="area_0" class="blog content-left">
+					<?php foreach($this->_['areas'][0] as $item) { ?>
+						<?php echo $item; ?>
+					<?php } ?>
+				</div>
+				<?php } ?>
 		  
 		  	 	<!-- <div class="content-right">
 				

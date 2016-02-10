@@ -72,6 +72,9 @@
 
 			$this->_view->assign('navigation', $navigation);
 
+			// Page Title
+			$this->_view->assign('page_title', Config::getOption("page_title"));
+
 		} // <!-- end function ’__construct()’ -->
 
 		public function singleArticle($id) {

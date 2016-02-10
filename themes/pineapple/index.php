@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE HTML>
 <html lang="de">
 	<head>	
-		<meta charset="utf-8" />
-		<title>renemichalke.de</title>
+		<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8" />
+		<title><?php echo $this->_['page_title']; ?></title>
 		<?php echo $this->_['header']; ?> 
-		<link rel="alternate" type="application/rss+xml" title="René Michalke – Blog – RSS Feed" href="index.php?page=rss" />
+		<link rel="alternate" type="application/rss+xml" title="<?php echo $this->_['page_title']; ?> – RSS Feed" href="index.php?page=rss" />
+
 		<link rel="shortcut icon" href="<?php echo get_theme_folder(); ?>img/favicon.ico" />
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>cabin/stylesheet.css" /> 
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>juice/stylesheet.css" />
@@ -47,7 +48,7 @@
 				<!--<hr id="hr-1">-->
 
 				<?php if (@$this->_['areas'][0]) { ?>
-				<div id="content" class="blog">
+				<div id="area_0" class="blog">
 					<?php foreach($this->_['areas'][0] as $item) { ?>
 						<?php echo $item; ?>
 					<?php } ?>

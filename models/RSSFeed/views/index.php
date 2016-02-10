@@ -3,7 +3,7 @@
 	$str = '<?xml version="1.0"?>';
 	$str .= '<rss version="2.0">';
 	$str .= '<channel>';
-	$str .= '<title>René Michalke</title>';
+	$str .= '<title>'.$this->_['data']['feed_title'].'</title>';
 	$str .= '<link>http://www.renemichalke.de</link>';
 	$str .= '<description>René Michalke Blog RSS Feed</description>';
 	foreach($this->_['data']['content'] as $key => $item) {

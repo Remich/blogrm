@@ -26,6 +26,7 @@
 			if($this->_tag_id != NULL) {
 
 				require_once("models/Tag/Tag.class.php");
+
 				if(!Tag::doesExist($this->_tag_id)) {
 					$this->_data['content'] = array();
 					return false;
