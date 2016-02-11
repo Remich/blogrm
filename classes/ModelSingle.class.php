@@ -17,4 +17,20 @@ class ModelSingle extends Model implements iModel {
 
     }
 
+    public function doesExist() {
+
+        $query = "SELECT COUNT(id) as no
+                    FROM ".$this->_table."
+                    WHERE id = :id LIMIT 1";
+        $params = array(':id' => $this->_id);
+        $data = DB::getOne($query, $params);
+
+        if ($data['no'] === "0") {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
 } 

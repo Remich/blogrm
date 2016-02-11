@@ -26,17 +26,14 @@
 			if($this->_tag_id != NULL) {
 
 				require_once("models/Tag/Tag.class.php");
-
-				if(!Tag::doesExist($this->_tag_id)) {
-					$this->_data['content'] = array();
-					return false;
-				}
+				$tag = new Tag(array("id" => $this->_tag_id));
 
 				list($wheres, $this->_params) = $this->getWheres("rel_articles_categories");
 
 				if($wheres == "") {
 					$data = array();
 				} else {
+					// TODO better use smart SQL-Queries (leftjoin, rightjoint) on relationtable
 					$this->_query = "SELECT id FROM article WHERE ".$wheres." ORDER BY a_date DESC";
 				}
 
@@ -89,11 +86,12 @@
 			// Create Instances of Articles
 			if(!sizeof($data)) {
 				$this->_data['content'] = array();
-			} else
+			} else {
 				foreach($data as $key => $item) {
 	                $tmp = new Article(array('id'=>$item['id']));
 	                $this->_data['content'][$key] =  $tmp->display();
 	            }
+	    	}
 		}		
 		
 	}

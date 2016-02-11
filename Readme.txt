@@ -20,11 +20,16 @@
 
 	* (DONE) fix sqlite error in RSS-Feed
 	* (DONE) use prepared statements everywhere!!!
-	
+
+	* [Currently]: new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor
+		-> otherwise anybody visitor could just create dozens of entries, just by manipulating the url
+		* FIX error, see pp_editor.js line 277
+
+	* fix / escape / make save loading of models in ControllerAjax.class.php
+		(save, delete, new_file, …)
+
 	* make tables hardcoded in 
 		TAGS, RELATION, ARTITCLE etc...
-	* new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor
-		-> otherwise anybody visitor could just create dozens of entries, just by manipulating the url
 	* fix security hole with $_GET parameters
 	* make Config.inc.php protected!!!!!!!
 	* salt passwords
@@ -40,6 +45,11 @@
 	* implement markdown support
 	* fileupload testen / besser machen
 		* FileUpload.class.php aufräumen
+
+## MODELS ##
+
+	* make views of models look nice without any styling
+		** then modify themes
 
 ## THEMES ##
 
@@ -105,7 +115,6 @@
 	* (DONE) Entferne MultipleConstructors();
 	* (DONE) DBSql wieder zu static DB machen -> less dependencies
 	* (DONE) move switches from themes to core function
-	* rename News to ListOfArticles
 		
 ## TagManager ##
 	
@@ -118,3 +127,6 @@
 ## CLEAN UP ##
 
 	* rename Methods according to Coding Standards 
+	* rename Categories to Tags (everywhere)
+	* rename News to ListOfArticles
+	* check start and end of class for correct comments

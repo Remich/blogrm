@@ -5,8 +5,8 @@
 	*/
 
 interface iDBContentStatic {
-	public function load($id);
-	public function save();	
+	public function loadEntry();
+	public function saveEntry();	
 }
 
 ?>

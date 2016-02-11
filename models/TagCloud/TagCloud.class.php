@@ -51,6 +51,7 @@
 				$params = array(":tid" => $this->_tag_id);
 				
 				//TODO: in TagManager auslagern
+				//TODO durch kluge SQL-Queries erleichtern
 				
 				// alle items mit tag_id tag holen
 				$tags = explode(".", $this->_tag_id);

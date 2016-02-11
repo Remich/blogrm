@@ -109,6 +109,21 @@
 					// 	}
 					// 	$this->_view->assign('tagnames', $names);
 					// }
+
+
+					// Testing
+					// require_once("models/Article/Article.class.php");
+
+					// $test_ar = array("data" => array(
+					// 	"title" => "asfdsadf ",
+					// 	"content" => " fobar",
+					// 	"tags" => "Unc "
+					// 	));
+					// $test = new Article($test_ar);
+					// $test = new Article();
+
+					// Misc::dump($test);
+					// die();
 						
 					// News
 					require_once("models/News/News.class.php");

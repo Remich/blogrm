@@ -7,8 +7,8 @@
         protected $_template = "index";
         protected $_templateDir = "models/";
         protected $_name = "UnnamedModel";
-        protected $_id;
-        protected $_table;
+        protected $_id = NULL;
+        protected $_table = NULL;
         
         public function __construct($array = null) {
         	if(isset($array['table']))

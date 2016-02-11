@@ -19,21 +19,16 @@ $(document).ready(function() {
 
 		that.remove = function(id, model) {
 			for(var a = 0; a < that.items.length; a++) {
-				if( that.items[a].attr("model") === model &&
-					that.items[a].attr("model_id") === id) {
+				if( that.items[a].id === id ) {
 					that.items.splice(a--, 1);
 				}
 			}
 			return true;
 		}
 
-		that.find = function(id, model, key) {
+		that.find = function(id) {
 			for(var a = 0; a < that.items.length; a++) {
-
-				if( that.items[a].attr("model_id") === id
-					&& that.items[a].attr("model") === model
-					&& that.items[a].attr("model_key") === key) {
-
+				if( that.items[a] === id ) {
 					return true;
 				}
 			}
@@ -249,22 +244,44 @@ $(document).ready(function() {
 		return "#" + componentToHex(parseInt(str[0])) + componentToHex(parseInt(str[1])) + componentToHex(parseInt(str[2]));
 	}
 
+	var findeditables = function(obj) {
+
+		var editables = [];
+		var children = obj.find("*");
+
+		$.each(children, function(index, value) {
+			if($(value).attr("model_key") !== undefined) {
+				var child = {};
+				child.key = $(value).attr("model_key");
+				child.val = $(value).html();
+				editables.push(child);
+			}
+		});
+
+		return editables;
+	}
 
 	var save_items = function() {
-		
+
 		data = [];
 		while(history.getLength() !== 0) {
-
-			item = history.pop();
-
-			var model = item.attr("model");
-			var id = item.attr("model_id");
-			var key = item.attr("model_key");
-			var value = item.html();
-
-			data.push({ "model" : model, "id" : id, "key" : key, "value" : value }) ;
-
+			var id = history.pop();
+			var tmp = { 
+				"id"	: id,
+				"model" : $("#"+id).attr("model"),
+				"data"	: findeditables($("#"+id))
+			}
+			data.push(tmp);
 		}
+
+		// TODO
+		// something goes wrong here:
+		// if there is a new item, which was inserted via prepend
+		// and it was modified, the modification isn't recognized by this method of getting the content 
+		// however if i reload and modify it, it is being recognized!!
+		// solution: switch to old type of tracking the changes ???
+		console.log(data);
+		return false;
 
 		$("#hidden").load('ajax.php?&action=save', 
 				{ data : data }, function ( bool ) {
@@ -387,13 +404,15 @@ $(document).ready(function() {
 	}
 	
 	$(document).on("click", "#newfile", function(e) {
-		
-		var model = editing.attr("model");
+
+		var parent = findparent(editing);
+		var model = parent.attr("model");
 		
 		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 				'&action=newfile', function ( bool ) {
 				
-			$('#area_0').prepend( bool );
+			// TODO: generalize for other models
+			$('#News').prepend( bool );
 		});
 		
 		$('#pp_editor').slideUp();
@@ -594,6 +613,16 @@ $(document).ready(function() {
 		//console.log('fontname: ' + fontName);
 	});*/
 
+
+	var findparent = function(obj) {
+		// find parent article tag
+		parent = obj;
+		while(! parent.is("article") ) {
+			parent = parent.parent();
+		}
+		return parent;
+	}
+
 			
 	$(document).on("click", ".editable", function(e) {	
 			
@@ -607,14 +636,14 @@ $(document).ready(function() {
 		editing = $(this);
 		editing.attr("contenteditable", "true").focus();
 
-		// Check if editing already is in history or not, we do not want any duplicate entries
-		var model = $(this).attr("model");
-		var id = $(this).attr("model_id");
-		var key = $(this).attr("model_key");
-		if(!history.find(id, model, key))
-			history.push($(this));	
 
-		console.log(history);
+		var parent = findparent($(this));
+		var id = parent.attr("id");
+
+		// Check if editing already is in history or not, we do not want any duplicate entries
+		if(!history.find(id))
+			history.push(id);	
+
 	});
 	
 	

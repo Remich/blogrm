@@ -49,24 +49,42 @@
 					$bouncer = new Auth();
 
 					$this->isInRequest( array( 'data') );
+					Misc::dump($this->_request['data']);
+					die();
+
+					foreach($this->_request['data'] as $key => $item) {
+						$tmp = array();
+						foreach($item['data'] as $item2) {
+							$tmp[ $item2['key'] ] = $item2['val'];
+							$this->_request['data'][$key]['data'] = $tmp;
+						}
+					}
 
 					foreach($this->_request['data'] as $item) {
 
 						if (!isset($item['id']) ||
 							!isset($item['model']) ||
-							!isset($item['key']) ||
-							!isset($item['value']) ) {
+							!isset($item['data']) ) {
 							die('#f');
 						}
 
-						$item['id'] = filter_var($item['id'], FILTER_VALIDATE_INT);
-						$item['model'] = Sanitize::FileName($item['model']);
-						$item['value'] = Sanitize::RemoveTagsFromPre($item['value']);
-						
-						require_once("models/".$item['model']."/".$item['model'].".class.php");
-						$model = new $item['model'](array('id'=>$item['id']));
-						$model->set(array($item['key'] => $item['value']));
-						$model->save();	
+						$model = Sanitize::FileName($item['model']);
+						unset($item['model']);
+
+						foreach($item['data'] as $key2 => $item2) {
+							$item['data'][$key2] = Sanitize::RemoveTagsFromPre($item2);
+						}
+
+						$id = explode("-", $item['id'])[1];
+						$item['data']['id'] = filter_var($id,FILTER_VALIDATE_INT);
+						unset($item['id']);
+
+						Misc::dump($item);
+
+						// TODO: Massive security hole!!!
+						require_once("models/".$model."/".$model.".class.php");
+						$model = new $model($item);
+						$model->saveEntry();	
 					}
 						
 					die("#t");
@@ -80,10 +98,11 @@
 					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
 					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
 						
+					// TODO: Massive security hole!!!
 					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
 					$model = new $this->_request['model'](array('id'=>$this->_request['id']));
 						
-					die($model->delete());
+					die($model->deleteEntry());
 					break;
 						
 				case 'newfile':
@@ -92,10 +111,13 @@
 					$this->isInRequest( array( 'model' ) );
 						
 					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
+					// TODO: Massive security hole!!!
 					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
 					$model = new $this->_request['model']();	
+					$model->saveEntry();
+					$model->loadEntry();
 					
-					die($model->display('Article'));				
+					die($model->display());				
 					break;
 					
 				case 'getPlainHTML':

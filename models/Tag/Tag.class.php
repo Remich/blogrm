@@ -8,7 +8,6 @@
 	
 	class Tag extends ModelSingle {
 		
-		protected $_id;
 		protected $_name = "Tag";
 		protected $_table = "categories";
 		
@@ -16,42 +15,35 @@
 		* Constructor
 		*
 		*/
-		function __construct($array=null) {
-			
-			if(isset($array['table']))
-				$this->_table = $array['table'];
-			if(isset($array['id'])) {
+		function __construct($array = NULL) {
+
+			if ($array == NULL) {
+
+				$this->_data['name'] = "Default Tag Name";
+
+			} elseif ( isset($array['id']) ) {
+
 				$this->_id = $array['id'];
-				$query = 'SELECT * FROM '.$this->_table.' WHERE id = :id';
-				$this->_data = DB::getOne($query, array(':id' => $this->_id));
-			}		
-			if(isset($array['name'])) {
-				$query = 'SELECT * FROM '.$this->_table.' WHERE name = :name';		
-				$this->_data = DB::getOne($query, array(':name' => $array['name']));
-				if(sizeof($this->_data)==0) {
-					$this->_data['name'] = $array['name'];
-					$this->newEntry();
+
+				if ( $this->doesExist() ) {
+					$this->load();
+				} else {
+					die("Tag " . $this->_id . " not found!");
 				}
+
+			} elseif( isset($array['data']) ) {
+
+				if (!isset($array['data']['id']) ||
+					!isset($array['data']['name'])) {
+					die("Not all Tag data supplied");
+				} else {
+					$this->_data = $array['data'];
+				}
+
 			}
 			
 		}
 
-		public static function doesExist($tag_id = NULL) {
-
-			if($tag_id === NULL) {
-				die("Error: No tag id supplied to function Tag::doesExist");
-			}
-
-			$query = 'SELECT COUNT(*) as no FROM categories WHERE id = :id';
-			$data = DB::getOne($query, array(":id" => $tag_id));
-
-			if($data['no'] === "0") {
-				return false;
-			} else {
-				return true;
-			}
-		}
-		
 		private function newEntry() {
 			$query = 'INSERT INTO '.$this->_table.'
 						 (uid, name)
@@ -97,17 +89,17 @@
 			DB::execute($query, $params);
 		}
 		
-		public function load($id) {
+		public function load() {
 			$query = 'SELECT *
 					  FROM '.$this->_table.'
 					  WHERE id = :id';
 				
-			$this->_data = DB::getOne($query, array(':id' => $id));
+			$this->_data = DB::getOne($query, array(':id' => $this->_id));
 	
 			if(sizeof($this->_data) == 0)
 				$this->set(  array(
-						'id' => $id,
-						'title' => "Fehler: Tag mit id ".$id." nicht gefunden"
+						'id' => $this->_id,
+						'title' => "Fehler: Tag mit id ".$this->_id." nicht gefunden"
 				) );
 		
 			$options = array('htmlspecialchars', 'utf8_decode', 'stripslashes');
