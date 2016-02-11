@@ -32,8 +32,8 @@
 					return false;
 				}
 
-				// TODO: Escape
-				$wheres = $this->getWheres("rel_articles_categories");
+				list($wheres, $this->_params) = $this->getWheres("rel_articles_categories");
+
 				if($wheres == "") {
 					$data = array();
 				} else {
@@ -43,13 +43,18 @@
 			// Select Articles by MONTH and YEAR
 			} elseif($this->_month != NULL) { 			
 
+				$this->_params = array(
+					"month" => $this->_month,
+					"year"  => $this->_year
+				);
+
 				switch(Config::getOption("db_type")) {
 					case "mysql": 
-						$wheres = 'DATE_FORMAT(a_date, "%m") = \''. $this->_month .'\' AND DATE_FORMAT(a_date, "%Y") = \''. $this->_year . '\'';
+						$wheres = 'DATE_FORMAT(a_date, "%m") = :month AND DATE_FORMAT(a_date, "%Y") = :year';
 					break;
 				
 					case "sqlite": 
-						$wheres = 'STRFTIME("%m", a_date) = \''. $this->_month .'\' AND STRFTIME("%Y", a_date) = \''. $this->_year . '\'';
+						$wheres = 'STRFTIME("%m", a_date) = :month AND STRFTIME("%Y", a_date) = :year';
 					break;
 				}
 

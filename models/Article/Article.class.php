@@ -64,7 +64,7 @@
 			}
 
 			$params = array(
-					':title' => (isset($this->_data['title']) ? $this->_data['title'] : $this->getNewTitleId()." – Das ist der Default-Title"),
+					':title' => $this->_data['title'],
 					':content' => (isset($this->_data['content']) ? $this->_data['content'] : 'Das ist der Default-Content')
 			);
 			DB::execute($query, $params);
@@ -77,25 +77,6 @@
 			$catman->generate();
 			
 			$this->load($lastID);
-		}
-		
-		//TODO: idiotensicher machen,
-		// this function thinks every article title begins with a number which is followed by a space
-		// e.g.: 1, 1.2, 4.234.12 
-		private function getNewTitleId() {				
-			$query = "SELECT title FROM article ORDER BY CAST(title as SIGNED INTEGER) DESC LIMIT 1";
-			$data = DB::getOne($query);
-			
-			if(!sizeof($data)) 
-				return 1;
-			
-			$a = 0;
-			while($data['title'][$a++] != " ");
-			$number = substr($data['title'], 0, --$a);
-			$number_ar = explode(".", $number);
-			$number_ar[sizeof($number_ar)-1]++;
-			
-			return implode(".", $number_ar);
 		}
 		
 		public function load($id) {

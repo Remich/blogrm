@@ -13,13 +13,14 @@
 
 	* (DONE) find why there is a tab at the beginning of each file, especially in RSS-Feed
 	* (DONE) get info of rss feed from config
-	* get info page language for <html lang="?"> from config
+	* (DONE) get language for <html lang="?"> from config
 	* grep nach TODOs
 
 ## SECURITY ##
 
 	* (DONE) fix sqlite error in RSS-Feed
-	* USE prepared statements everywhere!!!
+	* (DONE) use prepared statements everywhere!!!
+	
 	* make tables hardcoded in 
 		TAGS, RELATION, ARTITCLE etc...
 	* new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor

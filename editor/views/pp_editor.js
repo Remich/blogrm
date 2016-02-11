@@ -393,7 +393,7 @@ $(document).ready(function() {
 		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 				'&action=newfile', function ( bool ) {
 				
-			$('#content').prepend( bool );
+			$('#area_0').prepend( bool );
 		});
 		
 		$('#pp_editor').slideUp();

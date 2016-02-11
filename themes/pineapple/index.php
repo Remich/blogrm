@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML>
-<html lang="de">
+<html lang="<?php echo Config::getOption("page_language"); ?>">
 	<head>	
 		<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8" />
 		<title><?php echo $this->_['page_title']; ?></title>
