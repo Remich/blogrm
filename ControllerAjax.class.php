@@ -49,8 +49,8 @@
 					$bouncer = new Auth();
 
 					$this->isInRequest( array( 'data') );
-					Misc::dump($this->_request['data']);
-					die();
+					// Misc::dump($this->_request['data']);
+					// die();
 
 					foreach($this->_request['data'] as $key => $item) {
 						$tmp = array();
@@ -79,7 +79,7 @@
 						$item['data']['id'] = filter_var($id,FILTER_VALIDATE_INT);
 						unset($item['id']);
 
-						Misc::dump($item);
+						// Misc::dump($item);
 
 						// TODO: Massive security hole!!!
 						require_once("models/".$model."/".$model.".class.php");

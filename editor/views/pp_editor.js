@@ -14,7 +14,10 @@ $(document).ready(function() {
 		}
 
 		that.push = function(value) {
-			that.items.push(value);
+			var id = value.attr("id");
+			if (!that.find(id)) {
+				that.items.push(value);
+			}
 		}
 
 		that.remove = function(id, model) {
@@ -28,7 +31,7 @@ $(document).ready(function() {
 
 		that.find = function(id) {
 			for(var a = 0; a < that.items.length; a++) {
-				if( that.items[a] === id ) {
+				if( that.items[a].attr("id") === id ) {
 					return true;
 				}
 			}
@@ -265,23 +268,14 @@ $(document).ready(function() {
 
 		data = [];
 		while(history.getLength() !== 0) {
-			var id = history.pop();
+			var item = history.pop();
 			var tmp = { 
-				"id"	: id,
-				"model" : $("#"+id).attr("model"),
-				"data"	: findeditables($("#"+id))
+				"id"	: item.attr("id"),
+				"model" : item.attr("model"),
+				"data"	: findeditables(item)
 			}
 			data.push(tmp);
 		}
-
-		// TODO
-		// something goes wrong here:
-		// if there is a new item, which was inserted via prepend
-		// and it was modified, the modification isn't recognized by this method of getting the content 
-		// however if i reload and modify it, it is being recognized!!
-		// solution: switch to old type of tracking the changes ???
-		console.log(data);
-		return false;
 
 		$("#hidden").load('ajax.php?&action=save', 
 				{ data : data }, function ( bool ) {
@@ -410,9 +404,12 @@ $(document).ready(function() {
 		
 		$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 				'&action=newfile', function ( bool ) {
-				
+
+			var item = $(bool);
+			history.push(item);
+
 			// TODO: generalize for other models
-			$('#News').prepend( bool );
+			$('#News').prepend( item );
 		});
 		
 		$('#pp_editor').slideUp();
@@ -638,11 +635,13 @@ $(document).ready(function() {
 
 
 		var parent = findparent($(this));
-		var id = parent.attr("id");
+		history.push(parent);
 
-		// Check if editing already is in history or not, we do not want any duplicate entries
-		if(!history.find(id))
-			history.push(id);	
+		// var id = parent.attr("id");
+
+		// // Check if editing already is in history or not, we do not want any duplicate entries
+		// if(!history.find(id))
+		// 	history.push(id);	
 
 	});
 	
