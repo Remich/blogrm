@@ -102,7 +102,7 @@
 					// 	$names = array();
 					// 	$i = 0;
 					// 	foreach($tags as $item) {
-					// 		$tag = new Tag(array('table'=>'categories', 'id'=>$item));
+					// 		$tag = new Tag(array('table'=>'tags', 'id'=>$item));
 					// 		$names[$i]['id'] = $item;
 					// 		$names[$i++]['name'] = $tag->getName();
 					// 		$tag->incHit();
@@ -133,8 +133,8 @@
 					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
-					$tags->setTableTags("categories");
-					$tags->setTableRelation("rel_articles_categories");
+					$tags->setTableTags("tags");
+					$tags->setTableRelation("rel_articles_tags");
 					$tags->setFontMax(128);
 					$tags->setFontMin(8);
 					if(isset($this->_request['page']))
@@ -180,8 +180,8 @@
 					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
-					$tags->setTableTags("categories");
-					$tags->setTableRelation("rel_articles_categories");
+					$tags->setTableTags("tags");
+					$tags->setTableRelation("rel_articles_tags");
 					$tags->setFontMax(128);
 					$tags->setFontMin(8);
 					if(isset($this->_request['page']))
@@ -227,8 +227,8 @@
 
 					require_once("models/TagCloud/TagCloud.class.php");
 					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
-					$tags->setTableTags("categories");
-					$tags->setTableRelation("rel_articles_categories");
+					$tags->setTableTags("tags");
+					$tags->setTableRelation("rel_articles_tags");
 					$tags->setFontMax(35);
 					$tags->setFontMin(15);
 					if(isset($this->_request['page']))

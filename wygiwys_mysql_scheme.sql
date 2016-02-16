@@ -39,10 +39,10 @@ CREATE TABLE IF NOT EXISTS `article` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table `tags`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE IF NOT EXISTS `tags` (
 `id` int(11) NOT NULL,
   `uid` int(11) NOT NULL DEFAULT '1',
   `name` varchar(255) NOT NULL,
@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rel_articles_categories`
+-- Table structure for table `rel_articles_tags`
 --
 
-CREATE TABLE IF NOT EXISTS `rel_articles_categories` (
+CREATE TABLE IF NOT EXISTS `rel_articles_tags` (
 `id` int(11) NOT NULL,
   `id_a` int(11) NOT NULL,
   `id_b` int(11) NOT NULL
@@ -102,9 +102,9 @@ ALTER TABLE `article`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categories`
+-- Indexes for table `tags`
 --
-ALTER TABLE `categories`
+ALTER TABLE `tags`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -114,9 +114,9 @@ ALTER TABLE `comment`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rel_articles_categories`
+-- Indexes for table `rel_articles_tags`
 --
-ALTER TABLE `rel_articles_categories`
+ALTER TABLE `rel_articles_tags`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -135,9 +135,9 @@ ALTER TABLE `users`
 ALTER TABLE `article`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT for table `tags`
 --
-ALTER TABLE `categories`
+ALTER TABLE `tags`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `comment`
@@ -145,9 +145,9 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `comment`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `rel_articles_categories`
+-- AUTO_INCREMENT for table `rel_articles_tags`
 --
-ALTER TABLE `rel_articles_categories`
+ALTER TABLE `rel_articles_tags`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`

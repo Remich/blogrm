@@ -9,7 +9,7 @@
 	class Tag extends ModelSingle {
 		
 		protected $_name = "Tag";
-		protected $_table = "categories";
+		protected $_table = "tags";
 		
 		/**
 		* Constructor
@@ -31,17 +31,28 @@
 					die("Tag " . $this->_id . " not found!");
 				}
 
-			} elseif( isset($array['data']) ) {
+			} elseif( isset($array['name']) ) {
 
-				if (!isset($array['data']['id']) ||
-					!isset($array['data']['name'])) {
-					die("Not all Tag data supplied");
+				if ( $this->doesExistByName( $array['name']) ) {
+					$this->load();
 				} else {
-					$this->_data = $array['data'];
+					$this->_data['name'] = $array['name'];
+					$this->newEntry();
 				}
 
 			}
 			
+		}
+
+		private function doesExistByName( $str ) {
+			$query = 'SELECT id FROM '.$this->_table.' WHERE name = :name';		
+			$this->_data = DB::getOne($query, array(':name' => $str));
+			if (sizeof($this->_data) === 0) {
+				return false;
+			} else {
+				$this->_id = $this->_data['id'];
+				return true;
+			}
 		}
 
 		private function newEntry() {
@@ -54,8 +65,8 @@
 				':uid' => 1
 			);
 			DB::execute($query, $params);
-			$lastID = DB::lastId('id');
-			$this->load($lastID);			
+			$this->_id = DB::lastId('id');
+			$this->load();			
 		}
 		public function setTable($table) {
 			$this->_table = $table;

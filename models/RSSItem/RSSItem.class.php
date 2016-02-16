@@ -65,18 +65,18 @@ else 'Dec' end as month,
 				$this->_data['a_date_rss'] = $this->_data['weekday'].', '.$this->_data['day_of_month'].' '.$this->_data['month'].' '.$this->_data['year'].' '.$this->_data['hhmmss'];
 			}
 
-			$query = "SELECT id_b FROM rel_articles_categories WHERE id_a = :id_a";
+			$query = "SELECT id_b FROM rel_articles_tags WHERE id_a = :id_a";
 			$data = DB::get($query, array(':id_a' => $id));
 			$cats = array();
 			foreach($data as $key => $item) {
-				$query = "SELECT name FROM categories WHERE id = :id_b";
+				$query = "SELECT name FROM tags WHERE id = :id_b";
 				$data = DB::getOne($query, array(':id_b' => $item['id_b']));
 				$cats[] = $data['name'];				
 			}
 			if(sizeof($cats) == 0)
 				$cats[] = 'Uncategorized';
 			
-			$this->_data['categories'] = implode(", ", $cats);
+			$this->_data['tags'] = implode(", ", $cats);
 
 			$this->_data['a_date_rss'] .= " " . date('T');
 						

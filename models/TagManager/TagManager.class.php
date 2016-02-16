@@ -57,7 +57,7 @@
 		private function createInstancesOfTags() {
 			require_once('models/Tag/Tag.class.php');
 			foreach($this->_tags as $key=>$c_name) {
-				$this->_tags[$key] = new Tag(array('table'=>$this->_table_tags, 'name'=>$c_name));
+				$this->_tags[$key] = new Tag(array('name'=>$c_name));
 				//unset($this->_tags[$key]);
 			}
 		}

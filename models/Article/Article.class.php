@@ -50,7 +50,7 @@
 
 				if (!isset($array['data']['title']) ||
 					!isset($array['data']['content']) ||
-					!isset($array['data']['categories'])) {
+					!isset($array['data']['tags'])) {
 					die("Not all Article data supplied");
 				} else {
 
@@ -79,10 +79,10 @@
 					}
 
 					// Check tags
-					if (trim($array['data']['categories']) === "") {
+					if (trim($array['data']['tags']) === "") {
 						die("Supplied tags for Article is empty");
 					} else {
-						$this->_data['categories'] = $array['data']['categories'];
+						$this->_data['tags'] = $array['data']['tags'];
 					}
 
 				}
@@ -109,18 +109,18 @@
 			
 			$this->_data = DB::getOne($query, array(':id' => $this->_id));
 
-			// $query = "SELECT id_b FROM rel_articles_categories WHERE id_a = :id_a";
-			// $data = DB::get($query, array(':id_a' => $this->_id));
-			// $cats = array();
-			// foreach($data as $key => $item) {
-			// 	$query = "SELECT id, name FROM categories WHERE id = :id_b";
-			// 	$data = DB::getOne($query, array(':id_b' => $item['id_b']));
-			// 	$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">#" . $data['name'] . "</a>";			
-			// }
-			// if(sizeof($cats) == 0)
-			// 	$cats[] = 'Uncategorized';
+			$query = "SELECT id_b FROM rel_articles_tags WHERE id_a = :id_a";
+			$data = DB::get($query, array(':id_a' => $this->_id));
+			$cats = array();
+			foreach($data as $key => $item) {
+				$query = "SELECT id, name FROM tags WHERE id = :id_b";
+				$data = DB::getOne($query, array(':id_b' => $item['id_b']));
+				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">#" . $data['name'] . "</a>";			
+			}
+			if(sizeof($cats) == 0)
+				$cats[] = 'Uncategorized';
 			
-			// $this->_data['tags'] = implode(" ", $cats);
+			$this->_data['tags'] = implode(" ", $cats);
 
  		// 	require_once("models/Comment/Comment.class.php");
 			// $query = "SELECT * FROM comment WHERE a_id = :a_id";
@@ -151,11 +151,11 @@
 				$this->updateEntry();
 			}
 
-			// require_once('models/TagManager/TagManager.class.php');
-			// $catman = new TagManager($this->_data['id'], $this->_data['tags']);
-			// $catman->setTableRelation("rel_articles_categories");
-			// $catman->setTableTags("categories");
-			// $catman->generate();
+			require_once('models/TagManager/TagManager.class.php');
+			$catman = new TagManager($this->_id, $this->_data['tags']);
+			$catman->setTableRelation("rel_articles_tags");
+			$catman->setTableTags("tags");
+			$catman->generate();
 		}
 
 		public function newEntry() {
@@ -204,8 +204,8 @@
 			// remove category-relation
 			require_once('models/TagManager/TagManager.class.php');
 			$catman = new TagManager($this->_data['id'], "");
-			$catman->setTableRelation("rel_articles_categories");
-			$catman->setTableTags("categories");
+			$catman->setTableRelation("rel_articles_tags");
+			$catman->setTableTags("tags");
 			$catman->generate();
 
 			// delete item

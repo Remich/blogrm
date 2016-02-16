@@ -28,7 +28,7 @@
 				require_once("models/Tag/Tag.class.php");
 				$tag = new Tag(array("id" => $this->_tag_id));
 
-				list($wheres, $this->_params) = $this->getWheres("rel_articles_categories");
+				list($wheres, $this->_params) = $this->getWheres("rel_articles_tags");
 
 				if($wheres == "") {
 					$data = array();
