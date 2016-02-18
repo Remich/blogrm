@@ -201,14 +201,13 @@
 			$catman->setTableRelation("rel_articles_tags");
 			$catman->setTableTags("tags");
 			$catman->updateTags();
-			die();
 
 			// delete item
 			$query = 'DELETE FROM article
 						WHERE id = :id';
 			$params = array('id' => $this->_id);
 			DB::execute($query, $params);
-			return "true";
+			die("#t");
 		}
 
 	} // <!-- end class "Article" -->

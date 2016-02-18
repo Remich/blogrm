@@ -20,9 +20,9 @@ $(document).ready(function() {
 			}
 		}
 
-		that.remove = function(id, model) {
+		that.remove = function(id) {
 			for(var a = 0; a < that.items.length; a++) {
-				if( that.items[a].id === id ) {
+				if( that.items[a].attr("id") === id ) {
 					that.items.splice(a--, 1);
 				}
 			}
@@ -296,9 +296,9 @@ $(document).ready(function() {
 			$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 					'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
 				
-					if (bool.trim() === "true") {
+					if (bool.trim() === "#t") {
 
-						$('#a'+id).slideUp("slow", function() {
+						$("#"+id).slideUp("slow", function() {
 							this.remove();
 						});
 
@@ -364,25 +364,15 @@ $(document).ready(function() {
 	
 	$(document).on("click", "#deletefile", function(e)  {
 		
-		var items = new Array();
-		$(document).find("input[type=checkbox]").each(function() {
-			console.log( $(this).prop("checked") );
-			if($(this).prop("checked"))
-				items.push($(this));
-		});
-		
-		if(editing != 23 && editing != null && items.length==0) {	
+		if(editing != 23 && editing != null) {	
 			
-			var item = new Array
-			item.push(editing);
+			var item = new Array();
+			var parent = findparent(editing);
+			item.push(parent);
 			delete_item(item);
 			
-		} else {
-			if(items.length>0) {
-				delete_item(items);
-			}
-			
 		}
+
 	});
 	
 	load_content = function(dom, id) {
@@ -784,7 +774,6 @@ $(document).ready(function() {
 	$("body").css('padding-top', padding + 100 + 'px');
 	
 	$(window).on('beforeunload', function() {
-		console.log(history)
 		;
 		if(history.getLength() > 0)
 			return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";

@@ -95,6 +95,7 @@
 
 					$this->isInRequest( array( 'id', 'model') );
 
+					$this->_request['id'] = explode("-", $this->_request['id'])[1];
 					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
 					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
 						
