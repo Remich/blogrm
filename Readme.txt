@@ -15,6 +15,7 @@
 	* (DONE) get info of rss feed from config
 	* (DONE) get language for <html lang="?"> from config
 	* grep nach TODOs
+	* delete old jquery version
 
 ## SECURITY ##
 
@@ -77,6 +78,7 @@
 ## EDITOR ##
 
 	* (DONE) protect session froms being hijacked by other projects on the same server
+	* fix is_current_state of formatblock, fontsize, fontname in firefox!!
 	* remove every occurrence of prettyprint
 	* implement styleless editable fields, otherwise user fucks up layout
 		* e.g. h1 of article should not be stylable

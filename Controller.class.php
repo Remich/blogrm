@@ -22,7 +22,7 @@
 			
 			$this->_view = new View();
 			
-			$this->_footer .= '<script type="text/javascript" src="libs/jquery-2.0.3.min.js"></script>';
+			$this->_footer .= '<script type="text/javascript" src="libs/jquery-2.2.0.min.js"></script>';
 			$this->_footer .= '<script type="text/javascript" src="libs/colorbox/jquery.colorbox-min.js"></script>';
 			$this->_header .= '<link href="libs/colorbox/colorbox.css" type="text/css" rel="stylesheet" />';
 

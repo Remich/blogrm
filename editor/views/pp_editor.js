@@ -229,8 +229,6 @@ $(document).ready(function() {
 		on_html_disabled : false
 	}; 
 	
-	console.log(buttons);
-
 	// ***
 	// * End Buttons
 	// ***
@@ -290,7 +288,6 @@ $(document).ready(function() {
 	
 	// TODO make non recursive
 	var delete_item = function(to_delete) {
-
 		item = to_delete.pop();
 		var model = item.attr("model");
 		var id = item.attr("id");
@@ -298,8 +295,6 @@ $(document).ready(function() {
 		if( confirm("Really Delete Object?") ) {
 			$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 					'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
-
-					console.log(bool);
 				
 					if (bool.trim() === "true") {
 
@@ -466,6 +461,11 @@ $(document).ready(function() {
 		if(button.id == 'fontname') {
 
 			var fontName = document.queryCommandValue("FontName");
+
+			if(fontName === "") {
+				return false;
+			}
+
 			var fonts = fontName.split(",");
 			$('#pp_editor #fontname option[value='+fonts[0]+']').attr("selected", true);
 			
@@ -476,6 +476,11 @@ $(document).ready(function() {
 			
 			// Font Size
 			var fontSize = document.queryCommandValue("FontSize");
+
+			if(fontSize === "") {
+				return false;
+			}
+
 			$('#pp_editor #fontsize option[value='+fontSize+']').attr("selected", true);
 			
 			return false;
@@ -499,6 +504,11 @@ $(document).ready(function() {
 		
 		if(button.id == 'formatblock') {			
 			var block = document.queryCommandValue("formatBlock");
+
+
+			if(block === "") {
+				return false;
+			}
 			
 			// Font Size
 			$('#pp_editor #formatblock option[value='+block+']').attr("selected", true);
