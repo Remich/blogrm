@@ -288,14 +288,18 @@ $(document).ready(function() {
 		
 	}
 	
+	// TODO make non recursive
 	var delete_item = function(to_delete) {
+
 		item = to_delete.pop();
 		var model = item.attr("model");
-		var id = item.attr("model_id");
+		var id = item.attr("id");
 
 		if( confirm("Really Delete Object?") ) {
 			$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
 					'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
+
+					console.log(bool);
 				
 					if (bool.trim() === "true") {
 

@@ -106,21 +106,14 @@
 							  FROM article WHERE id = :id";
 					break;
 			}
-			
 			$this->_data = DB::getOne($query, array(':id' => $this->_id));
 
-			$query = "SELECT id_b FROM rel_articles_tags WHERE id_a = :id_a";
-			$data = DB::get($query, array(':id_a' => $this->_id));
-			$cats = array();
-			foreach($data as $key => $item) {
-				$query = "SELECT id, name FROM tags WHERE id = :id_b";
-				$data = DB::getOne($query, array(':id_b' => $item['id_b']));
-				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">#" . $data['name'] . "</a>";			
-			}
-			if(sizeof($cats) == 0)
-				$cats[] = 'Uncategorized';
+			require_once('models/TagManager/TagManager.class.php');
+			$tagmanager = new TagManager((int)$this->_id);
+			$tagmanager->setTableRelation("rel_articles_tags");
+			$tagmanager->setTableTags("tags");
+			$this->_data['tags'] = $tagmanager->getTags();
 			
-			$this->_data['tags'] = implode(" ", $cats);
 
  		// 	require_once("models/Comment/Comment.class.php");
 			// $query = "SELECT * FROM comment WHERE a_id = :a_id";
@@ -152,10 +145,11 @@
 			}
 
 			require_once('models/TagManager/TagManager.class.php');
-			$catman = new TagManager($this->_id, $this->_data['tags']);
+			$catman = new TagManager($this->_id);
+			$catman->setTags($this->_data['tags']);
 			$catman->setTableRelation("rel_articles_tags");
 			$catman->setTableTags("tags");
-			$catman->generate();
+			$catman->updateTags();
 		}
 
 		public function newEntry() {
@@ -203,15 +197,16 @@
 		public function deleteEntry() {
 			// remove category-relation
 			require_once('models/TagManager/TagManager.class.php');
-			$catman = new TagManager($this->_data['id'], "");
+			$catman = new TagManager($this->_id);
 			$catman->setTableRelation("rel_articles_tags");
 			$catman->setTableTags("tags");
-			$catman->generate();
+			$catman->updateTags();
+			die();
 
 			// delete item
 			$query = 'DELETE FROM article
 						WHERE id = :id';
-			$params = array('id' => $this->_data['id']);
+			$params = array('id' => $this->_id);
 			DB::execute($query, $params);
 			return "true";
 		}

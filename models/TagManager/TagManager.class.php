@@ -14,7 +14,7 @@
 	class TagManager {
 		
 		private $_a_id;
-		private $_tags;
+		private $_tags = array();
 		private $_tags_new;
 		private $_table_relation = null;
 		private $_table_tags = null;
@@ -32,12 +32,17 @@
 			$this->_table_tags = $table;
 		}
 		
-		public function __construct($a_id, $tags) {
-			$this->_a_id = $a_id;
-			$this->receiveStringOfTags($tags);
+		public function __construct($a_id = NULL) {
+			if($a_id === NULL) {
+				die("ERROR: No id_a for TagManager __construct supplied!");
+			} elseif (!is_int($a_id)) {
+				die("ERROR: id_a is not of type int.");
+			} else {
+				$this->_a_id = $a_id;
+			}
 		}
 		
-		public function receiveStringOfTags($tags) {
+		public function setTags($tags) {
 			$this->_tags = strip_tags($tags);
 			$this->_tags = str_replace("&nbsp;", "", $this->_tags);
 			$this->_tags = explode('#', $this->_tags);
@@ -47,8 +52,26 @@
 					unset($this->_tags[$key]);
 			}
 		}
+
+		public function getTags() {
+
+			// TODO: make nicer by JOIN
+			$query = "SELECT id_b FROM ".$this->_table_relation." WHERE id_a = :id_a";
+			$data = DB::get($query, array(':id_a' => $this->_a_id));
+			$cats = array();
+			foreach($data as $key => $item) {
+				$query = "SELECT id, name FROM tags WHERE id = :id_b";
+				$data = DB::getOne($query, array(':id_b' => $item['id_b']));
+				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">#" . $data['name'] . "</a>";			
+			}
+			if(sizeof($cats) == 0)
+				$cats[] = 'Uncategorized';
+
+			return implode(" ", $cats);
+
+		}
 		
-		public function generate() {
+		public function updateTags() {
 			$this->createInstancesOfTags();
 			$this->deleteUnusedTags();
 			$this->updateRelations();			

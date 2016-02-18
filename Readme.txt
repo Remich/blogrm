@@ -26,6 +26,7 @@
 		* (DONE) FIX error, see pp_editor.js line 277
 	* (DONE) Fix RSS
 	* Make constructors defensive against passed parameters
+	* FIX delete_item in pp_editor.js
 
 	* fix / escape / make save loading of models in ControllerAjax.class.php
 		(save, delete, new_file, …)
