@@ -21,19 +21,17 @@
 
 	* (DONE) fix sqlite error in RSS-Feed
 	* (DONE) use prepared statements everywhere!!!
-
 	* (DONE) new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor
 		-> otherwise any visitor could just create dozens of entries, just by manipulating the url
 		* (DONE) FIX error, see pp_editor.js line 277
 	* (DONE) Fix RSS
-	* Make constructors defensive against passed parameters
 	* (DONE) FIX delete_item in pp_editor.js
 
+	* Make constructors defensive against passed parameters
 	* fix / escape / make save loading of models in ControllerAjax.class.php
 		(save, delete, new_file, …)
-
 	* make tables hardcoded in 
-		TAGS, RELATION, ARTITCLE etc...
+		TAGS, RELATION, ARTICLE etc...
 	* fix security hole with $_GET parameters
 	* make Config.inc.php protected!!!!!!!
 	* salt passwords
@@ -79,7 +77,7 @@
 
 	* (DONE) protect session froms being hijacked by other projects on the same server
 	* fix is_current_state of formatblock, fontsize, fontname in firefox!!
-	* remove every occurrence of prettyprint
+	* (DONE) remove every occurrence of prettyprint
 	* implement styleless editable fields, otherwise user fucks up layout
 		* e.g. h1 of article should not be stylable
 	* improve UI & Usability of Image / File Upload and Image / File / Link inserting
