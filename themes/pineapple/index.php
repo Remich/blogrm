@@ -48,7 +48,7 @@
 				<!--<hr id="hr-1">-->
 
 				<?php if (@$this->_['areas'][0]) { ?>
-				<div id="area_0" class="blog">
+				<div id="area_0">
 					<?php foreach($this->_['areas'][0] as $item) { ?>
 						<?php echo $item; ?>
 					<?php } ?>

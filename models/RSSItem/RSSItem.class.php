@@ -10,18 +10,28 @@
 	class RSSItem extends ModelSingle implements iDBContentStatic {
 		
 		protected $_name = "RSSItem";
-		
-		public function __construct($array = null) {
-			
-			if($array == null || sizeof($array) == 0) {
-				$this->_data['id'] = "Das ist ein leerer RSS Feed";
-			}
-			if(isset($array['id']))
-				$this->load($array['id']);
+		protected $_table = "article";	
 					
+		
+		public function __construct($id = NULL) {
+
+			if($id === NULL) {
+				die("ERROR: No id for RSSItem supplied!");
+			} elseif (!is_int($id)) {
+				die("ERROR: Supplied id is not of type int!");
+			} else {
+				$this->_id = $id;
+			}
+
+			if ( $this->doesExist() ) {
+				$this->loadEntry();
+			} else {
+				die("RSSItem " . $this->_id . " not found!");
+			}
+
 		} 
 		
-		public function load($id) {
+		public function loadEntry() {
 
 			switch(Config::getOption("db_type")) {
 				case "mysql": 
@@ -59,14 +69,14 @@ else 'Dec' end as month,
 				break;
 			}
 			
-			$this->_data = DB::getOne($query, array(':id' => $id));
+			$this->_data = DB::getOne($query, array(':id' => $this->_id));
 
 			if(Config::getOption("db_type") === "sqlite") {
 				$this->_data['a_date_rss'] = $this->_data['weekday'].', '.$this->_data['day_of_month'].' '.$this->_data['month'].' '.$this->_data['year'].' '.$this->_data['hhmmss'];
 			}
 
 			$query = "SELECT id_b FROM rel_articles_tags WHERE id_a = :id_a";
-			$data = DB::get($query, array(':id_a' => $id));
+			$data = DB::get($query, array(':id_a' => $this->_id));
 			$cats = array();
 			foreach($data as $key => $item) {
 				$query = "SELECT name FROM tags WHERE id = :id_b";
@@ -82,16 +92,16 @@ else 'Dec' end as month,
 						
 			if(sizeof($this->_data) == 0)
 				$this->set(  array(
-					'id' => $id, 
-					'title' => "Fehler: Artikel mit id ".$id." nicht gefunden",
-					'content' => "Fehler: Artikel mit id ".$id." nicht gefunden"
+					'id' => $this->_id, 
+					'title' => "Fehler: Artikel mit id ".$this->_id." nicht gefunden",
+					'content' => "Fehler: Artikel mit id ".$this->_id." nicht gefunden"
 				) );
 				
 			$options = array('htmlspecialchars', 'utf8_decode', 'stripslashes');
 			Sanitize::process_array($this->_data, $options);
 		}
 
-		public function save() {}
+		public function saveEntry() {}
 
 	} // <!-- end class ’Controller’ -->
 ?>

@@ -1,16 +1,16 @@
 
 				<section id="content" class="portfolio">
-					<!--<article>-->
-						<!--<header>-->
-							<!--[><time datetime="2013-04-06">April 06, 2013</time><]-->
-							<!--<h1>Webapp: RM Bookmarks</h1>-->
-						<!--</header>-->
-						<!--<p><img src="img/rmbookmark.png" width="240" height="180" alt="RMIS" class="preview">-->
-							<!--Einfache Lesezeichenverwaltung mit Tag Cloud. Das Hinzufügen von Lesezeichen erfolgt browserunabhängig durch ein Favelet.<br><br>-->
-							<!--<a href="rmbookmarks/" title="Demo ansehen">Demo ansehen</a>-->
-						<!--</p>-->
-					<!--</article>-->
-					
+<!-- 					<article>
+						<header>
+							[<time datetime="2013-04-06">April 06, 2013</time>]
+							<h1>Webapp: RM Bookmarks</h1>
+						</header>
+						<p><img src="img/rmbookmark.png" width="240" height="180" alt="RMIS" class="preview">
+							Einfache Lesezeichenverwaltung mit Tag Cloud. Das Hinzufügen von Lesezeichen erfolgt browserunabhängig durch ein Favelet.<br><br>
+							<a href="rmbookmarks/" title="Demo ansehen">Demo ansehen</a>
+						</p>
+					</article>
+ -->					
 					<article>
 						<header>
 							<!--<time datetime="2013-04-06">April 06, 2013</time>-->

@@ -21,9 +21,11 @@
 	* (DONE) fix sqlite error in RSS-Feed
 	* (DONE) use prepared statements everywhere!!!
 
-	* [Currently]: new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor
-		-> otherwise anybody visitor could just create dozens of entries, just by manipulating the url
-		* FIX error, see pp_editor.js line 277
+	* (DONE) new entries of Article, Tag or whatever HAVE TO BE REMOVED from the constructor
+		-> otherwise any visitor could just create dozens of entries, just by manipulating the url
+		* (DONE) FIX error, see pp_editor.js line 277
+	* (DONE) Fix RSS
+	* Make constructors defensive against passed parameters
 
 	* fix / escape / make save loading of models in ControllerAjax.class.php
 		(save, delete, new_file, …)
@@ -60,6 +62,7 @@
 	* rework deadlanguage from scratch
 	* create alternative for non renemichalke.de logos
 	* image-width über theme stylen
+	* blueappeal: indent has same styling as blockquote!!
 
 ## PANEL ##
 
@@ -73,6 +76,7 @@
 ## EDITOR ##
 
 	* (DONE) protect session froms being hijacked by other projects on the same server
+	* remove every occurrence of prettyprint
 	* implement styleless editable fields, otherwise user fucks up layout
 		* e.g. h1 of article should not be stylable
 	* improve UI & Usability of Image / File Upload and Image / File / Link inserting
@@ -127,6 +131,6 @@
 ## CLEAN UP ##
 
 	* rename Methods according to Coding Standards 
-	* rename Categories to Tags (everywhere)
+	* (DONE) rename Categories to Tags (everywhere)
 	* rename News to ListOfArticles
 	* check start and end of class for correct comments

@@ -74,7 +74,7 @@ article header .post-subtitle {
 	padding-bottom: .3em;
 	margin-bottom: 1em;
 }	
-.blog article h1, .comments h1{
+#blog article h1, .comments h1{
 	text-transform: uppercase;
 	font-family:  CabinRegular, Helvetica, sans-serif;
 	font-size: 140%;
@@ -216,7 +216,7 @@ header nav ul li a:hover,
 	color: rgba(0,0,0,.65);
 }
 
-.blog article {
+#blog article {
 	margin-bottom: 3em;
 	clear: both;
 }
@@ -288,19 +288,19 @@ article.alt header time {
 /*article header span {*/
 	/*color: #FF8800;*/
 /*}*/
-.blog article header h1 a {
+#blog article header h1 a {
 	color: rgba(0,0,0,.65);
 	   text-decoration: none;
 }
-.blog article img {
+#blog article img {
 	padding: .3em;
 	background-color: white;
 	border: 1px solid #ccc;
 }
-.blog article img.left {
+#blog article img.left {
 margin: 0 .5em 0 0;
 }
-.blog article img.right {
+#blog article img.right {
 margin: 0 0 0 .5em;
 }
 footer article header h1 a {

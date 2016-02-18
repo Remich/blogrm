@@ -22,7 +22,7 @@
 				$this->_data['content'] = array();
 			} else {
 				foreach($data as $key => $item) {
-	                $tmp = new RSSItem(array('id'=>$item['id']));
+	                $tmp = new RSSItem((int)$item['id']);
 	                $this->_data['content'][$key] =  $tmp->display();
 	            }
 	        }

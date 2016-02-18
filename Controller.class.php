@@ -48,7 +48,7 @@
 			// $nav = new NavigationFromFolder('../');
 			// $this->_view->assign('navigation', $nav->display());
 
-			$this->_request['page'] = @$this->_request['page'] ? $this->_request['page'] : "default";
+			$this->_request['page'] = @$this->_request['page'] ? $this->_request['page'] : "blog";
 			$this->_view->assign('page', $this->_request['page']);
 			
 			$_SESSION['currentURL'] = Url::getCurrentUrl();
@@ -206,17 +206,20 @@
 				case 'portfolio':
 					$innerView = new View();
 					$innerView->setTemplate("portfolio");
-					$this->_view->assign('content', $innerView->loadTemplate());
+
+					$this->_areas[0][] = $innerView->loadTemplate()	;
+					$this->_view->setTemplate('index');
+					// $this->_view->assign('areas', $innerView->loadTemplate());
 
 
-					require_once("models/Article/Article.class.php");
-					$article = new Article(array("id"=>"1"));
-					$article->setTemplate("teaser");
-					$this->_view->assign('static_hi', $article->display("Article"));
+					// require_once("models/Article/Article.class.php");
+					// $article = new Article(array("id"=>"1"));
+					// $article->setTemplate("teaser");
+					// $this->_view->assign('static_hi', $article->display("Article"));
 
-					$article = new Article(array("id"=>"3"));
-					$article->setTemplate("teaser");
-					$this->_view->assign('tagcloud', $article->display("Article"));
+					// $article = new Article(array("id"=>"3"));
+					// $article->setTemplate("teaser");
+					// $this->_view->assign('tagcloud', $article->display("Article"));
 
 					break;
 
