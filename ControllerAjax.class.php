@@ -132,5 +132,6 @@
 		
 		} // <!-- end function ’control()’ -->
 		
-	} // <!-- end class ’ControllerAjax’ -->   
+	}
+
 ?>

@@ -55,16 +55,15 @@
 
 		public function getTags() {
 
-			// TODO: make nicer by JOIN
-			$query = "SELECT id_b FROM ".$this->_table_relation." WHERE id_a = :id_a";
+			$query = "SELECT id,name FROM (SELECT id_b FROM ".$this->_table_relation."
+				WHERE id_a = :id_a) AS t1 JOIN tags AS t2 ON t2.id = t1.id_b";
 			$data = DB::get($query, array(':id_a' => $this->_a_id));
+
 			$cats = array();
 			foreach($data as $key => $item) {
-				$query = "SELECT id, name FROM tags WHERE id = :id_b";
-				$data = DB::getOne($query, array(':id_b' => $item['id_b']));
-				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $data['id'] . "\">#" . $data['name'] . "</a>";			
+				$cats[] = "<a href=\"index.php?page=tag&tag_id=" . $item['id'] . "\">#" . $item['name'] . "</a>"; 
 			}
-			if(sizeof($cats) == 0)
+			if(sizeof($cats) === 0)
 				$cats[] = 'Uncategorized';
 
 			return implode(" ", $cats);
