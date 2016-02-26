@@ -145,7 +145,7 @@
 			}
 
 			require_once('models/TagManager/TagManager.class.php');
-			$catman = new TagManager($this->_id);
+			$catman = new TagManager((int)$this->_id);
 			$catman->setTags($this->_data['tags']);
 			$catman->setTableRelation("rel_articles_tags");
 			$catman->setTableTags("tags");

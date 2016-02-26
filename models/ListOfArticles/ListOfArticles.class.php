@@ -5,9 +5,9 @@
 	*/
     require_once("models/Article/Article.class.php");
 
-	class News extends ModelList {
+	class ListOfArticles extends ModelList {
 		
-		protected $_name = "News";
+		protected $_name = "ListOfArticles";
 		protected $_month = NULL;
 		protected $_year = NULL;
 		

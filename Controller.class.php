@@ -125,9 +125,9 @@
 					// Misc::dump($test);
 					// die();
 						
-					// News
-					require_once("models/News/News.class.php");
-					$news = new News($this->_request);
+					// ListOfArticles
+					require_once("models/ListOfArticles/ListOfArticles.class.php");
+					$news = new ListOfArticles($this->_request);
 					$this->_areas[0][] = $news->display();
 				
 					// Tagcloud

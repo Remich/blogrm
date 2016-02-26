@@ -36,7 +36,7 @@
 			if($a_id === NULL) {
 				die("ERROR: No id_a for TagManager __construct supplied!");
 			} elseif (!is_int($a_id)) {
-				die("ERROR: id_a is not of type int.");
+				die("ERROR: id_a is not of type int. (TagManager __construct)");
 			} else {
 				$this->_a_id = $a_id;
 			}

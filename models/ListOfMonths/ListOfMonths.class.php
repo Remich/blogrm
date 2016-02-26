@@ -9,9 +9,7 @@
 		
 		protected $_name = "ListOfMonths";
 		
-		public function __construct($tag_id = null, $request = null) {
-			$this->_request = $request;
-			$this->_tag_id = $tag_id;
+		public function __construct() {
 			$this->load();
 		}
 		

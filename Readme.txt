@@ -28,11 +28,13 @@
 	* (DONE) FIX delete_item in pp_editor.js
 
 	* Make constructors defensive against passed parameters
+		(use implicit typecasting)
 	* fix / escape / make save loading of models in ControllerAjax.class.php
+		<=> probably the same <=>
+	* fix security hole with $_GET parameters
 		(save, delete, new_file, …)
 	* make tables hardcoded in 
 		TAGS, RELATION, ARTICLE etc...
-	* fix security hole with $_GET parameters
 	* make Config.inc.php protected!!!!!!!
 	* salt passwords
 	* Editor: add Inline SVG to config of htmlpurifier
@@ -123,7 +125,6 @@
 		
 ## TagManager ##
 	
-	* (???) TODO: Category Darstellung überarbeiten und linkbar machen (tags ordentlich trimmen und darstellen ohne links im post)
 	* (DONE) Create class Tag, which behaves like class Article
 	* (DONE) Rewrite CategoryManager according to class Tag
 	* (DONE) Rename CategoryManager to TagManager
@@ -133,5 +134,5 @@
 
 	* rename Methods according to Coding Standards 
 	* (DONE) rename Categories to Tags (everywhere)
-	* rename News to ListOfArticles
+	* (DONE) rename News to ListOfArticles
 	* check start and end of class for correct comments

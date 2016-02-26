@@ -398,7 +398,7 @@ $(document).ready(function() {
 			history.push(item);
 
 			// TODO: generalize for other models
-			$('#News').prepend( item );
+			$('#ListOfArticles').prepend( item );
 		});
 		
 		$('#pp_editor').slideUp();
