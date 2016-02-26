@@ -33,7 +33,7 @@
 		}
 		
 		public function setTableRelation($table = null) {
-			if($table == null) {
+			if($table === null) {
 				die('ERROR: Missing table! (TagManager::setTableRelation())');
 			}
 			if (trim($table) === "") {
@@ -46,7 +46,7 @@
 			$this->_table_relation = $table;			
 		}
 		public function setTableTags($table = null) {
-			if($table == null) {
+			if($table === null) {
 				die('ERROR: Missing table! (TagManager::setTableTags())');
 			}
 			if (trim($table) === "") {
