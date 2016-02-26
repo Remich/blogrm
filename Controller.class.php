@@ -132,7 +132,7 @@
 				
 					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
-					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
+					$tags = new TagCloud(@$this->_request['tag_id']);
 					$tags->setTableTags("tags");
 					$tags->setTableRelation("rel_articles_tags");
 					$tags->setFontMax(128);
@@ -179,7 +179,7 @@
 
 					// Tagcloud
 					require_once("models/TagCloud/TagCloud.class.php");
-					$tags = new TagCloud(/*@$this->_request['tag_id']*/);
+					$tags = new TagCloud();
 					$tags->setTableTags("tags");
 					$tags->setTableRelation("rel_articles_tags");
 					$tags->setFontMax(128);

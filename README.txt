@@ -50,7 +50,7 @@
 	* (DONE) make articles viewable by month and year
 	* (DONE) create ListOfYears
 	* implement working comments
-	* implement child themes and child models
+	* implement real static content
 	* write installation-script
 		** with salted password!!!
 		** make Config.inc.php protected!!!!!!!
@@ -150,3 +150,4 @@
 	* implement markdown support
 	* improve fileupload
 		* cleanup FileUpload.class.php
+	* implement child themes and child models

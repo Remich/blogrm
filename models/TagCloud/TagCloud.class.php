@@ -67,74 +67,18 @@
 			$this->_min = $min ;
 		}
 		public function generate() {
-			if($this->_tag_id == null) {
+
+			if($this->_tag_id === null) {
 				$query = 'SELECT * FROM '.$this->_table_tags.' WHERE uid = 1 ORDER BY name ASC';
 				$this->_tags = DB::get($query);
 			} else {
-				$params = array(":tid" => $this->_tag_id);
-				
-				//TODO: in TagManager auslagern
-				//TODO durch kluge SQL-Queries erleichtern
-				
-				// alle items mit tag_id tag holen
-				$tags = explode(".", $this->_tag_id);
-				$a_ids = array();
-				foreach($tags as $item) {
-					$query = 'SELECT id_a FROM '.$this->_table_relation.' WHERE id_b = :id_b';
-					$tmp = DB::get($query, array(':id_b'=>$item));
-					foreach($tmp as $item2)
-						$a_ids[$item][] = $item2['id_a'];
-				}
-				if(sizeof($a_ids)>1)
-					$result = call_user_func_array('array_intersect',$a_ids);
-				else
-					foreach($a_ids as $item)
-						$result = $item;
-					
-				// alle tags von den items holen
-				$tags = array();
-				foreach($result as $item) {
-					$query = 'SELECT
-								id_b
-							  FROM
-								'.$this->_table_relation.'
-							  WHERE
-								id_a = :id_a';
-					$params = array(':id_a' => $item);
-					$data = DB::Get($query, $params);
-					foreach($data as $key => $item) {
-						$tags[] = $item['id_b'];
-					}
-				}
-			
-				// Remove duplicates
-				$tags = array_unique($tags);
-				
-				// Remove parent tag
-				foreach($tags as $key => $item)
-					if($item == $this->_tag_id) unset($tags[$key]);
-			
-				// restliche tag informationen holen
-				foreach($tags as $key => $item) {
-					$query = "SELECT
-								*
-							  FROM
-								".$this->_table_tags."
-							  WHERE
-								id = :cid";
-					$tags[$key] = DB::getOne($query, array(':cid' => $item));
-				}
-				$this->_tags = $tags;
+				$query = "SELECT * FROM ".$this->_table_tags." as t3 JOIN (SELECT DISTINCT(id_b) FROM ".$this->_table_relation. " AS t1 JOIN (SELECT id_a FROM ".$this->_table_relation." WHERE id_b = :id_b) AS t2 ON t2.id_a = t1.id_a WHERE id_b != :id_b) as t4 ON t4.id_b = t3.id";
+
+				$params = array(":id_b" => $this->_tag_id);
+				$this->_tags = DB::get($query, $params);
 			}
-			
-			// Remove currently viewed tags
-			$tags2 = explode(".", $this->_tag_id);
-			foreach($this->_tags as $key => $item)
-				foreach($tags2 as $key2 => $item2)
-					if($item['id'] == $item2)
-						unset($this->_tags[$key]);
-			
 				
+			// count occurences
 			foreach($this->_tags as $key => $item) {
 				$query = 'SELECT
 							COUNT(*) as quantity
