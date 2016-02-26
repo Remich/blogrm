@@ -49,8 +49,6 @@
 					$bouncer = new Auth();
 
 					$this->isInRequest( array( 'data') );
-					// Misc::dump($this->_request['data']);
-					// die();
 
 					foreach($this->_request['data'] as $key => $item) {
 						$tmp = array();
@@ -79,9 +77,7 @@
 						$item['data']['id'] = filter_var($id,FILTER_VALIDATE_INT);
 						unset($item['id']);
 
-						// Misc::dump($item);
-
-						// TODO: Massive security hole!!!
+						// this is save because of the earlier call to Sanitize::FileName
 						require_once("models/".$model."/".$model.".class.php");
 						$model = new $model($item);
 						$model->saveEntry();	
@@ -99,7 +95,7 @@
 					$this->_request['id'] = filter_var($this->_request['id'], FILTER_VALIDATE_INT);
 					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
 						
-					// TODO: Massive security hole!!!
+					// this is save because of the earlier call to Sanitize::FileName
 					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
 					$model = new $this->_request['model'](array('id'=>$this->_request['id']));
 						
@@ -112,7 +108,8 @@
 					$this->isInRequest( array( 'model' ) );
 						
 					$this->_request['model'] = Sanitize::FileName($this->_request['model']);
-					// TODO: Massive security hole!!!
+					
+					// this is save because of the earlier call to Sanitize::FileName
 					require_once("models/".$this->_request['model']."/".$this->_request['model'].".class.php");
 					$model = new $this->_request['model']();	
 					$model->saveEntry();

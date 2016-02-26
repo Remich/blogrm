@@ -51,14 +51,11 @@
 			$this->_table_tags = $table;
 		}
 		public function setPage($page = null) {
-			if($page == null) {
+			if($page === null) {
 				die('ERROR: missing page! (TagCloud::setPage())');
 			} 
 			if (trim($page) === "") {
 				die('ERROR: page is empty! (TagCloud::setPage())');
-			}
-			if (!is_numeric($page)) {
-				die('ERROR: page is not numeric! (TagCloud::setPage())');
 			}
 		
 			$this->_page = $page;

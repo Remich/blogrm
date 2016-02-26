@@ -9,11 +9,10 @@
 	* (DONE) Apply trim to all ajax results!!
 	* (DONE) Rewrite MySQL queries for SQLite
 	* (DONE) completely remove bookmarks
-
-
 	* (DONE) find why there is a tab at the beginning of each file, especially in RSS-Feed
 	* (DONE) get info of rss feed from config
 	* (DONE) get language for <html lang="?"> from config
+	
 	* grep nach TODOs
 	* delete old jquery version 
 
@@ -41,29 +40,20 @@
 		- Model
 		- Pages
 	* (DONE) Say from where the error message comes from
-
-
-	* fix / escape / make save loading of models in ControllerAjax.class.php
+	* (DONE) fix / escape / make save loading of models in ControllerAjax.class.php
 		<=> probably the same <=>
-	* fix security hole with $_GET parameters
+	* (DONE) fix security hole with $_GET parameters
 		(save, delete, new_file, …)
-
-	* make tables hardcoded in 
-		TAGS, RELATION, ARTICLE etc...
-	* make Config.inc.php protected!!!!!!!
-	* salt passwords
-	* Editor: add Inline SVG to config of htmlpurifier
 
 ## NEW FEATURES ##
 
 	* (DONE) make articles viewable by month and year
 	* (DONE) create ListOfYears
 	* implement working comments
-	* implement multiple users
 	* implement child themes and child models
-	* implement markdown support
-	* fileupload testen / besser machen
-		* FileUpload.class.php aufräumen
+	* write installation-script
+		** with salted password!!!
+		** make Config.inc.php protected!!!!!!!
 
 ## MODELS ##
 
@@ -119,18 +109,16 @@
 	* (DONE) 7 – add missing html elements to prettify config
 		* (DONE) Audio, Video, Canvas, IFRAME
 	* (DONE) 10 – Deleting an entry and then saving any other entry/item, causes the deleted item of the entry to be saved again, because it still is in the history array
+	* (DONE) prüfe ob ungespeicherte änderungen vorhanden sind -> methode verbessern
+	* (DONE) add error message, when request item, article, tag, could not be found
+	* (DONE) wrap history array in an object	
+
 
 	* keine kommentare laden, wenn man nicht den einzelnen Eintrag ansieht
-
-	* prüfe ob ungespeicherte änderungen vorhanden sind -> methode verbessern
-	* add error message, when request item, article, tag, could not be found
 	* when editing html and switching to other article and again switching to edit html fucks up
-
 	* fix bug, when removing style blockquote
 	* blockquote cite="author":
-	* wrap history array in an object	
 	* fix NaN with RGB somewhere, see console
-
 		
 ## Architecture ##
 					
@@ -147,10 +135,17 @@
 
 ## CLEAN UP ##
 
-	* rename Methods according to Coding Standards 
 	* (DONE) rename Categories to Tags (everywhere)
 	* (DONE) rename News to ListOfArticles
+	* comment everything
+	* rename Methods according to Coding Standards 
 	* check start and end of class for correct comments
 	* rewrite copyrights
 	* remove unused classes from folder classes
 		-> put them somewhere else
+
+## Version 1.1 ##
+	* implement multiple users
+	* implement markdown support
+	* improve fileupload
+		* cleanup FileUpload.class.php

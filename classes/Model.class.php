@@ -15,6 +15,10 @@
         public function setTemplate($tpl) {
         	$this->_template = $tpl;
         }
+        public function getTags($table) {
+            $query = 'SELECT * FROM '.$table.' WHERE id_a = :id_a';
+            return  DB::get($query, array(':id_a' => $this->_id));
+        }
 
     }
 
