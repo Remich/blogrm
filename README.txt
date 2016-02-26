@@ -12,7 +12,7 @@
 	* (DONE) find why there is a tab at the beginning of each file, especially in RSS-Feed
 	* (DONE) get info of rss feed from config
 	* (DONE) get language for <html lang="?"> from config
-	
+
 	* grep nach TODOs
 	* delete old jquery version 
 
@@ -137,6 +137,7 @@
 
 	* (DONE) rename Categories to Tags (everywhere)
 	* (DONE) rename News to ListOfArticles
+	* rename table article -> articles
 	* comment everything
 	* rename Methods according to Coding Standards 
 	* check start and end of class for correct comments

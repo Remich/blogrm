@@ -21,35 +21,6 @@ class ModelList extends Model implements iModel {
 
     }
 
-    // TODO: evtl in TagManager auslagern
-    protected function getWheres($table) {
-    	
-    	$tags = explode(".", $this->_tag_id);
-    	$a_ids = array();
-    	foreach($tags as $item) {
-    		$query = 'SELECT id_a FROM '.$table.' WHERE id_b = :id_b';
-    		$tmp = DB::get($query, array(':id_b'=>$item));
-    		foreach($tmp as $item2) 
-    			$a_ids[$item][] = $item2['id_a'];
-    	}
-    	if(sizeof($a_ids)>1)
-    		$result = call_user_func_array('array_intersect',$a_ids);
-    	else
-    		foreach($a_ids as $item)
-    			$result = $item;    	
-    	
-    	$first = true;
-    	$wheres = "";
-        $i = 0;
-        $params = array();
-    	foreach($result as $item) {
-    		$wheres .= ($first ? "" : " OR ") . "id=:id".$i;
-            $params['id'.$i++] = $item;
-    		$first = false;
-    	}
-        return array($wheres, $params);
-    }
-
 	protected function getData() {
 
         if($this->_params === NULL) {

@@ -21,7 +21,7 @@
 					die("ERROR: Tag-ID is empty or not numeric! (ListOfArticles::__construct()");
 				}
 
-				$this->tag_id = $this->_request['tag_id'];
+				$this->_tag_id = $this->_request['tag_id'];
 			}
 
 			// Month
@@ -52,17 +52,13 @@
 			// Select Articles by TAG
 			if($this->_tag_id != NULL) {
 
+				// check if Tag does exist
 				require_once("models/Tag/Tag.class.php");
 				$tag = new Tag(array("id" => $this->_tag_id));
 
-				list($wheres, $this->_params) = $this->getWheres("rel_articles_tags");
-
-				if($wheres == "") {
-					$data = array();
-				} else {
-					// TODO better use smart SQL-Queries (leftjoin, rightjoint) on relationtable
-					$this->_query = "SELECT id FROM article WHERE ".$wheres." ORDER BY a_date DESC";
-				}
+				// sql query
+				$this->_query = "SELECT * FROM (SELECT id_a FROM rel_articles_tags WHERE id_b = :tag_id) AS t1 JOIN article AS t2 ON t2.id = t1.id_a ORDER BY a_date DESC";
+				$this->_params = array(":tag_id" => $this->_tag_id);
 
 			// Select Articles by MONTH and YEAR
 			} elseif($this->_month != NULL) { 			
