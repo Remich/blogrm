@@ -56,6 +56,8 @@
 				"December"
 			);
 
+			Misc::dump($data);
+
 			foreach($data as $key => $item) {
 				$tmp = explode(":", $item['month']);
 				$data[$key]['month_numeric'] = $tmp[0];

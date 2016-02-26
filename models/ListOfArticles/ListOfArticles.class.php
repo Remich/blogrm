@@ -14,9 +14,36 @@
 		public function __construct($request = NULL) {
 			$this->_request = $request;
 
-			$this->_tag_id = @$this->_request['tag_id'] ? $this->_request['tag_id'] : NULL;
-			$this->_month = @$this->_request['month'] ? $this->_request['month'] : NULL;
-			$this->_year = @$this->_request['year'] ? $this->_request['year'] : NULL;
+			// Tag-ID
+			if (isset($this->_request['tag_id'])) {
+				if (trim($this->_request['tag_id']) === "" ||
+					!is_numeric($this->_request['tag_id'])) {
+					die("ERROR: Tag-ID is empty or not numeric! (ListOfArticles::__construct()");
+				}
+
+				$this->tag_id = $this->_request['tag_id'];
+			}
+
+			// Month
+			if (isset($this->_request['month'])) {
+				if (trim($this->_request['month'])	=== "" ||
+					!is_numeric($this->_request['month'])) {
+					die("ERROR: Month is empty or not numeric! (ListOfArticles::__construct()");
+				}
+
+				$this->_month = $this->_request['month'];
+			}
+
+			// Year
+			if (isset($this->_request['year'])) {
+				if (trim($this->_request['year'])	=== "" ||
+					!is_numeric($this->_request['year'])) {
+					die("ERROR: Year is empty or not numeric! (ListOfArticles::__construct()");
+				}
+
+				$this->_year = $this->_request['year'];
+			}
+
 			$this->load();
 		}
 		

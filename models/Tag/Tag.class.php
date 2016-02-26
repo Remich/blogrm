@@ -17,19 +17,24 @@
 		*/
 		function __construct($array = NULL) {
 
-			if ($array == NULL) {
+			if ($array === NULL) {
 
 				$this->_data['name'] = "Default Tag Name";
 
 			} elseif ( isset($array['id']) ) {
 
+				if (trim($array['id']) === "" ||
+					!is_numeric($array['id'])) {
+					die("ERROR: ID is empty or not numeric! Tag::__construct()");
+				}
+
 				$this->_id = $array['id'];
 
-				if ( $this->doesExist() ) {
-					$this->load();
-				} else {
-					die("Tag " . $this->_id . " not found!");
+				if ( !$this->doesExist() ) {
+					die("ERROR: Tag " . $this->_id . " not found! Tag::__construct()");
 				}
+				
+				$this->load();
 
 			} elseif( isset($array['name']) ) {
 

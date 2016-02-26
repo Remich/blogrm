@@ -16,19 +16,21 @@
 		public function __construct($id = NULL) {
 
 			if($id === NULL) {
-				die("ERROR: No id for RSSItem supplied!");
-			} elseif (!is_int($id)) {
-				die("ERROR: Supplied id is not of type int!");
-			} else {
-				$this->_id = $id;
+				die("ERROR: Missing ID! (RSSItem::__construct()");
+			} 
+
+			if (trim($id) === "" ||
+				!is_numeric($id)) {
+				die("ERROR: ID is empty or not numeric! (RSSItem::__construct()");
+			}
+			
+			$this->_id = $id;
+
+			if ( !$this->doesExist() ) {
+				die("ERROR: RSSItem " . $this->_id . " not found! (RSSItem::__construct()");
 			}
 
-			if ( $this->doesExist() ) {
-				$this->loadEntry();
-			} else {
-				die("RSSItem " . $this->_id . " not found!");
-			}
-
+			$this->loadEntry();
 		} 
 		
 		public function loadEntry() {

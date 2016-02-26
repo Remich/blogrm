@@ -14,21 +14,52 @@
 		private $_tag_id = null;
 		private $_page = null;
 		
+		public function __construct($tag_id = null) {
+			if ($tag_id != NULL) {
+				if (trim($tag_id) === "" ||
+					!is_numeric($tag_id)) {
+					die("ERROR: Tag-ID is empty or not numeric! (TagCloud::__construct()");
+				}
+
+				$this->_tag_id = $tag_id;		
+			}	
+		}
 		public function setTableRelation($table = null) {
-			if($table == null)
-				die('Error: Nullrefrence Table Relation');
+			if($table == null) {
+				die('ERROR: Missing table! (TagCloud::setTableRelation())');
+			}
+			if (trim($table) === "") {
+				die('ERROR: Table-name is empty! (TagCloud::setTableRelation())');
+			}
+			if (!Misc::doesTableExist($table)) {
+				die('ERROR: Table '.$table.' does not exist! TagCloud::setTableRelation())');
+			}
 			
 			$this->_table_relation = $table;			
 		}
 		public function setTableTags($table = null) {
-			if($table == null)
-				die('Error: Nullrefrence Table Relation');
+			if($table == null) {
+				die('ERROR: Missing table! (TagCloud::setTableTags())');
+			}
+			if (trim($table) === "") {
+				die('ERROR: Table-name is empty! (TagCloud::setTableTags())');
+			}
+			if (!Misc::doesTableExist($table)) {
+				die('ERROR: Table '.$table.' does not exist! TagCloud::setTableTags())');
+			}
 				
 			$this->_table_tags = $table;
 		}
 		public function setPage($page = null) {
-			if($page == null)
-				die('Error: Nullrefrence Table Relation');
+			if($page == null) {
+				die('ERROR: missing page! (TagCloud::setPage())');
+			} 
+			if (trim($page) === "") {
+				die('ERROR: page is empty! (TagCloud::setPage())');
+			}
+			if (!is_numeric($page)) {
+				die('ERROR: page is not numeric! (TagCloud::setPage())');
+			}
 		
 			$this->_page = $page;
 		}
@@ -38,11 +69,6 @@
 		public function setFontMin($min) {
 			$this->_min = $min ;
 		}
-		
-		public function __construct($tag_id = null) {
-			$this->_tag_id = $tag_id;		
-		}
-		
 		public function generate() {
 			if($this->_tag_id == null) {
 				$query = 'SELECT * FROM '.$this->_table_tags.' WHERE uid = 1 ORDER BY name ASC';

@@ -18,28 +18,45 @@
 		private $_tags_new;
 		private $_table_relation = null;
 		private $_table_tags = null;
-		
-		public function setTableRelation($table = null) {
-			if($table == null)
-				die('Error: Nullreference Table Relation');
-				
-			$this->_table_relation = $table;
-		}
-		public function setTableTags($table = null) {
-			if($table == null)
-				die('Error: Nullrefrence Table Relation');
-		
-			$this->_table_tags = $table;
-		}
-		
+
 		public function __construct($a_id = NULL) {
 			if($a_id === NULL) {
-				die("ERROR: No id_a for TagManager __construct supplied!");
-			} elseif (!is_int($a_id)) {
-				die("ERROR: id_a is not of type int. (TagManager __construct)");
-			} else {
-				$this->_a_id = $a_id;
+				die("ERROR: Missing id_a! (TagManager::__construct()");
 			}
+
+			if (trim($a_id) === "" ||
+				!is_numeric($a_id)) {
+				die("ERROR: id_a is empty or not numeric! (TagManager::__construct()");
+			}
+
+			$this->_a_id = $a_id;
+		}
+		
+		public function setTableRelation($table = null) {
+			if($table == null) {
+				die('ERROR: Missing table! (TagManager::setTableRelation())');
+			}
+			if (trim($table) === "") {
+				die('ERROR: Table-name is empty! (TagManager::setTableRelation())');
+			}
+			if (!Misc::doesTableExist($table)) {
+				die('ERROR: Table '.$table.' does not exist! TagManager::setTableRelation())');
+			}
+			
+			$this->_table_relation = $table;			
+		}
+		public function setTableTags($table = null) {
+			if($table == null) {
+				die('ERROR: Missing table! (TagManager::setTableTags())');
+			}
+			if (trim($table) === "") {
+				die('ERROR: Table-name is empty! (TagManager::setTableTags())');
+			}
+			if (!Misc::doesTableExist($table)) {
+				die('ERROR: Table '.$table.' does not exist! TagManager::setTableTags())');
+			}
+				
+			$this->_table_tags = $table;
 		}
 		
 		public function setTags($tags) {

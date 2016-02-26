@@ -14,21 +14,26 @@
 	*/
 	class Pages {
 	
-		var $_entrys;
+		var $_entries;
 		var $_itemsPerPage;
-		private $module;
 		
-		public function __construct($entrys, $itemsPerPage, $module = NULL) {
-			$this->_entrys = $entrys;
+		public function __construct($entries, $itemsPerPage) {
+
+			if (trim($entries) === "" ||
+				!is_numeric($entries)) {
+				die('ERROR: Entries is empty or not numeric! (Pages::__construct()');
+			}
+			$this->_entries = $entries;
+
+			if (trim($itemsPerPage) === "" ||
+				!is_numeric($itemsPerPage)) {
+				die('ERROR: itemsPerPage is empty or not numeric! (Pages::__construct()');
+			}
 			$this->_itemsPerPage = $itemsPerPage;
-			if($module == NULL)
-				$this->module = 'bookmarks';
-			else
-				$this->module = $module;
 		}
 		
 		public function getPages() {
-			$pages = ceil($this->_entrys / $this->_itemsPerPage);
+			$pages = ceil($this->_entries / $this->_itemsPerPage);
 			if($pages == 0)
 				return 1;
 			else

@@ -26,13 +26,28 @@
 		* (DONE) FIX error, see pp_editor.js line 277
 	* (DONE) Fix RSS
 	* (DONE) FIX delete_item in pp_editor.js
-
-	* Make constructors defensive against passed parameters
+	* (DONE) Make constructors defensive against passed parameters
 		(use implicit typecasting)
+		- Article
+		- ListOfArticles
+		- ListOfMonth
+		- ListOfYears
+		- RSSFeed
+		- RSSItem
+		- Relation
+		- Tag
+		- TagCloud
+		- TagManager
+		- Model
+		- Pages
+	* (DONE) Say from where the error message comes from
+
+
 	* fix / escape / make save loading of models in ControllerAjax.class.php
 		<=> probably the same <=>
 	* fix security hole with $_GET parameters
 		(save, delete, new_file, …)
+
 	* make tables hardcoded in 
 		TAGS, RELATION, ARTICLE etc...
 	* make Config.inc.php protected!!!!!!!
@@ -136,3 +151,6 @@
 	* (DONE) rename Categories to Tags (everywhere)
 	* (DONE) rename News to ListOfArticles
 	* check start and end of class for correct comments
+	* rewrite copyrights
+	* remove unused classes from folder classes
+		-> put them somewhere else

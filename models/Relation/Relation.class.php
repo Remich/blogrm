@@ -10,27 +10,55 @@
 		
 		protected $_id;
 		protected $_name = "Relation";
-		protected $_table = "";
-		protected $_id_a = null;
-		protected $_id_b = null;
+		protected $_table = NULL;
+		protected $_id_a = NULL;
+		protected $_id_b = NULL;
 		
-		/**
-		* Constructor
-		*
-		*/
-		function __construct($table, $id_a, $id_b) {
+		function __construct($table = NULL, $id_a = NULL, $id_b = NULL) {
+
+			if ($table === NULL) {
+				die('ERROR: Missing table-name! (Relation::__construct()');
+			}
+			if (trim($table) === "") {
+				die('ERROR: Table-name is empty! (Relation::__construct()');
+			}
+			if (!Misc::doesTableExist($table)) {
+				die('ERROR: Table '.$table.' does not exist! (Relation::__construct()');
+			}
+
 			$this->_table = $table;
+
+			if ($id_a === NULL) {
+				die('ERROR: Missing id_a! (Relation::__construct()');
+			} 
+			if (trim($id_a) === "") {
+				die('ERROR: id_a is empty! (Relation::__construct()');
+			}
+			if (!is_numeric($id_a)) {
+				die('ERROR: id_a is not numeric! (Relation::__construct()');
+			}
 			$this->_id_a = $id_a;
+
+			if ($id_b === NULL) {
+				die('ERROR: Missing id_b! (Relation::__construct()');
+			} 
+			if (trim($id_b) === "") {
+				die('ERROR: id_b is empty! (Relation::__construct()');
+			}
+			if (!is_numeric($id_b)) {
+				die('ERROR: id_b is not numeric! (Relation::__construct()');
+			}
 			$this->_id_b = $id_b;			
 
+			$this->load();
+		} 
+
+		public function load() {
 			$query = 'SELECT * FROM '.$this->_table.' WHERE id_a = :id_a AND id_b = :id_b';
 			$this->_data = DB::getOne($query, array(':id_a' => $this->_id_a, ':id_b' => $this->_id_b));
 			
-			if(sizeof($this->_data)==0)
+			if(sizeof($this->_data)===0)
 				$this->newEntry(); 
-		} 
-		public function setTable($table) {
-			$this->_table = $table;
 		}
 		
 		public function newEntry() {

@@ -36,13 +36,18 @@
 			// Check wether article with that id does exist and load it
 			if ( isset($array['id']) ) {
 
+				if (trim($array['id']) === "" ||
+					!is_numeric($array['id'])) {
+					die("ERROR: Id is empty or not numeric! (Article::__construct())");
+				}
+
 				$this->_id = $array['id'];
 
-				if ( $this->doesExist() ) {
-					$this->loadEntry();
-				} else {
-					die("Article " . $this->_id . " not found!");
+				if ( !$this->doesExist() ) {
+					die("ERROR: Article " . $this->_id . " not found! (Article::__construct())");
 				}
+
+				$this->loadEntry();
 
 			// Data has been supplied.
 			// Validate data and load current instance with supplied data
@@ -51,39 +56,35 @@
 				if (!isset($array['data']['title']) ||
 					!isset($array['data']['content']) ||
 					!isset($array['data']['tags'])) {
-					die("Not all Article data supplied");
+					die("ERROR: Missing data! (Article::__construct())");
 				} else {
 
 					// Check id	
 					if (isset($array['data']['id'])) {
 						if (trim($array['data']['id']) === "" ||
 							!is_numeric($array['data']['id'])) {
-							die("Supplied id for Article is empty or not numeric");
-							} else {
-							$this->_id = $array['data']['id'];
-						}
+							die("ERROR: Id is empty or not numeric! (Article::__construct())");
+							}
+						$this->_id = $array['data']['id'];
 					}
 
 					// Check title
 					if (trim($array['data']['title']) === "") {
-						die("Supplied title for Article is empty");
-					} else {
-						$this->_data['title'] = $array['data']['title'];
+						die("ERROR: Title is empty! (Article::__construct())");
 					}
+					$this->_data['title'] = $array['data']['title'];
 
 					// Check content
 					if (trim($array['data']['content']) === "") {
-						die("Supplied content for Article is empty");
-					} else {
-						$this->_data['content'] = $array['data']['content'];
+						die("ERROR: Content is empty! (Article::__construct())");
 					}
+					$this->_data['content'] = $array['data']['content'];
 
 					// Check tags
 					if (trim($array['data']['tags']) === "") {
-						die("Supplied tags for Article is empty");
-					} else {
-						$this->_data['tags'] = $array['data']['tags'];
+						die("ERROR: Tags is empty! (Article::__construct())");
 					}
+					$this->_data['tags'] = $array['data']['tags'];
 
 				}
 

@@ -155,6 +155,26 @@
 			}
 	
 		}
+
+		public static function doesTableExist($table) {
+			switch(Config::getOption("db_type")) {
+				case "mysql": 
+					$query = "SHOW TABLES LIKE :name";
+				break;
+			
+				case "sqlite": 
+					$query = "SELECT name FROM sqlite_master WHERE type='table' AND name=:name";
+				break;
+			}
+			$params = array(':name' => $table);
+			$data = DB::get($query, $params);
+
+			if (sizeof($data) > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	
 	} // <!-- end class ’Misc’ -->
 	
