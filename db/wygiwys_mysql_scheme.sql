@@ -45,8 +45,7 @@ CREATE TABLE IF NOT EXISTS `article` (
 CREATE TABLE IF NOT EXISTS `tags` (
 `id` int(11) NOT NULL,
   `uid` int(11) NOT NULL DEFAULT '1',
-  `name` varchar(255) NOT NULL,
-  `hits` int(11) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
