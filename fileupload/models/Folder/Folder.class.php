@@ -6,6 +6,7 @@
  	 */
 	
 	require_once('interfaces/iDBContentStatic.interface.php');
+    require_once("models/ModelList/ModelList.class.php");
 	
 	class Folder extends ModelList {
 		
@@ -31,7 +32,7 @@
 		
 		public function save() {
 		
-		}
+	}
 
 	} // <!-- end class ’Controller’ -->
 ?>

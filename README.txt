@@ -137,12 +137,12 @@
 
 	* (DONE) rename Categories to Tags (everywhere)
 	* (DONE) rename News to ListOfArticles
-	* rename table article -> articles
+	* (DONE) rename table article -> articles
 	* comment everything
 	* rename Methods according to Coding Standards 
 	* check start and end of class for correct comments
 	* rewrite copyrights
-	* remove unused classes from folder classes
+	* (DONE) remove unused classes from folder classes
 		-> put them somewhere else
 
 ## Version 1.1 ##

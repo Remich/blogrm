@@ -6,6 +6,7 @@
  	 */
 	
 	require_once('interfaces/iDBContentStatic.interface.php');
+    require_once("models/ModelSingle/ModelSingle.class.php");
 	
 	class Comment extends ModelSingle implements iDBContentStatic {
 		

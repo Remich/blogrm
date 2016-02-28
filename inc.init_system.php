@@ -15,7 +15,7 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	
 	require_once("protected/Config.inc.php");
-	require_once("helpers.inc.php");
+	require_once("inc.helpers.php");
 
 	session_name(Config::getOption("session_name"));
 	session_start();

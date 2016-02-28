@@ -3,6 +3,7 @@
 	/**
 	*	Copyright 2010-2014 René Michalke.
 	*/
+    require_once("models/ModelSingle/ModelSingle.class.php");
 
 	class TagCloud extends ModelSingle {
 		
@@ -97,10 +98,21 @@
 			if( count($this->_tags) === 0) {	
 				return "Nicht genug Daten für die TagCloud";
 			} else {
+
+				$most = 1;
+				foreach($this->_tags as $item) {
+					if($item['occurences'] > $most) {
+						$most = $item['occurences'];
+					}
+				}
+
 				$tags = array();
+
 				foreach($this->_tags as $key => $item) {
+					$font = ceil(  ($item['occurences'] / $most ) * $this->_max );
 					$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px;" href="index.php?tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
 				}
+				
 				return '<section id="tagcloud">'."\n<p>" . implode("", $tags) . "</p>\n</section>";
 			}
 		}

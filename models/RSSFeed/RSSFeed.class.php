@@ -4,6 +4,7 @@
 	*	Copyright 2010-2014 René Michalke.
 	*/
     require_once("models/RSSItem/RSSItem.class.php");
+    require_once("models/ModelList/ModelList.class.php");
 
 	class RSSFeed extends ModelList {
 		
@@ -15,7 +16,7 @@
 		
 		public function load() {
 			
-			$this->_query = 'SELECT * FROM article ORDER BY a_date DESC';
+			$this->_query = 'SELECT * FROM articles ORDER BY a_date DESC';
 			$data = $this->getData();
 						
 			if(!sizeof($data)) {

@@ -4,6 +4,7 @@
 	*	Copyright 2010-2014 René Michalke.
 	*/
     require_once("models/Article/Article.class.php");
+    require_once("models/ModelList/ModelList.class.php");
 
 	class ListOfArticles extends ModelList {
 		
@@ -57,7 +58,7 @@
 				$tag = new Tag(array("id" => $this->_tag_id));
 
 				// sql query
-				$this->_query = "SELECT * FROM (SELECT id_a FROM rel_articles_tags WHERE id_b = :tag_id) AS t1 JOIN article AS t2 ON t2.id = t1.id_a ORDER BY a_date DESC";
+				$this->_query = "SELECT * FROM (SELECT id_a FROM rel_articles_tags WHERE id_b = :tag_id) AS t1 JOIN articles AS t2 ON t2.id = t1.id_a ORDER BY a_date DESC";
 				$this->_params = array(":tag_id" => $this->_tag_id);
 
 			// Select Articles by MONTH and YEAR
@@ -78,7 +79,7 @@
 					break;
 				}
 
-				$this->_query = "SELECT id FROM article WHERE ".$wheres." ORDER BY a_date DESC";
+				$this->_query = "SELECT id FROM articles WHERE ".$wheres." ORDER BY a_date DESC";
 
 			// Select Articles only by YEAR
 			} elseif($this->_year != NULL) {
@@ -93,12 +94,12 @@
 					break;
 				}
 
-				$this->_query = "SELECT id FROM article WHERE ".$wheres." ORDER BY a_date DESC";
+				$this->_query = "SELECT id FROM articles WHERE ".$wheres." ORDER BY a_date DESC";
 
 			// Select all Articles
 			} else {
 
-				$this->_query = 'SELECT * FROM article ORDER BY a_date DESC';
+				$this->_query = 'SELECT * FROM articles ORDER BY a_date DESC';
 
 			}
 

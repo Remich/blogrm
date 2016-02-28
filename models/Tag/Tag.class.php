@@ -5,6 +5,7 @@
 	 * Copyright 2010-2014 René Michalke.
  	 */
 	
+    require_once("models/ModelSingle/ModelSingle.class.php");
 	
 	class Tag extends ModelSingle {
 		

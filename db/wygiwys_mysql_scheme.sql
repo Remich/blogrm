@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article`
+-- Table structure for table `articles`
 --
 
-CREATE TABLE IF NOT EXISTS `article` (
+CREATE TABLE IF NOT EXISTS `articles` (
 `id` int(11) NOT NULL,
   `uid` int(11) NOT NULL DEFAULT '1',
   `title` varchar(255) NOT NULL,

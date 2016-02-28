@@ -6,11 +6,12 @@
  	 */
 	
 	require_once('interfaces/iDBContentStatic.interface.php');
+    require_once("models/ModelSingle/ModelSingle.class.php");
 	
 	class RSSItem extends ModelSingle implements iDBContentStatic {
 		
 		protected $_name = "RSSItem";
-		protected $_table = "article";	
+		protected $_table = "articles";	
 					
 		
 		public function __construct($id = NULL) {
@@ -38,7 +39,7 @@
 			switch(Config::getOption("db_type")) {
 				case "mysql": 
 					$query = "SELECT *, DATE_FORMAT(a_date, '%a, %d %b %Y %T') as a_date_rss
-							  FROM article WHERE id = :id";
+							  FROM articles WHERE id = :id";
 				break;
 			
 				case "sqlite": 
@@ -67,7 +68,7 @@ else 'Dec' end as month,
   		STRFTIME('%d', a_date) as day_of_month,
   		STRFTIME('%Y', a_date) as year,
   		TIME(a_date) as hhmmss
-							  FROM article WHERE id = :id";
+							  FROM articles WHERE id = :id";
 				break;
 			}
 			

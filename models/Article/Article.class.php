@@ -6,11 +6,12 @@
  	 */
 	
 	require_once('interfaces/iDBContentStatic.interface.php');
+    require_once("models/ModelSingle/ModelSingle.class.php");
 	
 	class Article extends ModelSingle implements iDBContentStatic {
 		
 		protected $_name = "Article";
-		protected $_table = "article";
+		protected $_table = "articles";
 		
 		public function __construct($array = null) {
 
@@ -99,12 +100,12 @@
 			switch(Config::getOption("db_type")) {
 				case "mysql":
 					$query = "SELECT *, DATE_FORMAT(a_date, '%D %M %Y – %H:%i') as a_date 
-							  FROM article WHERE id = :id";
+							  FROM articles WHERE id = :id";
 					break;
 
 				case "sqlite":
 					$query = "SELECT *, strftime('%d.%m.%Y – %H:%M', a_date) as a_date 
-							  FROM article WHERE id = :id";
+							  FROM articles WHERE id = :id";
 					break;
 			}
 			$this->_data = DB::getOne($query, array(':id' => $this->_id));
@@ -158,14 +159,14 @@
 		public function newEntry() {
 			switch(Config::getOption("db_type")) {
 				case "mysql":
-					$query = "INSERT INTO article 
+					$query = "INSERT INTO articles 
 								(title, a_date, content) 
 							  VALUES 
 								(:title, :a_date, :content)";
 					break;
 
 				case "sqlite":
-					$query = "INSERT INTO article 
+					$query = "INSERT INTO articles 
 								(title, a_date, content) 
 							  VALUES 
 								(:title, :a_date, :content)";
@@ -184,7 +185,7 @@
 
 		public function updateEntry() {
 
-			$query = 'UPDATE article SET 
+			$query = 'UPDATE articles SET 
 						title=:t_value,
 						content=:c_value
 					  WHERE id=:id';
@@ -206,7 +207,7 @@
 			$catman->updateTags();
 
 			// delete item
-			$query = 'DELETE FROM article
+			$query = 'DELETE FROM articles
 						WHERE id = :id';
 			$params = array('id' => $this->_id);
 			DB::execute($query, $params);

@@ -108,7 +108,7 @@
 
 			//require_once('models/Model/Article.class.php');
 			$params = array(
-				'table' => "article",
+				'table' => "articles",
 				'id' => $this->_a_id
 			);
 			$article = new Model($params);

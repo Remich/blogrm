@@ -6,6 +6,7 @@
  	 */
 	
 	require_once('interfaces/iDBContentStatic.interface.php');
+    require_once("models/ModelSingle/ModelSingle.class.php");
 	
 	class FileUpload extends ModelSingle {
 		
