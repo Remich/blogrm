@@ -151,7 +151,7 @@
 			$catman->setTableRelation("rel_articles_tags");
 			$catman->setTableTags("tags");
 			$catman->updateTags();
-			// Misc::dump($catman);
+			// dump($catman);
 			// die();
 		}
 

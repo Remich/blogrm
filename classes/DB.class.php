@@ -42,7 +42,7 @@
 				}
 				catch(Exception $e){
 					if(Config::getOption('debug')) {
-						Misc::dump($e);
+						dump($e);
 						die();
 					} else die($e->getMessage());					
 				}
@@ -58,7 +58,7 @@
 			}
 			catch(Exception $e) {
 				if(Config::getOption('debug')) {
-					Misc::dump($e);
+					dump($e);
 					die();
 				} else die($e->getMessage());
 			}
@@ -74,7 +74,7 @@
 			}
 			catch(Exception $e) {
 				if(Config::getOption('debug')) {
-					Misc::dump($e);
+					dump($e);
 					die();
 				} else die($e->getMessage());				
 			}	
@@ -91,7 +91,7 @@
 			}
 			catch(Exception $e) {
 				if(Config::getOption('debug')) {
-					Misc::dump($e);
+					dump($e);
 					die();
 				} else die($e->getMessage());
 			}
@@ -109,7 +109,7 @@
 			}
 			catch(Exception $e) {
 				if(Config::getOption('debug')) {
-					Misc::dump($e);
+					dump($e);
 					die();
 				} else die($e->getMessage());	
 			}

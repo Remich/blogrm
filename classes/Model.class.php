@@ -16,7 +16,7 @@
                     die('ERROR: Table name is empty. (Model::__construct())');
                 }
 
-                if(!Misc::doesTableExist($array['table'])) {
+                if(!doesTableExist($array['table'])) {
                     die('ERROR: Table '.$array['table'].' does not exist! (Model::__construct())');
                 }
 

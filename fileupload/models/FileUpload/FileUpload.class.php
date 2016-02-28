@@ -29,7 +29,7 @@
 		function UploadFiles($files) {
 		
 			$max_filesize = ini_get('upload_max_filesize');
-			$max_filesize_b = Misc::returnBytes($max_filesize);
+			$max_filesize_b = returnBytes($max_filesize);
 			$result = 1;
 				
 			if(!$files)
@@ -69,7 +69,7 @@
 						$files['myfile']['hash'][] = hash("sha256", $item.microtime().time());
 	
 					foreach($files['myfile']['name'] as $item)
-						$files['myfile']['name_short'][] = Misc::shortenStr($item, 55);
+						$files['myfile']['name_short'][] = shortenStr($item, 55);
 	
 	
 					// move file to desired location

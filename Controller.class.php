@@ -9,7 +9,8 @@
 		private $_header = null;
 		private $_footer = null;
 		private $_plugins = null;
-		
+
+ 
 		/**
 		* Constructor
 		*
@@ -39,10 +40,6 @@
 				$this->_footer .= '<script type="text/javascript" src="editor/views/pp_editor.js"></script>';
 			}
 						
-			//TODO: Move to helpers.inc.php
-			function get_theme_folder() {
-				return "themes/".Config::getOption("theme")."/";
-			}
 
 			// require_once("models/NavigationFromFolder/NavigationFromFolder.class.php");
 			// $nav = new NavigationFromFolder('../');
@@ -94,36 +91,6 @@
 				default:
 				case "default":
 				case "blog":
-					
-					// TODO: in klasse auslagern
-					// if(isset($this->_request['tag_id'])) {
-					// 	require_once("models/Tag/Tag.class.php");
-					// 	$tags = explode(".", $this->_request['tag_id']);
-					// 	$names = array();
-					// 	$i = 0;
-					// 	foreach($tags as $item) {
-					// 		$tag = new Tag(array('table'=>'tags', 'id'=>$item));
-					// 		$names[$i]['id'] = $item;
-					// 		$names[$i++]['name'] = $tag->getName();
-					// 		$tag->incHit();
-					// 	}
-					// 	$this->_view->assign('tagnames', $names);
-					// }
-
-
-					// Testing
-					// require_once("models/Article/Article.class.php");
-
-					// $test_ar = array("data" => array(
-					// 	"title" => "asfdsadf ",
-					// 	"content" => " fobar",
-					// 	"tags" => "Unc "
-					// 	));
-					// $test = new Article($test_ar);
-					// $test = new Article();
-
-					// Misc::dump($test);
-					// die();
 						
 					// ListOfArticles
 					require_once("models/ListOfArticles/ListOfArticles.class.php");
@@ -140,11 +107,11 @@
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_areas[1][] = $tags->display(false);
+					$this->_areas[1][] = $tags->display();
 
 					$this->_view->setTemplate('index');
 				
-					break; // <!-- end case ’default’ --> 
+				break; // <!-- end case ’default’ --> 
 					
 				
 				case 'rss':
@@ -187,7 +154,7 @@
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_areas[2][] = $tags->display(false);
+					$this->_areas[2][] = $tags->display();
 
 					// Articles by Month
 					require_once("models/ListOfMonths/ListOfMonths.class.php");

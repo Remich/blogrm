@@ -39,7 +39,7 @@
 			if (trim($table) === "") {
 				die('ERROR: Table-name is empty! (TagManager::setTableRelation())');
 			}
-			if (!Misc::doesTableExist($table)) {
+			if (!doesTableExist($table)) {
 				die('ERROR: Table '.$table.' does not exist! TagManager::setTableRelation())');
 			}
 			
@@ -52,7 +52,7 @@
 			if (trim($table) === "") {
 				die('ERROR: Table-name is empty! (TagManager::setTableTags())');
 			}
-			if (!Misc::doesTableExist($table)) {
+			if (!doesTableExist($table)) {
 				die('ERROR: Table '.$table.' does not exist! TagManager::setTableTags())');
 			}
 				

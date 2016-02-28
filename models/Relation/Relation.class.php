@@ -22,7 +22,7 @@
 			if (trim($table) === "") {
 				die('ERROR: Table-name is empty! (Relation::__construct()');
 			}
-			if (!Misc::doesTableExist($table)) {
+			if (!doesTableExist($table)) {
 				die('ERROR: Table '.$table.' does not exist! (Relation::__construct()');
 			}
 

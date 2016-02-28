@@ -31,7 +31,7 @@
 			if (trim($table) === "") {
 				die('ERROR: Table-name is empty! (TagCloud::setTableRelation())');
 			}
-			if (!Misc::doesTableExist($table)) {
+			if (!doesTableExist($table)) {
 				die('ERROR: Table '.$table.' does not exist! TagCloud::setTableRelation())');
 			}
 			
@@ -44,7 +44,7 @@
 			if (trim($table) === "") {
 				die('ERROR: Table-name is empty! (TagCloud::setTableTags())');
 			}
-			if (!Misc::doesTableExist($table)) {
+			if (!doesTableExist($table)) {
 				die('ERROR: Table '.$table.' does not exist! TagCloud::setTableTags())');
 			}
 				
@@ -93,33 +93,13 @@
 		}
 			
 		
-		public function display($colorgradient = true) {
-			if( count($this->_tags) == 0) {	
+		public function display() {
+			if( count($this->_tags) === 0) {	
 				return "Nicht genug Daten für die TagCloud";
 			} else {
-				$most = 1;
-				foreach($this->_tags as $item)
-					if($item['occurences'] > $most)
-						$most = $item['occurences'];
-					
-				$mosthits = 1;
-				foreach($this->_tags as $item)
-					if($item['hits'] > $mosthits)
-						$mosthits = $item['hits'];
-		
 				$tags = array();
-				foreach($this->_tags as $key => $item) {						
-					$font = ceil(  ($item['occurences'] / $most ) * $this->_max );
-					if($font < $this->_min)	$font = $this->_min;
-
-					if($colorgradient) {
-						$color = ceil(($item['hits'] / $mosthits ) * 255);
-						if($color < 100 && $color != 0) $color = 100;
-						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px; color:#'.dechex($color).(dechex($color)/2).'00 !important" href="index.php?tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
-					} else {
-						$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px;" href="index.php?tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
-
-					}
+				foreach($this->_tags as $key => $item) {
+					$tags[] = ' <a style="margin-right: 15px; font-size:'.$font.'px;" href="index.php?tag_id='.$item['id'].'" title="'.$item['occurences'].' Entries">'.$item['name'].'</a>';
 				}
 				return '<section id="tagcloud">'."\n<p>" . implode("", $tags) . "</p>\n</section>";
 			}

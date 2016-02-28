@@ -121,11 +121,6 @@
 			$options = array('htmlspecialchars', 'utf8_decode', 'stripslashes');
 			Sanitize::process_array($this->_data, $options);
 		}
-		public function incHit() {
-			$query = 'UPDATE '.$this->_table.' SET hits = :hits WHERE id = :id';
-			$params = array(':hits' => ++$this->_data['hits'], ':id' => $this->_data['id']);
-			DB::execute($query, $params);
-		}
 
 	} // <!-- end class ’Controller’ -->
 ?>
