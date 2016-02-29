@@ -142,6 +142,7 @@
 					require_once("models/Article/Article.class.php");
 					$post = new Article(array('id'=>$this->_request['id']));
 					$post->setTemplate("single");
+					$post->loadComments();
 					$this->_areas[0][] = $post->display();
 
 					// Tagcloud
@@ -154,18 +155,8 @@
 					if(isset($this->_request['page']))
 						$tags->setPage($this->_request['page']);
 					$tags->generate();
-					$this->_areas[2][] = $tags->display();
-
-					// Articles by Month
-					require_once("models/ListOfMonths/ListOfMonths.class.php");
-					$lom = new ListOfMonths();
-					$this->_areas[1][] = $lom->display();
-
-					// Articles by Year
-					require_once("models/ListOfYears/ListOfYears.class.php");
-					$loy = new ListOfYears();
-					$this->_areas[1][] = $loy->display();
-
+					$this->_areas[1][] = $tags->display();
+					
 					$this->_view->setTemplate('index');
 
 				break;
@@ -219,7 +210,10 @@
 					$comment = new Comment(
 						array("data" => array("a_id" => $this->_request['id'],
 							"author" => $this->_request['author'],
+							"mail" => ($this->_request['mail']) ? $this->_request['mail'] : "",
+							"www" => ($this->_request['www']) ? $this->_request['www'] : "",
 							"comment" => $this->_request['comment'])));
+					$comment->saveEntry();
 					header('Location: index.php?page=post&id=' . $this->_request['id']);
 					break;
 

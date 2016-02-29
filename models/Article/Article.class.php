@@ -67,7 +67,13 @@
 							die("ERROR: Id is empty or not numeric! (Article::__construct())");
 							}
 						$this->_id = $array['data']['id'];
+
+						// Check if article with supplied id exists
+						if ( !$this->doesExist() ) {
+							die("ERROR: Article " . $this->_id . " not found! (Article::__construct())");
+						}
 					}
+
 
 					// Check title
 					if (trim($array['data']['title']) === "") {
@@ -99,43 +105,26 @@
 
 			switch(Config::getOption("db_type")) {
 				case "mysql":
-					$query = "SELECT *, DATE_FORMAT(a_date, '%D %M %Y – %H:%i') as a_date 
-							  FROM articles WHERE id = :id";
+					$query = "SELECT *, DATE_FORMAT(a_date, '%D %M %Y – %H:%i') as a_date, (SELECT COUNT(*) as no_of_comments FROM comments WHERE a_id = :id) as no_of_comments FROM articles WHERE id = :id";
 					break;
 
 				case "sqlite":
-					$query = "SELECT *, strftime('%d.%m.%Y – %H:%M', a_date) as a_date 
-							  FROM articles WHERE id = :id";
+					$query = "SELECT *, strftime('%d.%m.%Y – %H:%M', a_date) AS a_date, (SELECT COUNT(*) as no_of_comments FROM comments WHERE a_id = :id) as no_of_comments FROM articles WHERE id = :id";
 					break;
 			}
 			$this->_data = DB::getOne($query, array(':id' => $this->_id));
 
 			require_once('models/TagManager/TagManager.class.php');
-			$tagmanager = new TagManager((int)$this->_id);
+			$tagmanager = new TagManager($this->_id);
 			$tagmanager->setTableRelation("rel_articles_tags");
 			$tagmanager->setTableTags("tags");
 			$this->_data['tags'] = $tagmanager->getTags();
-			
+		}
 
- 		// 	require_once("models/Comment/Comment.class.php");
-			// $query = "SELECT * FROM comment WHERE a_id = :a_id";
-			// $data = DB::get($query, array(':a_id' => $this->_id));
-			// foreach($data as $key => $item) {
-			// 	$tmp = new Comment(array("id"=>$item['id']));
-			// 	$data[$key] = $tmp->display();
-			// }
-			// $this->_data['comments'] = $data;
-		
-						
-			if(sizeof($this->_data) == 0)
-				$this->set(  array(
-					'id' => $this->_id, 
-					'title' => "Fehler: Artikel mit id ".$this->_id." nicht gefunden",
-					'content' => "Fehler: Artikel mit id ".$this->_id." nicht gefunden"
-				) );
-				
-			// $options = array('stripslashes');
-			// Sanitize::process_array($this->_data, $options);
+		public function loadComments() {
+ 			require_once("models/ListOfComments/ListOfComments.class.php");
+ 			$comments = new ListOfComments($this->_id);
+ 			$this->_data['comments'] = $comments->display();
 		}
 		
 
@@ -157,22 +146,10 @@
 		}
 
 		public function newEntry() {
-			switch(Config::getOption("db_type")) {
-				case "mysql":
-					$query = "INSERT INTO articles 
-								(title, a_date, content) 
-							  VALUES 
-								(:title, :a_date, :content)";
-					break;
-
-				case "sqlite":
-					$query = "INSERT INTO articles 
-								(title, a_date, content) 
-							  VALUES 
-								(:title, :a_date, :content)";
-					break;
-			}
-
+			$query = "INSERT INTO articles 
+						(title, a_date, content) 
+					  VALUES 
+						(:title, :a_date, :content)";
 			$params = array(
 				':title' => $this->_data['title'],
 				':content' => $this->_data['content'],
@@ -180,7 +157,7 @@
 			);
 			DB::execute($query, $params);
 
-			$this->_id = DB::lastId('id');
+			$this->_id = DB::lastId();
 		}
 
 		public function updateEntry() {

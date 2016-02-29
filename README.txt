@@ -50,6 +50,8 @@
 	* (DONE) make articles viewable by month and year
 	* (DONE) create ListOfYears
 	* implement working comments
+		* make comments editable
+	* make article date editable	
 	* implement real static content
 	* write installation-script
 		** with salted password!!!
@@ -112,9 +114,9 @@
 	* (DONE) prüfe ob ungespeicherte änderungen vorhanden sind -> methode verbessern
 	* (DONE) add error message, when request item, article, tag, could not be found
 	* (DONE) wrap history array in an object	
-
-
-	* keine kommentare laden, wenn man nicht den einzelnen Eintrag ansieht
+	* (DONE) keine kommentare laden, wenn man nicht den einzelnen Eintrag ansieht
+	
+	
 	* when editing html and switching to other article and again switching to edit html fucks up
 	* fix bug, when removing style blockquote
 	* blockquote cite="author":

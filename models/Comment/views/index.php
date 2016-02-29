@@ -1,11 +1,13 @@
 <?php foreach($this->_['data'] as $key => $item) { ?>
-<article id="a<?php echo $item['id']; ?>">
+<section class="comment">
+<article id="comment-<?php echo $item['id']; ?>" model="Comment">
 	<header>
-		<h3><span><?php echo ($item['www']) ? ('<a href="' . $item['www'] . '">' . $item['author'] . '</a>') : ($item['author']) ?></span> wrote on the <span><time class="post-subtitle" datetime="<?php echo $item['c_date']; ?>"><?php echo $item['c_date']; ?></time>:</span> </h3> </header>
-	<div class="editable" model="Article" model_id="<?php echo $item['id']; ?>" model_key="content">
-		<section>
-			<p><?php  echo ($item['comment'] != "") ? $item['comment'] : "Lorem Ipsum"; ?></p>
-		</section>
+		<h1><span><?php echo ($item['mail']) ? ('<a href="mailto:' . $item['mail'] . '">' . $item['author'] . '</a>') : ($item['author']) ?><?php echo ($item['www']) ? (' [ <a href="">www</a> ]') : ("") ?></span> wrote on the <span><time datetime="<?php echo $item['c_date']; ?>"><?php echo $item['c_date']; ?></time></span> 
+		</h1> 
+	</header>
+	<div class="editable">
+		<p><?php  echo ($item['comment'] != "") ? $item['comment'] : "Lorem Ipsum"; ?></p>
 	</div>
 </article>
+</section>
 <?php } ?>

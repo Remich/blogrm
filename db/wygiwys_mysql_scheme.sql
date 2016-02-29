@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Table structure for table `comments`
 --
 
-CREATE TABLE IF NOT EXISTS `comment` (
+CREATE TABLE IF NOT EXISTS `comments` (
 `id` int(11) NOT NULL,
   `a_id` int(11) NOT NULL,
   `author` varchar(255) NOT NULL,

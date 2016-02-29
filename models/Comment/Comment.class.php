@@ -11,78 +11,156 @@
 	class Comment extends ModelSingle implements iDBContentStatic {
 		
 		protected $_name = "Comment";
+		protected $_table = "comments";
 		
 		public function __construct($array = null) {
-			
-			if($array == null || sizeof($array) == 0) {
-				$this->_data['c_id'] = "Das ist der Default Comment Title";
-				$this->_data['author'] = "Author";
-				$this->_data['comment'] = "Lorem Ipsum Comment";
-				$this->newEntry();
+
+			// Load Default Values
+			$this->_data['author'] = "Seth Brundle";
+			$this->_data['mail'] = "seth@nomail.com";
+			$this->_data['www'] = "brundlefly.com";
+			$this->_data['comment'] = "It wants to... turn me into something else. That's not too terrible is it? Most people would give anything to be turned into something else.";
+
+			$this->_id = -1;
+
+			// A single id has been supplied.
+			// Check wether comment with that id does exist and load it
+			if ( isset($array['id']) ) {
+
+				if (trim($array['id']) === "" ||
+					!is_numeric($array['id'])) {
+					die("ERROR: Id is empty or not numeric! (Comment::__construct())");
+				}
+
+				$this->_id = $array['id'];
+
+				if ( !$this->doesExist() ) {
+					die("ERROR: Comment " . $this->_id . " not found! (Comment::__construct())");
+				}
+
+				$this->loadEntry();
+
+			// Data has been supplied.
+			// Validate data and load current instance with supplied data
+			} elseif( isset($array['data']) ) {
+
+				if (!isset($array['data']['author']) ||
+					!isset($array['data']['a_id']) ||
+					!isset($array['data']['comment'])) {
+					die("ERROR: Missing data! (Comment::__construct())");
+				} else {
+
+					// Check id	
+					if (isset($array['data']['id'])) {
+						if (trim($array['data']['id']) === "" ||
+							!is_numeric($array['data']['id'])) {
+							die("ERROR: Id is empty or not numeric! (Comment::__construct())");
+							}
+						$this->_id = $array['data']['id'];
+
+						// Check if comment with supplied id exists
+						if ( !$this->doesExist() ) {
+							die("ERROR: Comment " . $this->_id . " not found! (Comment::__construct())");
+						}
+					}
+
+					// Check article-id	
+					if (trim($array['data']['a_id']) === "" ||
+						!is_numeric($array['data']['a_id'])) {
+						die("ERROR: a_id is empty or not numeric! (Comment::__construct())");
+						}
+					$this->_data['a_id'] = $array['data']['a_id'];
+
+					// Check if article with supplied id exists
+					require_once("models/Article/Article.class.php");	
+					$article = new Article( array("id" => $this->_data['a_id']) );
+
+					// Check author
+					if (trim($array['data']['author']) === "") {
+						die("ERROR: Author is empty! (Comment::__construct())");
+					}
+					$this->_data['author'] = $array['data']['author'];
+
+					// Check mail
+					$this->_data['mail'] = $array['data']['mail'];
+
+					// Check www
+					$this->_data['www'] = $array['data']['www'];
+
+					// Check comment
+					if (trim($array['data']['comment']) === "") {
+						die("ERROR: Comment is empty! (Comment::__construct())");
+					}
+					$this->_data['comment'] = $array['data']['comment'];
+
+				}
+
 			}
-			if(isset($array['id']))
-				$this->load($array['id']);
-				
-			if(isset($array['data'])) {
-				$this->_data = $array['data'];
-				$this->newEntry();
-			}
-			
+
 		} 
-		
-		public function newEntry() {
-			$query = "INSERT INTO comment 
-						(a_id, author, mail, www, comment, c_date) 
-					  VALUES 
-						(:a_id, :author, :mail, :www, :comment, NOW())";
-			$params = array(
-					':a_id' => $this->_data['a_id'], 
-					':author' => (isset($this->_data['author']) ? $this->_data['author'] : "Coding Monkey"),
-					':mail' => (isset($this->_data['mail']) ? $this->_data['mail'] : "codingmonkey@renemichalke.de"),
-					':www' => (isset($this->_data['www']) ? $this->_data['www'] : "http://www.renemichalke.de"),
-					':comment' => (isset($this->_data['comment']) ? $this->_data['comment'] : 'Default Comment.')
-			);
-			DB::execute($query, $params);
-			
-			//$this->load($lastID);
-		}
-		
-	
-		public function load($id) {
+
+		public function loadEntry() {
 
 			switch(Config::getOption("db_type")) {
+				case "mysql":
+					$query = "SELECT *, DATE_FORMAT(c_date, '%D %M %Y – %H:%i') as c_date 
+							  FROM comments WHERE id = :id";
+					break;
+
+				case "sqlite":
+					$query = "SELECT *, strftime('%d.%m.%Y – %H:%M', c_date) as c_date 
+							  FROM comments WHERE id = :id";
+					break;
+			}
+			$this->_data = DB::getOne($query, array(':id' => $this->_id));
+
+			$options = array('htmlspecialchars', 'utf8_decode', 'stripslashes');
+			Sanitize::process_array($this->_data, $options);
+
+		}
+		
+		public function saveEntry() {
+			if ($this->_id === -1) {
+				$this->newEntry();
+			} else {
+				$this->updateEntry();
+			}
+		}
+		
+		public function newEntry() {
+			switch(Config::getOption("db_type")) {
 				case "mysql": 
-					$query = "SELECT *, DATE_FORMAT(c_date, '%D of %M %Y – %H:%i') as c_date 
-						  FROM comment WHERE id = :id";
+					$query = "INSERT INTO comments 
+								(a_id, author, mail, www, comment, c_date) 
+							  VALUES 
+								(:a_id, :author, :mail, :www, :comment, NOW())";
 				break;
 			
 				case "sqlite": 
-					$query = "SELECT *, strftime('%d %m %Y – %H:%M', c_date) as c_date 
-						  FROM comment WHERE id = :id";
+					$query = "INSERT INTO comments 
+								(a_id, author, mail, www, comment, c_date) 
+							  VALUES 
+								(:a_id, :author, :mail, :www, :comment, DATETIME('NOW'))";
 				break;
 			}
-			
-			$this->_data = DB::getOne($query, array(':id' => $id));
-						
-			if(sizeof($this->_data) == 0)
-				$this->set(  array(
-					'id' => $id, 
-					'author' => "Fehler: Comment mit id ".$id." nicht gefunden",
-					'mail' => "Fehler: Comment mit id ".$id." nicht gefunden",
-					'www' => "Fehler: Comment mit id " .$id. " nicht gefunden",
-					'comment' => "Fehler: Comment mit id ".$id." nicht gefunden",
-					'c_date' => "Fehler: Comment mit id ".$id." nicht gefunden"
-				) );
-				
-			//$options = array('stripslashes');
-			$options = array('htmlspecialchars', 'utf8_decode', 'stripslashes');
-			Sanitize::process_array($this->_data, $options);
+			$params = array(
+					':a_id' => $this->_data['a_id'], 
+					':author' => $this->_data['author'],
+					':mail' => $this->_data['mail'],
+					':www' => $this->_data['www'],
+					':comment' => $this->_data['comment']
+			);
+			DB::execute($query, $params);
+
+			$this->_id = DB::lastId();
 		}
 		
-		public function save() {
-			$query = 'UPDATE comment SET 
+
+		public function updateEntry() {
+			$query = 'UPDATE comments SET 
 						author=:author,
 						mail=:mail,
+						www=:www,
 						comment=:comment
 					  WHERE id=:id';
 			$params = array(
@@ -94,5 +172,12 @@
 			DB::execute($query, $params);
 		}
 
+		public function deleteEntry() {
+			$query = 'DELETE FROM comments
+						WHERE id = :id';
+			$params = array('id' => $this->_id);
+			DB::execute($query, $params);
+			die("#t");
+		}
 	} // <!-- end class ’Controller’ -->
 ?>
