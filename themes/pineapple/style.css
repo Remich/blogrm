@@ -388,3 +388,51 @@ blockquote {
 #area_1 {
 	text-align: center;
 }
+
+.comments h1 {
+	margin-top: 3em;
+}
+.comment {
+	padding-top: 2em;
+	clear: both;
+}
+.comment header {
+	width: 30%;
+	float: left;
+}
+.comment header .author {
+	font-weight: bold;
+	text-decoration: underline;
+}
+.comment header .www, 
+.comment header .mail,
+.comment header .date {
+	font-size: 80%;
+}
+.comment .comment-right {
+	width: 70%;
+	float: right;
+	background: #ddd;
+	border-radius: 1px;
+	padding: 0;
+}
+.commtent .rotate {
+}
+.comment .corner {
+	width: 12px;
+	height: 12px;
+	transform: rotate(45deg);
+	float: left;
+	position: relative;
+	left: -6px;
+	top: 8px;
+	background: #ddd;
+}
+.comment .comment-right p {
+	padding: 0.5em 2em;
+	font-size: 90%;
+}
+
+.clear {
+	clear: both;
+}

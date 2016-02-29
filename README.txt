@@ -52,6 +52,8 @@
 	* implement working comments
 		* make comments editable
 	* make article date editable	
+	* make Article/views/single.php fresh for new data passing
+
 	* implement real static content
 	* write installation-script
 		** with salted password!!!

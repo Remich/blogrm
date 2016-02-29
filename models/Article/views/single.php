@@ -14,6 +14,7 @@
 <section class="comments">
 	<h1>Comments</h1>
 	<?php echo $item['comments']; ?>
+	<div class="clear"></div>
 	<h1>Leave a Comment</h1>
 	<form action="index.php?page=comment&id=<?php echo $item['id']; ?>" method="post">	
 		<dl>
