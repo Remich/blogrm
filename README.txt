@@ -49,12 +49,12 @@
 
 	* (DONE) make articles viewable by month and year
 	* (DONE) create ListOfYears
-	* implement working comments
-		* make comments editable
-	* make article date editable	
-	* make Article/views/single.php fresh for new data passing
+	* (DONE) make Article/views/single.php fresh for new data passing
 
+	* make article date editable	
 	* implement real static content
+	* implement published/draft status
+	
 	* write installation-script
 		** with salted password!!!
 		** make Config.inc.php protected!!!!!!!
@@ -155,3 +155,7 @@
 	* improve fileupload
 		* cleanup FileUpload.class.php
 	* implement child themes and child models
+	* implement working comments
+		* make comments editable
+			* make use of textarea when editing comment
+		* check against security stuff

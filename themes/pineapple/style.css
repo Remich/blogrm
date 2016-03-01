@@ -412,7 +412,7 @@ blockquote {
 .comment .comment-right {
 	width: 70%;
 	float: right;
-	background: #ddd;
+	background: #EDEAE8;
 	border-radius: 1px;
 	padding: 0;
 }
@@ -426,7 +426,7 @@ blockquote {
 	position: relative;
 	left: -6px;
 	top: 8px;
-	background: #ddd;
+	background: #EDEAE8;
 }
 .comment .comment-right p {
 	padding: 0.5em 2em;

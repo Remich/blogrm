@@ -205,6 +205,7 @@
 					break;
 
 				case 'comment':
+					die("ERROR: Comments are disabled!");
 					$this->isInRequest(array('id', 'author', 'comment'));
 					require_once("models/Comment/Comment.class.php");
 					$comment = new Comment(

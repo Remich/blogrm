@@ -58,6 +58,7 @@
 						}
 					}
 
+
 					foreach($this->_request['data'] as $item) {
 
 						if (!isset($item['id']) ||

@@ -168,7 +168,7 @@
 				':mail' => $this->_data['mail'],
 				':www' => $this->_data['www'],
 				':comment' => $this->_data['comment'], 
-				':id' => $this->_data['id']);
+				':id' => $this->_id);
 			DB::execute($query, $params);
 		}
 
