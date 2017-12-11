@@ -30,8 +30,22 @@
 		
 				default:
 				case "show_panel":
-					$bouncer = new Auth(true);
 					$this->_view->setTemplate('panel');
+
+					// check if user is loggend in, and therefore has the required privileges
+					$bouncer = new Auth(true);
+
+					// assign active_plugins, so we can only show the relevant switches
+					$this->_view->assign(
+						'active_plugins', 
+						array_filter(
+							Config::getOption('plugins'), 
+							function($item) { 
+								if($item['active'] === true) return $item;
+							}
+						)
+					);
+
 					$this->_view->assign('is_logged_in', Auth::isLoggedIn('userhash') );
 					break; // <!-- end case ’default’ --> 
 					

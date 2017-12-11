@@ -47,12 +47,9 @@
 #admin-panel.login input[type=reset]:active {
       position: relative;
       top: 1px; }
-.p_editor #admin-panel a#switch_editor {
-      cursor: pointer;
-      background: #1982D1 !important;
-      box-shadow: none !important;
-      color: #fff;
-}
+
+
+/*TODO: delete*/
 .p_sortable #admin-panel a#switch_sortable {
       cursor: pointer;
       background: #1982D1 !important;

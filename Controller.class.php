@@ -23,10 +23,11 @@
 			
 			$this->_view = new View();
 			
-			$this->_footer .= '<script type="text/javascript" src="libs/jquery-2.2.0.min.js"></script>';
+			$this->_footer .= '<script type="text/javascript" src="libs/jquery-3.2.1.min.js"></script>';
 			$this->_footer .= '<script type="text/javascript" src="libs/colorbox/jquery.colorbox-min.js"></script>';
 			$this->_header .= '<link href="libs/colorbox/colorbox.css" type="text/css" rel="stylesheet" />';
 
+			// TODO make pluggable without supplying names here, also in admin-panel/Controller…
 			if(@$_SESSION['admin-panel']) {
 			
 				$this->_header .= '<link href="admin-panel/views/panel.css" type="text/css" rel="stylesheet" />';
@@ -37,7 +38,7 @@
 
 			if(@$_SESSION['editor']) {
 				$this->_header .= '<link rel="stylesheet" type="text/css" href="editor/views/editor.css" media="all" />';
-				$this->_footer .= '<script type="text/javascript" src="editor/views/pp_editor.js"></script>';
+				$this->_footer .= '<script type="text/javascript" src="editor/views/editor.js"></script>';
 			}
 						
 

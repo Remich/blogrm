@@ -1,22 +1,34 @@
 $(document).ready(function() {
 
-	$.ajax({
-        url : "admin-panel/index.php",
-        dataType: "text",
-        success : function (data) {
-            $("#plugable_content").prepend(data);
-        }
-    });    
-	
+	/**
+	 * Init Function
+	 */  
+	(function Init() {
 
-	// Apply padding to body
-	padding = $("body").css('padding-top').split("");
-	padding.pop();
-	padding.pop();
-	padding = parseInt(padding.join(""));
+		// Move the actual page-content down, otherwise some of it will be below the panels
 
-	$("body").css('padding-top', padding + 36 + 'px');
+		window.initial_body_padding = parseInt( $("body").css('padding-top') ); // parseInt removes the „px“
+		window.setPaddingTopBody = function() {
+			pluggable_content_height = $("#pluggable_content").height();
+			$("body").css('padding-top', pluggable_content_height + window.initial_body_padding + 'px');
+		};
 
+		$(window).on('load', function() {
+            window.setPaddingTopBody();
+		});
+
+		// Load and inject the HTML
+		$.ajax({
+	        url : "admin-panel/index.php",
+	        dataType: "text",
+	        success : function (data) {
+	            $("#pluggable_content").prepend(data);
+	            window.setPaddingTopBody();
+	        }
+	    });    
+
+		
+	})();
 
 
 	// submit login form
@@ -32,7 +44,8 @@ $(document).ready(function() {
 		}
 
 		
-		$('#hidden').load('admin-panel/index.php?page=login_step_2&username=' + encodeURIComponent(user) + '&password=' + encodeURIComponent(CryptoJS.SHA256(pass)), function( result ) {
+		// TODO test for security: e.g. call manually with empty strings etc.…
+		$('#hidden').load('admin-panel/index.php?page=login_step_2&username=' + encodeURIComponent(user) + '&password=' + encodeURIComponent(CryptoJS.SHA256(pass).toString()), function( result ) {
 				
 			if(result.trim() === "1") 
 				window.location.reload(true);

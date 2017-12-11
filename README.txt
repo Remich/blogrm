@@ -15,6 +15,11 @@
 
 	* grep nach TODOs
 	* delete old jquery version 
+	* implement registration and may user roles
+		- salt login password (hint: use funct. password_hash())
+		- differentiate between rename db.users.hash to db.users.cookie_hash 
+	* install script
+	* use require-js
 
 ## SECURITY ##
 

@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo get_theme_folder(); ?>styles/style.css" media="all" />
 	</head>
 	<body id="<?php echo $this->_['page']; ?>">
-		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important;"></div>
+		<div id="pluggable_content" style="position: fixed; width: 100%; top: 0px !important;"></div>
 		<div id="hidden" style="visibility: hidden"></div>
 
 		<header id="logo">  

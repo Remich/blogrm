@@ -721,6 +721,10 @@ body#admin_panel {
 *[contenteditable="true"]:hover:not(:focus) {
   outline: orange solid 2px; }
     
-.p_editor #switch_editor{
-	font-weight: bold; 
-} 
+.p_editor #admin-panel a#switch_editor {
+  font-weight: bold;
+  cursor: pointer;
+  background: #1982D1 !important;
+  box-shadow: none !important;
+  color: #fff;
+}

@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="<?php echo get_theme_folder(); ?>style.css" />
 	</head>
 	<body id="<?php echo $this->_['page']; ?>">
-		<div id="plugable_content" style="position: fixed; width: 100%; top: 0px !important; z-index: 1;"></div>
+		<div id="pluggable_content" style="position: fixed; width: 100%; top: 0px !important; z-index: 1;"></div>
 		<div id="hidden" style="visibility: hidden; height: 0px; overflow: hidden;"></div>
 
 		<div id="wrapper">
