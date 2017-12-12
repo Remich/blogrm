@@ -10,7 +10,7 @@ $(document).ready(function() {
 	        url : "editor/views/editor.html",
 	        dataType: "text",
 	        success : function (data) {
-	            $("#pluggable_content").append(data); // TODO:  rename pluggable_content --> pluggable_content
+	            $("#pluggable_content").append(data);
 	            window.setPaddingTopBody();
 	        }
 	    });    
