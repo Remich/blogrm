@@ -323,4 +323,15 @@ input#backcolor {
 #pp_editor #imageright:hover {
     background: url(img/image-align-right.png) no-repeat center, #e6e6e6;
     box-shadow: none;
-/*}*/
+}
+*.editable:hover:not(:focus) {
+    outline: orange solid 2px;
+    cursor: pointer; 
+}
+*.editing {
+    outline: grey solid 2px;
+}
+
+*[contenteditable="true"]:hover:not(:focus) {
+    outline: orange solid 2px; 
+}
