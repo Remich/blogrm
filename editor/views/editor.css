@@ -130,10 +130,10 @@ input#backcolor {
 #pp_editor #cancel {
     padding: 7px 16px;
     background: #ffffff;
-    background: url("img/cancel.png") no-repeat center, linear-gradient(to bottom, white 0%, #ebebeb 78%);
+    background: url("img/cancel.gif") no-repeat center, linear-gradient(to bottom, white 0%, #ebebeb 78%);
 }
 #pp_editor #cancel:hover {
-    background: url(img/cancel.png) no-repeat center, #e6e6e6;
+    background: url(img/cancel.gif) no-repeat center, #e6e6e6;
     box-shadow: none;
 }
 #pp_editor #removeformat span {
@@ -323,4 +323,4 @@ input#backcolor {
 #pp_editor #imageright:hover {
     background: url(img/image-align-right.png) no-repeat center, #e6e6e6;
     box-shadow: none;
-}
+/*}*/
