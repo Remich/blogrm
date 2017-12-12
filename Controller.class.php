@@ -27,20 +27,22 @@
 			$this->_footer .= '<script type="text/javascript" src="libs/colorbox/jquery.colorbox-min.js"></script>';
 			$this->_header .= '<link href="libs/colorbox/colorbox.css" type="text/css" rel="stylesheet" />';
 
-			// TODO make pluggable without supplying names here, also in admin-panel/Controller…
-			if(@$_SESSION['admin-panel']) {
-			
-				$this->_header .= '<link href="admin-panel/views/panel.css" type="text/css" rel="stylesheet" />';
-				$this->_footer .= '<script type="text/javascript" src="admin-panel/admin-panel.js"></script>';
-				$this->_footer .= '<script src="libs/sha256.js" type="text/javascript"></script>';
-			
-			}
+			// Load active plugins
+			$active_plugins = Config::getActivePlugins();
+			foreach($active_plugins as $item) {
 
-			if(@$_SESSION['editor']) {
-				$this->_header .= '<link rel="stylesheet" type="text/css" href="editor/views/editor.css" media="all" />';
-				$this->_footer .= '<script type="text/javascript" src="editor/views/editor.js"></script>';
+				if(!@$_SESSION[$item['key']])
+					continue;
+
+				$header_file = $item['key']."/header.inc.html";
+				$footer_file = $item['key']."/footer.inc.html";
+
+				if(@file_exists($header_file))
+					$this->_header .= file_get_contents($header_file);
+
+				if(@file_exists($footer_file))
+					$this->_footer .= file_get_contents($footer_file);
 			}
-						
 
 			// require_once("models/NavigationFromFolder/NavigationFromFolder.class.php");
 			// $nav = new NavigationFromFolder('../');
@@ -55,14 +57,8 @@
 			// Navigation
 			$navigation = array();
 			$i=0;
-			$navigation[$i]['name'] = "All";
+			$navigation[$i]['name'] = "Home";
 			$navigation[$i++]['url'] = "index.php";
-			$navigation[$i]['name'] = "Manifest";	
-			$navigation[$i++]['url'] = "index.php?page=post&id=678";
-			$navigation[$i]['name'] = "Diary";
-			$navigation[$i++]['url'] = "index.php?tag_id=27";
-			$navigation[$i]['name'] = "Tags";
-			$navigation[$i++]['url'] = "#area_1";
 			$navigation[$i]['name'] = "Archive";
 			$navigation[$i++]['url'] = "index.php?page=archive";
 			$navigation[$i]['name'] = "Login";
