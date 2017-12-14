@@ -15,6 +15,7 @@ $(document).ready(function() {
 	var prev_editing = null;
 	// used to check if window.beforeunload event has been cancelled
 	var timeout;
+
 	/**
 	 * Edit-Log – Mix of Array and Linear List
 	 * Used to keep track of changes made to the elements of the page, for later saving
@@ -26,18 +27,18 @@ $(document).ready(function() {
 
 		that.getLength = function() {
 			return that.items.length;
-		}
+		};
 
 		that.pop = function() {
 			return that.items.pop();
-		}
+		};
 
 		that.push = function(value) {
 			var id = value.attr("id");
 			if (!that.find(id)) {
 				that.items.push(value);
 			}
-		}
+		};
 
 		that.remove = function(id) {
 			for(var a = 0; a < that.items.length; a++) {
@@ -46,7 +47,7 @@ $(document).ready(function() {
 				}
 			}
 			return true;
-		}
+		};
 
 		that.find = function(id) {
 			for(var a = 0; a < that.items.length; a++) {
@@ -55,7 +56,57 @@ $(document).ready(function() {
 				}
 			}
 			return false;
-		}
+		};
+
+		that.save = function() {
+
+			// Nothing to save
+			if(that.getLength() === 0)
+				return;
+
+			/*	
+			 * finds and returns all the types of editable elements and its values of a particular entry (e.g. blog post #12)
+			 */
+			var findeditables = function(obj) {
+
+				var editables = [];
+				var children = obj.find("*");
+
+				$.each(children, function(index, selector) {
+					if($(selector).attr("model_key") !== undefined) {
+						var child = {};
+						child.key = $(selector).attr("model_key");
+						child.val = $(selector).html();
+						editables.push(child);
+					}
+				});
+
+				return editables;
+			};
+
+			data = [];
+			while(that.getLength() !== 0) {
+				var item = that.pop();
+				var tmp = { 
+					"id"	: item.attr("id"),
+					"model" : item.attr("model"),
+					"data"	: findeditables(item)
+				}
+				data.push(tmp);
+			}
+
+			$("#hidden").load(
+				'ajax.php?&action=save', 
+				{ data : data }, 
+				function ( ret ) {
+					if (ret.trim() !== "#t") {
+						alert('Fehler beim Speichern');
+						console.log(ret);
+					}
+				}
+			);
+			
+		};
 
 		return that;
 	}());	
@@ -104,7 +155,7 @@ $(document).ready(function() {
 
 
 	/**
-	 * Finds the parent element which is of type article of a element
+	 * Finds the parent element which is of tag-type article of a element
 	 *
 	 * @param      {Function}  obj     a jQuery object
 	 * @return     {Function}  a jQuery object
@@ -206,11 +257,26 @@ $(document).ready(function() {
 
 		});
 	};
+	btn.isEnabled 		= function() { return true; };
 	buttons.push(btn);
 
 	/**
 	 * Button Save File
 	 */  
+	var btn 			= {};
+	btn.id 				= "save"
+	btn.html_disabled 	= false;
+	btn.onClick 		= function() {
+		edit_log.save();	
+		removeFocus(cur_editing);
+	};
+	btn.isEnabled 		= function() {
+		if(edit_log.getLength() > 0)
+			return true;
+		else 
+			return false;
+	};
+	buttons.push(btn);
 
 
 	/**
@@ -220,5 +286,28 @@ $(document).ready(function() {
 		var handle = buttons[i];
 		$(document).on("click", "#"+handle.id, handle.onClick);
 	}
+
+	/**
+	 * enable/disable buttons depending on context
+	 */  
+	var disableButton = function(btnID) {
+		if(!$('#pp_editor #'+ btnID).hasClass("not-supported"))
+			$('#pp_editor #'+ btnID).addClass("not-supported").attr('disabled', 'true');
+	};
+	var enableButton = function(btnID) {
+		if($('#pp_editor #'+ btnID).hasClass("not-supported"))
+			$('#pp_editor #'+ btnID).removeClass("not-supported").removeAttr('disabled');
+	};
+
+	var watchButtonInterval = setInterval(function() {
+		for(var i in buttons) {
+			var handle = buttons[i];
+			if(handle.isEnabled() === true) 
+				enableButton(handle.id);
+			else
+				disableButton(handle.id);
+
+		}
+	}, 100);
 
 });

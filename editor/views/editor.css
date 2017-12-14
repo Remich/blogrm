@@ -71,6 +71,9 @@
 #pp_editor .pp-editor-toolbar-group .button:not(:first-of-type) {
     margin-left: -1px; 
 }
+#pp_editor .pp-editor-toolbar-group .not-supported {
+    opacity: 0.4; 
+}
 input#forecolor, input#backcolor {
     position: relative;
     top: 5px;
