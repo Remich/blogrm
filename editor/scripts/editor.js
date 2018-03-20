@@ -1,6 +1,12 @@
 $(document).ready(function() {
 
-
+	/* TODO: remove onclick="" in editor.html */
+	/* BUGS: 
+	 *	1!!!!: when clicking a button (bold), a  blur event is fired, and then the click event.
+	 *			however, the  watchButtonInterval() might run before the click event restores the focus, thus the action of the button is not executed!!!
+	 *			this sucks.!
+	 * 
+	 * 
 
 	
 	/**
@@ -9,10 +15,25 @@ $(document).ready(function() {
 
 	// is html mode active?
 	var status_html = false;
-	// are we editing something currently? yes, then this points to the element
+
+	/* are we editing something [0] currently? yes, then this points to the element
+
+	 * [0] - The following dom-elements are compatible with the editor
+
+	 * 	1. a element with the following attributes:
+	 *		- id="[0-9]*" 	/* Regular Expression (ERE-Syntax) between the "", also below
+	 		- model="[a-z0-9]" 
+	 	2. the same element as 1. or a child element of 1. with the following properties:
+			- model_key="" // TODO find type
+			- class="editable"
+			- the values/content of elements with attribute *model_key=""* AND *class="editable"*
+	 		  . . .
+	 */
 	var cur_editing = null;
+
 	// points to the same as cur_editing, however "cur_editing" might become null (e.g.: when blur event is fired), so we sometimes need to remember what "cur_editing" was before it became null
 	var prev_editing = null;
+
 	// used to check if window.beforeunload event has been cancelled
 	var timeout;
 
@@ -56,6 +77,41 @@ $(document).ready(function() {
 				}
 			}
 			return false;
+		};
+
+		// TODO Make non-recursive
+		that.delete_item = function(to_delete) {
+
+
+			item = to_delete.pop();
+
+			var model = item.attr("model");
+			var id = item.attr("id");
+
+			if( confirm("Really Delete Object?") ) {
+				$("#hidden").load('ajax.php?model=' + encodeURIComponent(model) + 
+						'&action=delete&id=' + encodeURIComponent(id), function ( bool ) {
+					
+						if (bool.trim() === "#t") {
+
+							$("#"+id).slideUp("slow", function() {
+								this.remove();
+							});
+
+							// remove model from edit edit_log,
+							// otherwise it will reappear,
+							// when saving any other object
+							if( edit_log.remove(id, model) ) {
+								if(to_delete.length > 0) {
+									delete_item(to_delete);
+								}
+							}
+
+						}
+
+				});
+			}		
+		
 		};
 
 		that.save = function() {
@@ -113,7 +169,7 @@ $(document).ready(function() {
 
 
 	/**
-	 * Init Function:
+	 * Init Function: Initialize the editor
 	 */  
 	(function Init() {
 
@@ -201,6 +257,50 @@ $(document).ready(function() {
 	    }
 	};
 
+	/**
+	 * toggles a class
+	 *
+	 * @param      {jQuery-DOM}  el         The jQuery-DOM 
+	 * @param      {string}  	 className  The class name
+	 */
+	var toggleClass = function(el, className) {
+		if(el.hasClass(className) === true) {
+			el.removeClass(className);
+		} else {
+			el.addClass(className);
+		}
+	}
+
+	/**
+	 * inverts a boolean variable
+	 *
+	 * @param      {boolean}  sw      The variable to invert
+	 * @return     {boolean}  The inverted boolean value
+	 */
+	var invertBool = function(sw) {
+		if(sw === true) {
+			return false;
+		} else {
+			return true;
+		}
+	};
+
+	/**
+	 * todo
+	 *
+	 * @param      {string}  str     The string
+	 * @return     {string}  { description_of_the_return_value }
+	 */
+	function rgbToHex(str) {
+
+		function componentToHex(c) { var hex = c.toString(16);
+			return hex.length == 1 ? "0" + hex : hex;
+		}
+
+		str = str.replace("rgb(", "").replace(")", "").replace(/ /g, "");
+		str = str.split(",");
+		return "#" + componentToHex(parseInt(str[0])) + componentToHex(parseInt(str[1])) + componentToHex(parseInt(str[2]));
+	}
 
 	$(document).on("focus", "a.editable", function(e) {
 		newFocus($(this));
@@ -227,10 +327,13 @@ $(document).ready(function() {
 	});
 
 	$(document).on("blur", ".editing", function(e) {
-		removeFocus($(this));
-		cur_editing = null;
+		if(cur_editing != null && e.relatedTarget == null) {	/* blur by clicking anywhere in the document, except a button */
+			removeFocus(cur_editing);
+			cur_editing = null;
+		} else {	/* blur, when a button was pressed */
+			newFocus(prev_editing);
+		}
 	});
-
 
 	/**
 	 * Initialize Buttons
@@ -278,6 +381,299 @@ $(document).ready(function() {
 	};
 	buttons.push(btn);
 
+	/**
+	 * Button Delete File
+	 */
+	var btn 			= {};
+	btn.id 				= "deletefile"
+	btn.html_disabled 	= false;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+
+		var toggleCheckboxes = function() {
+
+			var clickHandler = function() {
+				console.log("jojaosdjfoasf");
+			};
+
+			var checkBox = function(fade) {
+
+				if(fade === 'fade-in') {
+					if( $(".pcheckbox").length > 0) {
+						$(".pcheckbox").fadeIn();
+					} else {
+						$("article").before('<input type="checkbox" name="deleteArticle" value="" class="pcheckbox">');	
+					}
+
+					$(".pcheckbox").change(function() {
+						console.log("changed");
+					});
+				} else if(fade === 'fade-out') {
+					$(".pcheckbox").fadeOut();	
+				}
+
+			};
+
+			if(btn.isButtonModeActive === true) {
+				console.log("checkbox fade-out");
+				checkBox("fade-out");
+			} else {
+				console.log("checkbox fade-in");
+				checkBox("fade-in");
+			}
+		};
+
+		var toggleConfirm = function() {
+
+			if(btn.isButtonModeActive === true) {
+				console.log("confirmbox fade-out");
+			} else {
+				console.log("confirmbox fade-in");
+			}
+		};
+
+		toggleClass($(this), "mode_active");
+		toggleCheckboxes();
+		toggleConfirm();
+		btn.isButtonModeActive = invertBool(btn.isButtonModeActive);
+	};
+	btn.isEnabled = function() {
+		return true;
+	};
+	buttons.push(btn);
+
+	/**
+	 * Button Cancel
+	 */
+	var btn 			= {};
+	btn.id 				= "cancel"
+	btn.html_disabled 	= false;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		$('#pp_editor').slideUp();
+		if(cur_editing != null) {
+			removeFocus(cur_editing);
+			cur_editing = null;
+		}
+	};
+	btn.isEnabled = function() {
+		return true;
+	};
+	buttons.push(btn);
+
+	/**
+	 * Button Undo
+	 */
+	var btn 			= {};
+	btn.id 				= "undo"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("undo");
+		document.execCommand('undo', false, null);
+	};
+	btn.isEnabled = function() {
+		return document.queryCommandEnabled(this.id)
+	};
+	buttons.push(btn);
+
+	/**
+	 * Button Redo
+	 */
+	var btn 			= {};
+	btn.id 				= "redo"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("redo");
+		document.execCommand('redo', false, null);
+	};
+	btn.isEnabled = function() {
+		return document.queryCommandEnabled(this.id)
+	};
+	buttons.push(btn);
+
+	/**
+	 * Button Remove Format
+	 */
+	var btn 			= {};
+	btn.id 				= "removeformat"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("removeformat");
+		document.execCommand('removeformat', false, null);
+	};
+	btn.isEnabled = function() {
+		return document.queryCommandEnabled(this.id)
+	};
+	buttons.push(btn);
+
+
+	/**
+	 * Selection Font Name
+	 */
+	var btn 			= {};
+	btn.id 				= "fontname"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("fontname");
+		return true;
+	};
+	btn.isEnabled = function() {
+		// check also, if the font selection box has the correct value, depending on where the cursor is
+		if(cur_editing != null) {
+			var fontName = document.queryCommandValue("fontname");
+			var fonts = fontName.split(",");
+			$('#pp_editor #fontname').val(fonts[0]);
+		}
+		return document.queryCommandEnabled(this.id)
+	};
+	$(document).on("change", "#pp_editor #fontname", function(e) {
+		document.execCommand("fontname", false, $(this).val() );
+		var fontName = document.queryCommandValue("fontname");
+		var fonts = fontName.split(",");
+		$('#pp_editor fontname').val(fonts[0]);
+	});
+	buttons.push(btn);
+
+	/**
+	 * Selection Fontsize
+	 */
+	var btn 			= {};
+	btn.id 				= "fontsize"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("fontsize");
+		return true;
+	};
+	btn.isEnabled = function() {
+		// check also, if the size selection box has the correct value, depending on where the cursor is
+		if(cur_editing != null) {
+			var fontSize = document.queryCommandValue("fontsize");
+			var size = fontSize.split(",");
+			$('#pp_editor #fontsize').val(size[0]);
+		}
+		return document.queryCommandEnabled(this.id)
+	};
+	$(document).on("change", "#pp_editor #fontsize", function(e) {
+		document.execCommand("fontsize", false, $(this).val() );
+		var fontSize = document.queryCommandValue("fontsize");
+		var size = fontSize.split(",");
+		$('#pp_editor #fontsize').val(size[0]);
+	});
+	buttons.push(btn);
+
+
+	// TODO implement
+	/**
+	 * Fore Color
+	 */
+	var btn 			= {};
+	btn.id 				= "forecolor"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("forecolor");
+		return true;
+	};
+	btn.isEnabled = function() {
+		return false;
+		// return document.queryCommandEnabled(this.id)
+	};
+	$(document).on("change", "#pp_editor #forecolor", function(e) {
+		// console.log("change forecolor");
+		// // console.log("hi");
+		// console.log($(this).val());
+		// document.execCommand("ForeColor", false, $(this).val() );
+		// newFocus(prev_editing);
+		// var foreColor = document.queryCommandValue("ForeColor");
+		// console.log("new: " + foreColor);
+
+
+
+		// document.execCommand('styleWithCSS', false, true);
+		// var foo = document.queryCommandState('styleWithCSS');
+
+		// console.log($(this).val());
+		 //    document.execCommand('foreColor', false, $(this).val());
+
+		// var fontSize = document.queryCommandValue("forecolor");
+		// var size = fontSize.split(",");
+		// $('#pp_editor #forecolor').val(size[0]);
+	});
+	buttons.push(btn);
+
+	// TODO implement
+	/**
+	 * Back Color
+	 */
+	var btn 			= {};
+	btn.id 				= "backcolor"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function() {
+		console.log("backcolor");
+		return true;
+	};
+	btn.isEnabled = function() {
+		return false;
+		// return document.queryCommandEnabled(this.id)
+	};
+	$(document).on("change", "#pp_editor #backcolor", function(e) {
+		// console.log("change backcolor");
+		// // console.log("hi");
+		// console.log($(this).val());
+		// document.execCommand("ForeColor", false, $(this).val() );
+		// newFocus(prev_editing);
+		// var foreColor = document.queryCommandValue("ForeColor");
+		// console.log("new: " + foreColor);
+
+
+
+		// document.execCommand('styleWithCSS', false, true);
+		// var foo = document.queryCommandState('styleWithCSS');
+
+		// console.log($(this).val());
+		 //    document.execCommand('foreColor', false, $(this).val());
+
+		// var fontSize = document.queryCommandValue("backcolor");
+		// var size = fontSize.split(",");
+		// $('#pp_editor #backcolor').val(size[0]);
+	});
+	buttons.push(btn);
+
+
+
+
+
+	/**
+	 * Button Bold
+	 */
+	var btn 			= {};
+	btn.id 				= "bold"
+	btn.html_disabled 	= true;
+	btn.isButtonModeActive = false;
+	btn.checkBoxClickHandler = null;
+	btn.onClick 		= function(e) {
+		console.log("bold");
+		document.execCommand('bold', false, null);
+	};
+	btn.isEnabled = function() {
+		return document.queryCommandEnabled(this.id)
+	};
+	buttons.push(btn);
 
 	/**
 	 * Add Eventlisteners

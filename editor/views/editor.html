@@ -3,11 +3,11 @@
 	<div id="pp_editor">
 
 			<div class="pp-editor-toolbar-group">
-				<button class="button nonpermanent" id="newfile">&nbsp;</button><button class="button nonpermanent" data-title="save" id="save">&nbsp;</button><button class="button nonpermanent" data-title="deletefile" id="deletefile">&nbsp;</button><button class="button nonpermanent" data-title="cancel" id="cancel">&nbsp;</button>
+				<button class="button nonpermanent" id="newfile" title="New Article">&nbsp;</button><button class="button nonpermanent" data-title="save" id="save" title="Save All">&nbsp;</button><button class="button nonpermanent" data-title="deletefile" id="deletefile" title="Delete Articles">&nbsp;</button><button class="button nonpermanent" data-title="cancel" id="cancel">&nbsp;</button>
 			</div>
 			
 			<div class="pp-editor-toolbar-group">
-				<button class="button nonpermanent" data-title="undo" id="undo" onclick="document.execCommand('undo',false,null);" >&#8630;</button><button class="button nonpermanent" data-title="redo" id="redo" onclick="document.execCommand('redo',false,null);" >&#8631;</button>
+				<button class="button nonpermanent" data-title="undo" id="undo" onclick="" >&#8630;</button><button class="button nonpermanent" data-title="redo" id="redo" onclick="" >&#8631;</button>
 			</div>
 			
 			
@@ -17,9 +17,10 @@
 	
 			<div class="pp-editor-toolbar-group">
 				<select class="button" id="fontname">
+				  <option value="Helvetica" selected="selected">Helvetica</option>
 				  <option value="Arial">Arial</option>
 				  <option value="Courier">Courier</option>
-				  <option value="Georgia" selected="selected">Georgia</option>
+				  <option value="Georgia">Georgia</option>
 				</select><select class="button" id="fontsize">
 				  <option value="1">1</option>
 				  <option value="2">2</option>
@@ -51,7 +52,7 @@
 			</div>
 			
 			<div class="pp-editor-toolbar-group">
-				<button class="button" data-title="bold" id="bold" value="B" onclick="document.execCommand('bold',false,null);">B</button><button class="button" data-title="italic" id="italic" value="I" onclick="document.execCommand('italic',false,null);">I</button><button class="button" data-title="underline" id="underline" value="U" onclick="document.execCommand('underline',false,null);">U</button><button class="button" data-title="strikethrough" id="strikethrough" value="S" onclick="document.execCommand('strikethrough',false,null);">S</button>
+				<button class="button" data-title="bold" id="bold" value="B" onclick="">B</button><button class="button" data-title="italic" id="italic" value="I" onclick="document.execCommand('italic',false,null);">I</button><button class="button" data-title="underline" id="underline" value="U" onclick="document.execCommand('underline',false,null);">U</button><button class="button" data-title="strikethrough" id="strikethrough" value="S" onclick="document.execCommand('strikethrough',false,null);">S</button>
 			</div>
 			
 			<div class="pp-editor-toolbar-group subsup">

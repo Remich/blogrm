@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	*	Copyright 2010-2014 René Michalke
+	*	Copyright 2010-2018 René Michalke
 	*/
 	
 	

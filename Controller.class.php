@@ -5,10 +5,11 @@
 	*/
 	class Controller extends ControllerBase {
 
-		private $_view = null; // our view object
-		private $_header = null;
-		private $_footer = null;
-		private $_plugins = null;
+		private $_view = null;		/* our view object */
+		private $_header = null;	/* html for the header */
+		private $_footer = null;	/* html for the footer */
+
+		private $_plugins = null;	/* is this still in use?, maybe delete */
 
  
 		/**
@@ -23,7 +24,7 @@
 			
 			$this->_view = new View();
 			
-			$this->_footer .= '<script type="text/javascript" src="libs/jquery-3.2.1.min.js"></script>';
+			$this->_footer .= '<script type="text/javascript" src="libs/jquery-3.3.1.min.js"></script>';
 			$this->_footer .= '<script type="text/javascript" src="libs/colorbox/jquery.colorbox-min.js"></script>';
 			$this->_header .= '<link href="libs/colorbox/colorbox.css" type="text/css" rel="stylesheet" />';
 

@@ -130,6 +130,10 @@ input#backcolor {
     background: url(img/trash.png) no-repeat center, #e6e6e6;
     box-shadow: none;
 }
+#pp_editor #deletefile.mode_active {
+    background: url(img/trash.png) no-repeat center, #1982d1;
+    box-shadow: none;
+}
 #pp_editor #cancel {
     padding: 7px 16px;
     background: #ffffff;
@@ -337,4 +341,15 @@ input#backcolor {
 
 *[contenteditable="true"]:hover:not(:focus) {
     outline: orange solid 2px; 
+}
+
+.p_editor .pcheckbox {
+    transform: scale(3.0);
+    position: relative;
+    display: inline-block;
+    float: left;
+    left: -2.5em;
+    top: 2em;
+    padding: 0;
+    margin: 0;
 }

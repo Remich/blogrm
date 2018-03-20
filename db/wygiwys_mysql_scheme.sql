@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `content` text NOT NULL,
   `published` int(11) NOT NULL DEFAULT '1',
   `comments` longtext NOT NULL,
-  `a_date` datetime NOT NULL
+  `a_date` datetime NOT NULL,
+  `trashed` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
