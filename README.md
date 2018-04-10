@@ -11,6 +11,7 @@ It is not yet finished and has only rudimentary documentation. So don't bother u
 - Customizable with Plugins and Themes
 - 3 Themes included
 - RSS Support
+- MySQL and SQLite Support
 
 ## Missing Features
 
