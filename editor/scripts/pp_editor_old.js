@@ -295,6 +295,8 @@ $(document).ready(function() {
 	
 	// TODO make non recursive
 	var delete_item = function(to_delete) {
+
+
 		item = to_delete.pop();
 		var model = item.attr("model");
 		var id = item.attr("id");
